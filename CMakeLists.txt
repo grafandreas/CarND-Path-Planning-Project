@@ -2,12 +2,12 @@ project(Path_Planning)
 
 cmake_minimum_required (VERSION 3.5)
 
-add_definitions(-std=c++11)
+add_definitions(-std=c++11 -DUSE_VIZ)
 
-set(CXX_FLAGS "-Wall")
+set(CXX_FLAGS "-Wall -std=c++11")
 set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
 
-set(sources src/main.cpp)
+set(sources src/main.cpp src/config.cpp src/viz.cpp)
 
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
@@ -23,4 +23,4 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 add_executable(path_planning ${sources})
 
-target_link_libraries(path_planning z ssl uv uWS)
+target_link_libraries(path_planning z ssl uv uWS sfml-graphics sfml-window sfml-system)

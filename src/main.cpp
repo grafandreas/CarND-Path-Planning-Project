@@ -9,6 +9,13 @@
 #include "Eigen-3.3/Eigen/QR"
 #include "json.hpp"
 
+#include "config.h"
+
+#define USE_VIZ 1
+#ifdef USE_VIZ
+#include "viz.h"
+#endif
+
 using namespace std;
 
 // for convenience
@@ -199,6 +206,14 @@ int main() {
   	map_waypoints_dx.push_back(d_x);
   	map_waypoints_dy.push_back(d_y);
   }
+
+  Config * cfg = Config::getInstance();
+#ifdef USE_VIZ
+  Viz *viz = new Viz;
+  viz->setWaypoints(map_waypoints_x,map_waypoints_y);
+  viz->visualize();
+#endif
+
 
   h.onMessage([&map_waypoints_x,&map_waypoints_y,&map_waypoints_s,&map_waypoints_dx,&map_waypoints_dy](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
                      uWS::OpCode opCode) {
