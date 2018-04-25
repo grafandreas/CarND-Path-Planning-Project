@@ -18,7 +18,9 @@ public:
 
     int w();
     int h();
-
+    double VizTranslateX();
+    double VizTranslateY();
+    double VizScale();
 
 private:
     static Config *_instance;

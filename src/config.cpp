@@ -27,6 +27,17 @@ int Config::h() {
     return pImpl->j["viz"]["h"];
 }
 
+double Config::VizTranslateX() {
+    return pImpl->j["viz"]["translate"]["x"];
+}
+
+double Config::VizTranslateY() {
+    return pImpl->j["viz"]["translate"]["y"];
+}
+
+double Config::VizScale() {
+    return pImpl->j["viz"]["scale"];
+}
 
 
 Config* Config::_instance = 0;

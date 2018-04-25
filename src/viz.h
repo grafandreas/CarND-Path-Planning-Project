@@ -11,6 +11,7 @@ public:
     Viz();
     void visualize();
     void setWaypoints(std::vector<double> &x, std::vector<double> &y);
+    void setCarPos(double x, double y);
 
 private:
 
