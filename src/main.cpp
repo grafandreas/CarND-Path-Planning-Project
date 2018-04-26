@@ -260,7 +260,7 @@ int main() {
 
             cout << car_x << " " << car_y << endl;
 #ifdef USE_VIZ
-            viz->setCarPos(car_x,car_y);
+            viz->setCarPos(car_x,car_y,car_yaw,car_speed);
             viz->visualize();
 #endif
           	// TODO: define a path made up of (x,y) points that the car will visit sequentially every .02 seconds
