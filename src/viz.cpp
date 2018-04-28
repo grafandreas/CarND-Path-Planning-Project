@@ -13,13 +13,17 @@ public:
     sf::RenderWindow window;
     vector<double> * _x;
     vector<double> * _y;
+    vector<Vehicle> * vs;
 
     double car_x, car_y;
     double wp_x, wp_y;
     double yaw, speed;
 
-    impl() : window(sf::VideoMode(Config::getInstance()->w(), Config::getInstance()->h()), "SFML works!") {
+    sf::Font font;
 
+    impl() : window(sf::VideoMode(Config::getInstance()->w(), Config::getInstance()->h()), "SFML works!") {
+        font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf");
+        vs = new vector<Vehicle>; // Empty dummy to make sure that list works.
     }
 
     void drawCircle(int radius, sf::Color  col, double x, double y );
@@ -96,6 +100,15 @@ void Viz::visualize() {
     for(int i = 0; i < pImpl->_x->size();i++) {
         pImpl->drawCircle(5,sf::Color::Green, pImpl->_x->at(i),pImpl->_y->at(i));
     }
+
+
+
+    cout << "--- " << pImpl->vs->size() << endl;
+
+    for( auto const &  v : *pImpl->vs) {
+        cout << "---" << endl;
+        pImpl->drawCircle(3,sf::Color::Blue,v.x,v.y);
+    }
     pImpl->drawCircle(6,sf::Color::Black, pImpl->car_x,pImpl->car_y);
 
 
@@ -121,6 +134,13 @@ void Viz::visualize() {
      pImpl->drawCircle(6,sf::Color::Red, x1, y1);
 
 
+     sf::Text t;
+     t.setString("***********");
+     t.setColor(sf::Color::Black);
+     t.setPosition(40,40);
+     t.setFont(pImpl->font);
+     pImpl->window.draw(t);
+
 
     pImpl->window.display();
 
@@ -141,5 +161,9 @@ void Viz::setCarPos(double x, double y, double yaw, double speed) {
 void Viz::setWaypoint(double x, double y) {
     pImpl->wp_x = x;
     pImpl->wp_y = y;
+}
+
+void Viz::setVehicles(vector<Vehicle> &vehicles) {
+    pImpl->vs = &vehicles;
 }
 

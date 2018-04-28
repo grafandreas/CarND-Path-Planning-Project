@@ -39,5 +39,18 @@ double Config::VizScale() {
     return pImpl->j["viz"]["scale"];
 }
 
+double Config::laneWidth() {
+    return pImpl->j["laneWidth"];
+}
+
+double Config::sensorRangeFront() {
+    return pImpl->j["sensor"]["range-front"];
+}
+
+double Config::sensorRangeBack() {
+    return pImpl->j["sensor"]["range-back"];
+}
+
+
 
 Config* Config::_instance = 0;

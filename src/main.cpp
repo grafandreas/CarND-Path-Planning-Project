@@ -10,6 +10,8 @@
 #include "json.hpp"
 
 #include "config.h"
+#include "mapservice.h"
+#include "vehicle.h"
 
 #define USE_VIZ 1
 #ifdef USE_VIZ
@@ -208,6 +210,8 @@ int main() {
   }
 
   Config * cfg = Config::getInstance();
+  MapService * mapS = new MapService(map_waypoints_x, map_waypoints_y);
+
 #ifdef USE_VIZ
   Viz *viz = new Viz;
   viz->setWaypoints(map_waypoints_x,map_waypoints_y);
@@ -252,15 +256,25 @@ int main() {
           	// Sensor Fusion Data, a list of all other cars on the same side of the road.
           	auto sensor_fusion = j[1]["sensor_fusion"];
 
+            vector<Vehicle> * vehicles = new vector<Vehicle>;
+            cout << "! " << endl;
+            cout << sensor_fusion <<endl;
+            for( auto& vehic : sensor_fusion) {
+                cout << "!!" << endl;
+                cout << vehic <<endl;
+                vehicles->push_back(Vehicle(vehic));
+            }
+
           	json msgJson;
 
           	vector<double> next_x_vals;
           	vector<double> next_y_vals;
 
 
-            cout << car_x << " " << car_y << endl;
+            cout << "!! " << car_s << " " << car_d << endl;
 #ifdef USE_VIZ
             viz->setCarPos(car_x,car_y,car_yaw,car_speed);
+            viz->setVehicles(*vehicles);
             viz->visualize();
 #endif
           	// TODO: define a path made up of (x,y) points that the car will visit sequentially every .02 seconds

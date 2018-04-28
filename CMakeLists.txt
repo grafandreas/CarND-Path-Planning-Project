@@ -2,12 +2,12 @@ project(Path_Planning)
 
 cmake_minimum_required (VERSION 3.5)
 
-add_definitions(-std=c++11 -DUSE_VIZ)
+add_definitions(-std=c++1y -DUSE_VIZ)
 
 set(CXX_FLAGS "-Wall -std=c++11")
 set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
 
-set(sources src/main.cpp src/config.cpp src/viz.cpp)
+set(sources src/main.cpp src/config.cpp src/viz.cpp src/mapservice.cpp src/datalogger.cpp src/statemachine.cpp src/vehicle.cpp src/sensor.cpp)
 
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
