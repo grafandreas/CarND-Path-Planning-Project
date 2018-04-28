@@ -19,7 +19,10 @@ public:
     double x;
     double y;
     int id;
+
     int lane;
+    double speed;
+
 
 
 };

@@ -9,6 +9,9 @@
         "scale" : 0.45
     },
     "laneWidth" : 4.0,
+    "numLanes" : 3,
+    "targetSpeed" : 47.0,
+    "speedLimit" : 50.0,
     "sensor" : {
         "range-front" : 100.0,
         "range-back" : 30.0

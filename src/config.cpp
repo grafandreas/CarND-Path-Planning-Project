@@ -51,6 +51,10 @@ double Config::sensorRangeBack() {
     return pImpl->j["sensor"]["range-back"];
 }
 
+int Config::numLanes() {
+    return pImpl->j["numLanes"];
+}
+
 
 
 Config* Config::_instance = 0;

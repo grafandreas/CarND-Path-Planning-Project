@@ -22,6 +22,7 @@ public:
     double VizTranslateY();
     double VizScale();
     double laneWidth();
+    int numLanes();
     double sensorRangeFront();
     double sensorRangeBack();
 

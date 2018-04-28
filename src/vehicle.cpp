@@ -28,4 +28,8 @@ Vehicle::Vehicle(json j)
 
     lane = (int)(d/Config::getInstance()->laneWidth());
 
+    // TODO: deal with cases where vehicles does not follow s, but follows d
+    //
+    speed = sqrt(vx*vx+vy*vy);
+
 }

@@ -48,3 +48,12 @@ std::experimental::optional<Vehicle> Sensor::closestVehicle(vector<Vehicle> vehi
         return * std::max_element(same_lane.begin(), same_lane.end(), compare_Vehicle_s);
 
 }
+
+double Sensor::laneSpeed(vector<Vehicle> vehicles, int lane, int s) {
+    auto vehic = closestVehicle(vehicles,lane,s);
+    if(vehic)
+        return (*vehic).speed;
+    else
+        return 50.0;
+}
+
