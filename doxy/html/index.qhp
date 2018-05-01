@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+  <namespace>org.grafandreas.udacity.pathplan</namespace>
+  <virtualFolder>doc</virtualFolder>
+  <filterSection>
+    <filterAttribute>doxygen</filterAttribute>
+    <toc>
+      <section title="Path Planning" ref="index.html">
+        <section title="Namespaces">
+          <section title="Namespace List" ref="namespaces.html">
+            <section title="tk" ref="namespacetk.html" />
+          </section>
+        </section>
+        <section title="Classes" ref="annotated.html">
+          <section title="Class List" ref="annotated.html">
+            <section title="Config" ref="class_config.html">
+              <section title="impl" ref="class_config_1_1impl.html">
+                <section title="j" ref="class_config_1_1impl.html#aac16cb7932ded75b52a49ba20c252dff" />
+              </section>
+              <section title="h" ref="class_config.html#ab76b27b02b4e9eca6614fbe0b9981105" />
+              <section title="laneWidth" ref="class_config.html#a17156712ac9e52d5664acb8b90d7aec7" />
+              <section title="numLanes" ref="class_config.html#a7724d0f110b881e21029d5d09da8f531" />
+              <section title="planAhead" ref="class_config.html#aca440c21763e03c5b76910e685ba0269" />
+              <section title="sensorRangeBack" ref="class_config.html#ab66e7591bef9d709ba35bcea6a7dd4ac" />
+              <section title="sensorRangeFront" ref="class_config.html#ae78da71fcf1fba38d59826f81de4a194" />
+              <section title="targetSpeed" ref="class_config.html#a6d92db0d2e7dfacac47d15d3dd14fe30" />
+              <section title="VizScale" ref="class_config.html#afb4d9796c7654713778b1e5ae3f0d310" />
+              <section title="VizTranslateX" ref="class_config.html#ac79b19cbc3a14212d4a9c21515120431" />
+              <section title="VizTranslateY" ref="class_config.html#af1f7cbbaccd182f1040e606f5638e2ba" />
+              <section title="w" ref="class_config.html#a0663153e050d180037539424dc101ba6" />
+            </section>
+            <section title="DataLogger" ref="class_data_logger.html">
+              <section title="DataLogger" ref="class_data_logger.html#a7abebacd4747644d22982f9676466bad" />
+              <section title="append" ref="class_data_logger.html#aa80c79ce65c225f19e51b69b2f25b441" />
+              <section title="dump" ref="class_data_logger.html#af8cee8de42136ffd61c5e79be0582f53" />
+            </section>
+            <section title="MapSerivce" ref="class_map_serivce.html">
+              <section title="MapSerivce" ref="class_map_serivce.html#a2a1550b323455e9c193ae7be279851e1" />
+            </section>
+            <section title="MapService" ref="class_map_service.html">
+              <section title="impl" ref="class_map_service_1_1impl.html">
+                <section title="impl" ref="class_map_service_1_1impl.html#a670ec6738870df631a010b42328450c3" />
+                <section title="no_wp" ref="class_map_service_1_1impl.html#a2f141154de8894f3ec16502428223eb4" />
+                <section title="wp_x" ref="class_map_service_1_1impl.html#a7b73c2548826093591eef5234ef60384" />
+                <section title="wp_y" ref="class_map_service_1_1impl.html#aa90761790e149bbfe955d5bb26a571de" />
+              </section>
+              <section title="MapService" ref="class_map_service.html#a506c963829cc42b388bb5afe2fd3266d" />
+            </section>
+            <section title="PathPlanner" ref="class_path_planner.html">
+              <section title="PathPlanner" ref="class_path_planner.html#a376f30d795cfe0a40f8923f49336f7da" />
+            </section>
+            <section title="Sensor" ref="class_sensor.html">
+              <section title="Sensor" ref="class_sensor.html#ad0adbba0437199845c17a59a2acdea01" />
+              <section title="closestVehicle" ref="class_sensor.html#a36581ed59b0337fe9f2125568ee0e63b" />
+              <section title="laneSpeed" ref="class_sensor.html#a3c37a2635c7b89e673ca078bf9f4d94a" />
+              <section title="laneSpeeds" ref="class_sensor.html#acef8cbc395431c2131b201c08db5cb6f" />
+              <section title="map_service" ref="class_sensor.html#ab01e027bb40c824c479cab3edba965e6" />
+              <section title="type" ref="class_sensor.html#a59be498582043f581a78851506f8e322" />
+            </section>
+            <section title="StateMachine" ref="class_state_machine.html">
+              <section title="impl" ref="class_state_machine_1_1impl.html">
+                <section title="ForwardState" ref="class_state_machine_1_1impl_1_1_forward_state.html" />
+                <section title="InitState" ref="class_state_machine_1_1impl_1_1_init_state.html" />
+                <section title="State" ref="class_state_machine_1_1impl_1_1_state.html">
+                  <section title="on_enter" ref="class_state_machine_1_1impl_1_1_state.html#abf465c39087c4acf4ee1068c8a675bfc" />
+                  <section title="on_exit" ref="class_state_machine_1_1impl_1_1_state.html#a5ab560949b4fe0bc8e25865fb8785bdc" />
+                  <section title="process" ref="class_state_machine_1_1impl_1_1_state.html#a5a428f1f2ccc5d851febd482407dc9eb" />
+                </section>
+                <section title="impl" ref="class_state_machine_1_1impl.html#a734692d44103759f1164e0c9947c513a" />
+                <section title="current_state" ref="class_state_machine_1_1impl.html#ae4c4ef97abae6568bcc0ef7ef8b3e7de" />
+                <section title="forward" ref="class_state_machine_1_1impl.html#a2df021ea853c7d0f3a57d0dbbdcae8d8" />
+                <section title="init" ref="class_state_machine_1_1impl.html#ad327fe7dca79b6899d4f116e673f2017" />
+              </section>
+              <section title="StateMachine" ref="class_state_machine.html#a2fb07002510ea9141019559750acfab8" />
+              <section title="process" ref="class_state_machine.html#a4425ae05ef3f78aed86f41d9db7e7cb8" />
+            </section>
+            <section title="Trajectory" ref="class_trajectory.html">
+              <section title="impl" ref="class_trajectory_1_1impl.html">
+                <section title="impl" ref="class_trajectory_1_1impl.html#adf06225ae858b399ed519c6a109cdbce" />
+                <section title="impl" ref="class_trajectory_1_1impl.html#a63d60f6ecaf345e055ed297c89fc4f44" />
+                <section title="fillLists" ref="class_trajectory_1_1impl.html#a284974501b504ef9effdc9946c6b26cc" />
+                <section title="max_x" ref="class_trajectory_1_1impl.html#a3ce2025f5702a11190dd1bee4c177f43" />
+                <section title="min_x" ref="class_trajectory_1_1impl.html#a60edf5ff77f26db90a1fb05a16b8255d" />
+                <section title="points" ref="class_trajectory_1_1impl.html#a0958dd6967bbbbb9539506bb3835d0c2" />
+                <section title="resolution" ref="class_trajectory_1_1impl.html#a3f88458622898adadad7842cb240f19d" />
+                <section title="s" ref="class_trajectory_1_1impl.html#afd449551508bf1e2f1a18e51cc404ea1" />
+              </section>
+              <section title="Trajectory" ref="class_trajectory.html#a90c27796b5355dabf947a7f7846225c9" />
+              <section title="Trajectory" ref="class_trajectory.html#aee0c63d920b9902beae68f337b0fbd6c" />
+              <section title="fillLists" ref="class_trajectory.html#abec88522689a23ea456782080fe8cad7" />
+              <section title="operator()" ref="class_trajectory.html#a86a05ca051086220acf2f9011e1163a5" />
+            </section>
+            <section title="Vehicle" ref="class_vehicle.html">
+              <section title="Vehicle" ref="class_vehicle.html#abaad8187d9f2ede4fb8ea18de0a6764c" />
+              <section title="Vehicle" ref="class_vehicle.html#a1a51cf5b1bb1b2eea7d539b79df315e5" />
+              <section title="d" ref="class_vehicle.html#a4e466d7e422ee8ec6da1232a3d245d25" />
+              <section title="id" ref="class_vehicle.html#a7421a7a2d98b4ec6dfabd1041261aa03" />
+              <section title="lane" ref="class_vehicle.html#a838acb6c559579924c5738e921886214" />
+              <section title="s" ref="class_vehicle.html#a7d4e07f74690c6ee0108d990734e250b" />
+              <section title="speed" ref="class_vehicle.html#ab12071229b4dbe929dc7023356f3fc5e" />
+              <section title="vx" ref="class_vehicle.html#a1935b1856f8e89f69cbdc1b37367623a" />
+              <section title="vy" ref="class_vehicle.html#a1b372ea8db7a510d65d9182179e8869c" />
+              <section title="x" ref="class_vehicle.html#a8c606cec64b3880c25474c77eceb01f3" />
+              <section title="y" ref="class_vehicle.html#a23bb5f539dc3b86342482681e93f5fbf" />
+            </section>
+            <section title="Viz" ref="class_viz.html">
+              <section title="impl" ref="class_viz_1_1impl.html">
+                <section title="impl" ref="class_viz_1_1impl.html#abd8df10140f106a2be08d373b49c8978" />
+                <section title="drawCarCenterCircle" ref="class_viz_1_1impl.html#a3635c7c914e466f8250416061ee60c8f" />
+                <section title="drawCircle" ref="class_viz_1_1impl.html#a5af92b703d2573b8ff00f10f826df1f2" />
+                <section title="drawCircle" ref="class_viz_1_1impl.html#a2efb526f4cb4d541ca3c1810bd3a8cf1" />
+                <section title="mapCoord2CarCenter" ref="class_viz_1_1impl.html#a4341e972eb2936fe4ac493bf8fe358da" />
+                <section title="_x" ref="class_viz_1_1impl.html#a6a502df7f5b752aacf12e4ba15901d2c" />
+                <section title="_y" ref="class_viz_1_1impl.html#a1142d2b4db2d61bcd16e332305fad878" />
+                <section title="car_x" ref="class_viz_1_1impl.html#a661a7083c78c26890abef352ab9ae58a" />
+                <section title="car_y" ref="class_viz_1_1impl.html#a7758ac7539c47497f74f9143382dbd8b" />
+                <section title="font" ref="class_viz_1_1impl.html#a350cea0144462737c643beb935eb6f58" />
+                <section title="lane_speed" ref="class_viz_1_1impl.html#a1f2b1ba9b538e7cefcfe99c746b61055" />
+                <section title="speed" ref="class_viz_1_1impl.html#ae5815aa9e67dbdba4555eb08e946a518" />
+                <section title="vs" ref="class_viz_1_1impl.html#a893d0bb893d69d037fd91785ee9c9728" />
+                <section title="window" ref="class_viz_1_1impl.html#a03c87f199f79d6c27e7784f42b208eed" />
+                <section title="wp_x" ref="class_viz_1_1impl.html#acf4f8ba411622d6001593888b9b58797" />
+                <section title="wp_y" ref="class_viz_1_1impl.html#a939ea9051e211812f7919209bab6d6e6" />
+                <section title="yaw" ref="class_viz_1_1impl.html#a4dfd25f0103c0f0692a4ba3711776815" />
+              </section>
+              <section title="Viz" ref="class_viz.html#a1d0a168e876651a5137f6f6e06d85fd0" />
+              <section title="setCarPos" ref="class_viz.html#a329f0428ebc0678d8df6c9634974a374" />
+              <section title="setLaneSpeeds" ref="class_viz.html#a4662503ede6543d927b9fe5ecf82818f" />
+              <section title="setVehicles" ref="class_viz.html#abfc88c9ce478cfc0cd8a587a08fbf533" />
+              <section title="setWaypoint" ref="class_viz.html#a22f169780ae46f2486e721302233e05c" />
+              <section title="setWaypoints" ref="class_viz.html#a116eaf962fd63db930703fd3603ff80f" />
+              <section title="visualize" ref="class_viz.html#a08f57670a88b4b3334382f297d1594f1" />
+            </section>
+          </section>
+          <section title="Class Index" ref="classes.html" />
+          <section title="Class Hierarchy" ref="hierarchy.html">
+            <section title="Config" ref="class_config.html" />
+            <section title="DataLogger" ref="class_data_logger.html" />
+            <section title="Config::impl" ref="class_config_1_1impl.html" />
+            <section title="Trajectory::impl" ref="class_trajectory_1_1impl.html" />
+            <section title="MapService::impl" ref="class_map_service_1_1impl.html" />
+            <section title="Viz::impl" ref="class_viz_1_1impl.html" />
+            <section title="StateMachine::impl" ref="class_state_machine_1_1impl.html" />
+            <section title="MapSerivce" ref="class_map_serivce.html" />
+            <section title="MapService" ref="class_map_service.html" />
+            <section title="PathPlanner" ref="class_path_planner.html" />
+            <section title="Sensor" ref="class_sensor.html" />
+            <section title="StateMachine::impl::State" ref="class_state_machine_1_1impl_1_1_state.html">
+              <section title="StateMachine::impl::ForwardState" ref="class_state_machine_1_1impl_1_1_forward_state.html" />
+              <section title="StateMachine::impl::InitState" ref="class_state_machine_1_1impl_1_1_init_state.html" />
+            </section>
+            <section title="StateMachine" ref="class_state_machine.html" />
+            <section title="Trajectory" ref="class_trajectory.html" />
+            <section title="Vehicle" ref="class_vehicle.html" />
+            <section title="Viz" ref="class_viz.html" />
+          </section>
+          <section title="Class Members" ref="functions.html">
+            <section title="All" ref="functions.html" />
+            <section title="Functions" ref="functions_func.html" />
+            <section title="Variables" ref="functions_vars.html" />
+          </section>
+        </section>
+        <section title="Files">
+          <section title="File List" ref="files.html">
+            <section title="src" ref="dir_68267d1309a1af8e8297ef4c3efbcdba.html">
+              <section title="common.h" ref="common_8h.html">
+                <section title="Sd" ref="common_8h.html#ad3b99963b51ea4b34ac6ed257b8c05ae" />
+                <section title="XY" ref="common_8h.html#ab7ae19be8273aae2b7b8d74c59bc636d" />
+              </section>
+              <section title="config.cpp" ref="config_8cpp.html">
+                <section title="impl" ref="class_config_1_1impl.html">
+                  <section title="j" ref="class_config_1_1impl.html#aac16cb7932ded75b52a49ba20c252dff" />
+                </section>
+                <section title="json" ref="config_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d" />
+              </section>
+              <section title="config.h" ref="config_8h.html">
+                <section title="Config" ref="class_config.html">
+                  <section title="impl" ref="class_config_1_1impl.html">
+                    <section title="j" ref="class_config_1_1impl.html#aac16cb7932ded75b52a49ba20c252dff" />
+                  </section>
+                  <section title="h" ref="class_config.html#ab76b27b02b4e9eca6614fbe0b9981105" />
+                  <section title="laneWidth" ref="class_config.html#a17156712ac9e52d5664acb8b90d7aec7" />
+                  <section title="numLanes" ref="class_config.html#a7724d0f110b881e21029d5d09da8f531" />
+                  <section title="planAhead" ref="class_config.html#aca440c21763e03c5b76910e685ba0269" />
+                  <section title="sensorRangeBack" ref="class_config.html#ab66e7591bef9d709ba35bcea6a7dd4ac" />
+                  <section title="sensorRangeFront" ref="class_config.html#ae78da71fcf1fba38d59826f81de4a194" />
+                  <section title="targetSpeed" ref="class_config.html#a6d92db0d2e7dfacac47d15d3dd14fe30" />
+                  <section title="VizScale" ref="class_config.html#afb4d9796c7654713778b1e5ae3f0d310" />
+                  <section title="VizTranslateX" ref="class_config.html#ac79b19cbc3a14212d4a9c21515120431" />
+                  <section title="VizTranslateY" ref="class_config.html#af1f7cbbaccd182f1040e606f5638e2ba" />
+                  <section title="w" ref="class_config.html#a0663153e050d180037539424dc101ba6" />
+                </section>
+              </section>
+              <section title="config.hpp" ref="config_8hpp.html">
+                <section title="Config" ref="class_config.html">
+                  <section title="impl" ref="class_config_1_1impl.html">
+                    <section title="j" ref="class_config_1_1impl.html#aac16cb7932ded75b52a49ba20c252dff" />
+                  </section>
+                  <section title="h" ref="class_config.html#ab76b27b02b4e9eca6614fbe0b9981105" />
+                  <section title="laneWidth" ref="class_config.html#a17156712ac9e52d5664acb8b90d7aec7" />
+                  <section title="numLanes" ref="class_config.html#a7724d0f110b881e21029d5d09da8f531" />
+                  <section title="planAhead" ref="class_config.html#aca440c21763e03c5b76910e685ba0269" />
+                  <section title="sensorRangeBack" ref="class_config.html#ab66e7591bef9d709ba35bcea6a7dd4ac" />
+                  <section title="sensorRangeFront" ref="class_config.html#ae78da71fcf1fba38d59826f81de4a194" />
+                  <section title="targetSpeed" ref="class_config.html#a6d92db0d2e7dfacac47d15d3dd14fe30" />
+                  <section title="VizScale" ref="class_config.html#afb4d9796c7654713778b1e5ae3f0d310" />
+                  <section title="VizTranslateX" ref="class_config.html#ac79b19cbc3a14212d4a9c21515120431" />
+                  <section title="VizTranslateY" ref="class_config.html#af1f7cbbaccd182f1040e606f5638e2ba" />
+                  <section title="w" ref="class_config.html#a0663153e050d180037539424dc101ba6" />
+                </section>
+              </section>
+              <section title="coordinates.cpp" ref="coordinates_8cpp.html">
+                <section title="car2world" ref="coordinates_8cpp.html#a3abd986bece703567bb3456ee6bc0d77" />
+                <section title="car2world" ref="coordinates_8cpp.html#a3c54a505c3d3e80cbdda6bb464499dd7" />
+                <section title="rotate" ref="coordinates_8cpp.html#a09cc879e65a9395f3cb7bb5c36bdac38" />
+                <section title="world2car" ref="coordinates_8cpp.html#a7b58e87738ed7940be46cdf5d10a3ead" />
+                <section title="world2car" ref="coordinates_8cpp.html#a1ca056bf9822349443b43634e41b669a" />
+              </section>
+              <section title="coordinates.h" ref="coordinates_8h.html">
+                <section title="car2world" ref="coordinates_8h.html#aba304f925205770ae121838a9e91f29c" />
+                <section title="car2world" ref="coordinates_8h.html#af89e167d3f35f73f30d0c25dcaf95317" />
+                <section title="world2car" ref="coordinates_8h.html#a1864fc65acdda983a24da039c215a20a" />
+                <section title="world2car" ref="coordinates_8h.html#a8e1613e646fdedc5847863ce4b9c9d83" />
+              </section>
+              <section title="datalogger.cpp" ref="datalogger_8cpp.html" />
+              <section title="datalogger.h" ref="datalogger_8h.html">
+                <section title="DataLogger" ref="class_data_logger.html">
+                  <section title="DataLogger" ref="class_data_logger.html#a7abebacd4747644d22982f9676466bad" />
+                  <section title="append" ref="class_data_logger.html#aa80c79ce65c225f19e51b69b2f25b441" />
+                  <section title="dump" ref="class_data_logger.html#af8cee8de42136ffd61c5e79be0582f53" />
+                </section>
+                <section title="json" ref="datalogger_8h.html#ab701e3ac61a85b337ec5c1abaad6742d" />
+              </section>
+              <section title="main.cpp" ref="main_8cpp.html">
+                <section title="USE_VIZ" ref="main_8cpp.html#a0df3f05aba2ce7eae9f984b4ef91dec8" />
+                <section title="json" ref="main_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d" />
+                <section title="ClosestWaypoint" ref="main_8cpp.html#a2147ade3e981677854d910de7c636a99" />
+                <section title="deg2rad" ref="main_8cpp.html#adbcf4609758c05a6405c3d9c5f185e6b" />
+                <section title="distance" ref="main_8cpp.html#a7d653a23bc3022afd9b32e419abbbc2d" />
+                <section title="getFrenet" ref="main_8cpp.html#ac47b356c008a4d15898e78b6290bfbc5" />
+                <section title="getXY" ref="main_8cpp.html#a09e041a3e3972e80c509bbee8bbb30a1" />
+                <section title="getXYasXY" ref="main_8cpp.html#adc2c0abfc717112e5d8a062262b4798e" />
+                <section title="hasData" ref="main_8cpp.html#a5d865119e9416cc7964648f6461f428e" />
+                <section title="main" ref="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" />
+                <section title="NextWaypoint" ref="main_8cpp.html#a2cb381c5a5ff3a9c992f18c24b279ccc" />
+                <section title="pi" ref="main_8cpp.html#a0a7af8136abee60ba8a1102db43f66e9" />
+                <section title="rad2deg" ref="main_8cpp.html#aed6ee8bde39415298883a363b7759381" />
+              </section>
+              <section title="mapserivce.cpp" ref="mapserivce_8cpp.html" />
+              <section title="mapserivce.h" ref="mapserivce_8h.html">
+                <section title="MapSerivce" ref="class_map_serivce.html">
+                  <section title="MapSerivce" ref="class_map_serivce.html#a2a1550b323455e9c193ae7be279851e1" />
+                </section>
+              </section>
+              <section title="mapservice.cpp" ref="mapservice_8cpp.html">
+                <section title="impl" ref="class_map_service_1_1impl.html">
+                  <section title="impl" ref="class_map_service_1_1impl.html#a670ec6738870df631a010b42328450c3" />
+                  <section title="no_wp" ref="class_map_service_1_1impl.html#a2f141154de8894f3ec16502428223eb4" />
+                  <section title="wp_x" ref="class_map_service_1_1impl.html#a7b73c2548826093591eef5234ef60384" />
+                  <section title="wp_y" ref="class_map_service_1_1impl.html#aa90761790e149bbfe955d5bb26a571de" />
+                </section>
+              </section>
+              <section title="mapservice.h" ref="mapservice_8h.html">
+                <section title="MapService" ref="class_map_service.html">
+                  <section title="impl" ref="class_map_service_1_1impl.html">
+                    <section title="impl" ref="class_map_service_1_1impl.html#a670ec6738870df631a010b42328450c3" />
+                    <section title="no_wp" ref="class_map_service_1_1impl.html#a2f141154de8894f3ec16502428223eb4" />
+                    <section title="wp_x" ref="class_map_service_1_1impl.html#a7b73c2548826093591eef5234ef60384" />
+                    <section title="wp_y" ref="class_map_service_1_1impl.html#aa90761790e149bbfe955d5bb26a571de" />
+                  </section>
+                  <section title="MapService" ref="class_map_service.html#a506c963829cc42b388bb5afe2fd3266d" />
+                </section>
+              </section>
+              <section title="pathplanner.cpp" ref="pathplanner_8cpp.html" />
+              <section title="pathplanner.h" ref="pathplanner_8h.html">
+                <section title="PathPlanner" ref="class_path_planner.html">
+                  <section title="PathPlanner" ref="class_path_planner.html#a376f30d795cfe0a40f8923f49336f7da" />
+                </section>
+              </section>
+              <section title="sensor.cpp" ref="sensor_8cpp.html">
+                <section title="compare_Vehicle_s" ref="sensor_8cpp.html#a4d17d2ac3b0f72dcab12799a8aface20" />
+              </section>
+              <section title="sensor.h" ref="sensor_8h.html">
+                <section title="Sensor" ref="class_sensor.html">
+                  <section title="Sensor" ref="class_sensor.html#ad0adbba0437199845c17a59a2acdea01" />
+                  <section title="closestVehicle" ref="class_sensor.html#a36581ed59b0337fe9f2125568ee0e63b" />
+                  <section title="laneSpeed" ref="class_sensor.html#a3c37a2635c7b89e673ca078bf9f4d94a" />
+                  <section title="laneSpeeds" ref="class_sensor.html#acef8cbc395431c2131b201c08db5cb6f" />
+                  <section title="map_service" ref="class_sensor.html#ab01e027bb40c824c479cab3edba965e6" />
+                  <section title="type" ref="class_sensor.html#a59be498582043f581a78851506f8e322" />
+                </section>
+                <section title="SensorType" ref="sensor_8h.html#a213c434cb928c4ca22513e2302632435">
+                  <section title="FRONT" ref="sensor_8h.html#a213c434cb928c4ca22513e2302632435a76bd5ec6ea9d8a1b582d8d5e43102a02" />
+                  <section title="BACK" ref="sensor_8h.html#a213c434cb928c4ca22513e2302632435ac921ff2cfc571c1d19b0485d7f6926ee" />
+                </section>
+              </section>
+              <section title="spline.h" ref="spline_8h.html" />
+              <section title="statemachine.cpp" ref="statemachine_8cpp.html">
+                <section title="impl" ref="class_state_machine_1_1impl.html">
+                  <section title="ForwardState" ref="class_state_machine_1_1impl_1_1_forward_state.html" />
+                  <section title="InitState" ref="class_state_machine_1_1impl_1_1_init_state.html" />
+                  <section title="State" ref="class_state_machine_1_1impl_1_1_state.html">
+                    <section title="on_enter" ref="class_state_machine_1_1impl_1_1_state.html#abf465c39087c4acf4ee1068c8a675bfc" />
+                    <section title="on_exit" ref="class_state_machine_1_1impl_1_1_state.html#a5ab560949b4fe0bc8e25865fb8785bdc" />
+                    <section title="process" ref="class_state_machine_1_1impl_1_1_state.html#a5a428f1f2ccc5d851febd482407dc9eb" />
+                  </section>
+                  <section title="impl" ref="class_state_machine_1_1impl.html#a734692d44103759f1164e0c9947c513a" />
+                  <section title="current_state" ref="class_state_machine_1_1impl.html#ae4c4ef97abae6568bcc0ef7ef8b3e7de" />
+                  <section title="forward" ref="class_state_machine_1_1impl.html#a2df021ea853c7d0f3a57d0dbbdcae8d8" />
+                  <section title="init" ref="class_state_machine_1_1impl.html#ad327fe7dca79b6899d4f116e673f2017" />
+                </section>
+                <section title="State" ref="class_state_machine_1_1impl_1_1_state.html">
+                  <section title="on_enter" ref="class_state_machine_1_1impl_1_1_state.html#abf465c39087c4acf4ee1068c8a675bfc" />
+                  <section title="on_exit" ref="class_state_machine_1_1impl_1_1_state.html#a5ab560949b4fe0bc8e25865fb8785bdc" />
+                  <section title="process" ref="class_state_machine_1_1impl_1_1_state.html#a5a428f1f2ccc5d851febd482407dc9eb" />
+                </section>
+                <section title="InitState" ref="class_state_machine_1_1impl_1_1_init_state.html" />
+                <section title="ForwardState" ref="class_state_machine_1_1impl_1_1_forward_state.html" />
+              </section>
+              <section title="statemachine.h" ref="statemachine_8h.html">
+                <section title="StateMachine" ref="class_state_machine.html">
+                  <section title="impl" ref="class_state_machine_1_1impl.html">
+                    <section title="ForwardState" ref="class_state_machine_1_1impl_1_1_forward_state.html" />
+                    <section title="InitState" ref="class_state_machine_1_1impl_1_1_init_state.html" />
+                    <section title="State" ref="class_state_machine_1_1impl_1_1_state.html">
+                      <section title="on_enter" ref="class_state_machine_1_1impl_1_1_state.html#abf465c39087c4acf4ee1068c8a675bfc" />
+                      <section title="on_exit" ref="class_state_machine_1_1impl_1_1_state.html#a5ab560949b4fe0bc8e25865fb8785bdc" />
+                      <section title="process" ref="class_state_machine_1_1impl_1_1_state.html#a5a428f1f2ccc5d851febd482407dc9eb" />
+                    </section>
+                    <section title="impl" ref="class_state_machine_1_1impl.html#a734692d44103759f1164e0c9947c513a" />
+                    <section title="current_state" ref="class_state_machine_1_1impl.html#ae4c4ef97abae6568bcc0ef7ef8b3e7de" />
+                    <section title="forward" ref="class_state_machine_1_1impl.html#a2df021ea853c7d0f3a57d0dbbdcae8d8" />
+                    <section title="init" ref="class_state_machine_1_1impl.html#ad327fe7dca79b6899d4f116e673f2017" />
+                  </section>
+                  <section title="StateMachine" ref="class_state_machine.html#a2fb07002510ea9141019559750acfab8" />
+                  <section title="process" ref="class_state_machine.html#a4425ae05ef3f78aed86f41d9db7e7cb8" />
+                </section>
+              </section>
+              <section title="trajectory.cpp" ref="trajectory_8cpp.html">
+                <section title="impl" ref="class_trajectory_1_1impl.html">
+                  <section title="impl" ref="class_trajectory_1_1impl.html#adf06225ae858b399ed519c6a109cdbce" />
+                  <section title="impl" ref="class_trajectory_1_1impl.html#a63d60f6ecaf345e055ed297c89fc4f44" />
+                  <section title="fillLists" ref="class_trajectory_1_1impl.html#a284974501b504ef9effdc9946c6b26cc" />
+                  <section title="max_x" ref="class_trajectory_1_1impl.html#a3ce2025f5702a11190dd1bee4c177f43" />
+                  <section title="min_x" ref="class_trajectory_1_1impl.html#a60edf5ff77f26db90a1fb05a16b8255d" />
+                  <section title="points" ref="class_trajectory_1_1impl.html#a0958dd6967bbbbb9539506bb3835d0c2" />
+                  <section title="resolution" ref="class_trajectory_1_1impl.html#a3f88458622898adadad7842cb240f19d" />
+                  <section title="s" ref="class_trajectory_1_1impl.html#afd449551508bf1e2f1a18e51cc404ea1" />
+                </section>
+              </section>
+              <section title="trajectory.h" ref="trajectory_8h.html">
+                <section title="Trajectory" ref="class_trajectory.html">
+                  <section title="impl" ref="class_trajectory_1_1impl.html">
+                    <section title="impl" ref="class_trajectory_1_1impl.html#adf06225ae858b399ed519c6a109cdbce" />
+                    <section title="impl" ref="class_trajectory_1_1impl.html#a63d60f6ecaf345e055ed297c89fc4f44" />
+                    <section title="fillLists" ref="class_trajectory_1_1impl.html#a284974501b504ef9effdc9946c6b26cc" />
+                    <section title="max_x" ref="class_trajectory_1_1impl.html#a3ce2025f5702a11190dd1bee4c177f43" />
+                    <section title="min_x" ref="class_trajectory_1_1impl.html#a60edf5ff77f26db90a1fb05a16b8255d" />
+                    <section title="points" ref="class_trajectory_1_1impl.html#a0958dd6967bbbbb9539506bb3835d0c2" />
+                    <section title="resolution" ref="class_trajectory_1_1impl.html#a3f88458622898adadad7842cb240f19d" />
+                    <section title="s" ref="class_trajectory_1_1impl.html#afd449551508bf1e2f1a18e51cc404ea1" />
+                  </section>
+                  <section title="Trajectory" ref="class_trajectory.html#a90c27796b5355dabf947a7f7846225c9" />
+                  <section title="Trajectory" ref="class_trajectory.html#aee0c63d920b9902beae68f337b0fbd6c" />
+                  <section title="fillLists" ref="class_trajectory.html#abec88522689a23ea456782080fe8cad7" />
+                  <section title="operator()" ref="class_trajectory.html#a86a05ca051086220acf2f9011e1163a5" />
+                </section>
+              </section>
+              <section title="vehicle.cpp" ref="vehicle_8cpp.html" />
+              <section title="vehicle.h" ref="vehicle_8h.html">
+                <section title="Vehicle" ref="class_vehicle.html">
+                  <section title="Vehicle" ref="class_vehicle.html#abaad8187d9f2ede4fb8ea18de0a6764c" />
+                  <section title="Vehicle" ref="class_vehicle.html#a1a51cf5b1bb1b2eea7d539b79df315e5" />
+                  <section title="d" ref="class_vehicle.html#a4e466d7e422ee8ec6da1232a3d245d25" />
+                  <section title="id" ref="class_vehicle.html#a7421a7a2d98b4ec6dfabd1041261aa03" />
+                  <section title="lane" ref="class_vehicle.html#a838acb6c559579924c5738e921886214" />
+                  <section title="s" ref="class_vehicle.html#a7d4e07f74690c6ee0108d990734e250b" />
+                  <section title="speed" ref="class_vehicle.html#ab12071229b4dbe929dc7023356f3fc5e" />
+                  <section title="vx" ref="class_vehicle.html#a1935b1856f8e89f69cbdc1b37367623a" />
+                  <section title="vy" ref="class_vehicle.html#a1b372ea8db7a510d65d9182179e8869c" />
+                  <section title="x" ref="class_vehicle.html#a8c606cec64b3880c25474c77eceb01f3" />
+                  <section title="y" ref="class_vehicle.html#a23bb5f539dc3b86342482681e93f5fbf" />
+                </section>
+                <section title="json" ref="vehicle_8h.html#ab701e3ac61a85b337ec5c1abaad6742d" />
+              </section>
+              <section title="viz.cpp" ref="viz_8cpp.html">
+                <section title="impl" ref="class_viz_1_1impl.html">
+                  <section title="impl" ref="class_viz_1_1impl.html#abd8df10140f106a2be08d373b49c8978" />
+                  <section title="drawCarCenterCircle" ref="class_viz_1_1impl.html#a3635c7c914e466f8250416061ee60c8f" />
+                  <section title="drawCircle" ref="class_viz_1_1impl.html#a5af92b703d2573b8ff00f10f826df1f2" />
+                  <section title="drawCircle" ref="class_viz_1_1impl.html#a2efb526f4cb4d541ca3c1810bd3a8cf1" />
+                  <section title="mapCoord2CarCenter" ref="class_viz_1_1impl.html#a4341e972eb2936fe4ac493bf8fe358da" />
+                  <section title="_x" ref="class_viz_1_1impl.html#a6a502df7f5b752aacf12e4ba15901d2c" />
+                  <section title="_y" ref="class_viz_1_1impl.html#a1142d2b4db2d61bcd16e332305fad878" />
+                  <section title="car_x" ref="class_viz_1_1impl.html#a661a7083c78c26890abef352ab9ae58a" />
+                  <section title="car_y" ref="class_viz_1_1impl.html#a7758ac7539c47497f74f9143382dbd8b" />
+                  <section title="font" ref="class_viz_1_1impl.html#a350cea0144462737c643beb935eb6f58" />
+                  <section title="lane_speed" ref="class_viz_1_1impl.html#a1f2b1ba9b538e7cefcfe99c746b61055" />
+                  <section title="speed" ref="class_viz_1_1impl.html#ae5815aa9e67dbdba4555eb08e946a518" />
+                  <section title="vs" ref="class_viz_1_1impl.html#a893d0bb893d69d037fd91785ee9c9728" />
+                  <section title="window" ref="class_viz_1_1impl.html#a03c87f199f79d6c27e7784f42b208eed" />
+                  <section title="wp_x" ref="class_viz_1_1impl.html#acf4f8ba411622d6001593888b9b58797" />
+                  <section title="wp_y" ref="class_viz_1_1impl.html#a939ea9051e211812f7919209bab6d6e6" />
+                  <section title="yaw" ref="class_viz_1_1impl.html#a4dfd25f0103c0f0692a4ba3711776815" />
+                </section>
+                <section title="car_view_scale" ref="viz_8cpp.html#a9a7c8e73ac3183a922284814b803b6d7" />
+              </section>
+              <section title="viz.h" ref="viz_8h.html">
+                <section title="Viz" ref="class_viz.html">
+                  <section title="impl" ref="class_viz_1_1impl.html">
+                    <section title="impl" ref="class_viz_1_1impl.html#abd8df10140f106a2be08d373b49c8978" />
+                    <section title="drawCarCenterCircle" ref="class_viz_1_1impl.html#a3635c7c914e466f8250416061ee60c8f" />
+                    <section title="drawCircle" ref="class_viz_1_1impl.html#a5af92b703d2573b8ff00f10f826df1f2" />
+                    <section title="drawCircle" ref="class_viz_1_1impl.html#a2efb526f4cb4d541ca3c1810bd3a8cf1" />
+                    <section title="mapCoord2CarCenter" ref="class_viz_1_1impl.html#a4341e972eb2936fe4ac493bf8fe358da" />
+                    <section title="_x" ref="class_viz_1_1impl.html#a6a502df7f5b752aacf12e4ba15901d2c" />
+                    <section title="_y" ref="class_viz_1_1impl.html#a1142d2b4db2d61bcd16e332305fad878" />
+                    <section title="car_x" ref="class_viz_1_1impl.html#a661a7083c78c26890abef352ab9ae58a" />
+                    <section title="car_y" ref="class_viz_1_1impl.html#a7758ac7539c47497f74f9143382dbd8b" />
+                    <section title="font" ref="class_viz_1_1impl.html#a350cea0144462737c643beb935eb6f58" />
+                    <section title="lane_speed" ref="class_viz_1_1impl.html#a1f2b1ba9b538e7cefcfe99c746b61055" />
+                    <section title="speed" ref="class_viz_1_1impl.html#ae5815aa9e67dbdba4555eb08e946a518" />
+                    <section title="vs" ref="class_viz_1_1impl.html#a893d0bb893d69d037fd91785ee9c9728" />
+                    <section title="window" ref="class_viz_1_1impl.html#a03c87f199f79d6c27e7784f42b208eed" />
+                    <section title="wp_x" ref="class_viz_1_1impl.html#acf4f8ba411622d6001593888b9b58797" />
+                    <section title="wp_y" ref="class_viz_1_1impl.html#a939ea9051e211812f7919209bab6d6e6" />
+                    <section title="yaw" ref="class_viz_1_1impl.html#a4dfd25f0103c0f0692a4ba3711776815" />
+                  </section>
+                  <section title="Viz" ref="class_viz.html#a1d0a168e876651a5137f6f6e06d85fd0" />
+                  <section title="setCarPos" ref="class_viz.html#a329f0428ebc0678d8df6c9634974a374" />
+                  <section title="setLaneSpeeds" ref="class_viz.html#a4662503ede6543d927b9fe5ecf82818f" />
+                  <section title="setVehicles" ref="class_viz.html#abfc88c9ce478cfc0cd8a587a08fbf533" />
+                  <section title="setWaypoint" ref="class_viz.html#a22f169780ae46f2486e721302233e05c" />
+                  <section title="setWaypoints" ref="class_viz.html#a116eaf962fd63db930703fd3603ff80f" />
+                  <section title="visualize" ref="class_viz.html#a08f57670a88b4b3334382f297d1594f1" />
+                </section>
+              </section>
+            </section>
+          </section>
+          <section title="File Members" ref="globals.html">
+            <section title="All" ref="globals.html" />
+            <section title="Functions" ref="globals_func.html" />
+            <section title="Variables" ref="globals_vars.html" />
+            <section title="Typedefs" ref="globals_type.html" />
+            <section title="Enumerations" ref="globals_enum.html" />
+            <section title="Enumerator" ref="globals_eval.html" />
+            <section title="Macros" ref="globals_defs.html" />
+          </section>
+        </section>
+      </section>
+    </toc>
+    <keywords>
+      <keyword name="XY" id="common.h::XY" ref="common_8h.html#ab7ae19be8273aae2b7b8d74c59bc636d" />
+      <keyword name="Sd" id="common.h::Sd" ref="common_8h.html#ad3b99963b51ea4b34ac6ed257b8c05ae" />
+      <keyword name="json" id="config.cpp::json" ref="config_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d" />
+      <keyword name="rotate" id="coordinates.cpp::rotate" ref="coordinates_8cpp.html#a09cc879e65a9395f3cb7bb5c36bdac38" />
+      <keyword name="world2car" id="coordinates.cpp::world2car" ref="coordinates_8cpp.html#a7b58e87738ed7940be46cdf5d10a3ead" />
+      <keyword name="car2world" id="coordinates.cpp::car2world" ref="coordinates_8cpp.html#a3abd986bece703567bb3456ee6bc0d77" />
+      <keyword name="world2car" id="coordinates.cpp::world2car" ref="coordinates_8cpp.html#a1ca056bf9822349443b43634e41b669a" />
+      <keyword name="car2world" id="coordinates.cpp::car2world" ref="coordinates_8cpp.html#a3c54a505c3d3e80cbdda6bb464499dd7" />
+      <keyword name="world2car" id="coordinates.h::world2car" ref="coordinates_8h.html#a1864fc65acdda983a24da039c215a20a" />
+      <keyword name="car2world" id="coordinates.h::car2world" ref="coordinates_8h.html#aba304f925205770ae121838a9e91f29c" />
+      <keyword name="world2car" id="coordinates.h::world2car" ref="coordinates_8h.html#a8e1613e646fdedc5847863ce4b9c9d83" />
+      <keyword name="car2world" id="coordinates.h::car2world" ref="coordinates_8h.html#af89e167d3f35f73f30d0c25dcaf95317" />
+      <keyword name="json" id="datalogger.h::json" ref="datalogger_8h.html#ab701e3ac61a85b337ec5c1abaad6742d" />
+      <keyword name="USE_VIZ" id="main.cpp::USE_VIZ" ref="main_8cpp.html#a0df3f05aba2ce7eae9f984b4ef91dec8" />
+      <keyword name="json" id="main.cpp::json" ref="main_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d" />
+      <keyword name="pi" id="main.cpp::pi" ref="main_8cpp.html#a0a7af8136abee60ba8a1102db43f66e9" />
+      <keyword name="deg2rad" id="main.cpp::deg2rad" ref="main_8cpp.html#adbcf4609758c05a6405c3d9c5f185e6b" />
+      <keyword name="rad2deg" id="main.cpp::rad2deg" ref="main_8cpp.html#aed6ee8bde39415298883a363b7759381" />
+      <keyword name="hasData" id="main.cpp::hasData" ref="main_8cpp.html#a5d865119e9416cc7964648f6461f428e" />
+      <keyword name="distance" id="main.cpp::distance" ref="main_8cpp.html#a7d653a23bc3022afd9b32e419abbbc2d" />
+      <keyword name="ClosestWaypoint" id="main.cpp::ClosestWaypoint" ref="main_8cpp.html#a2147ade3e981677854d910de7c636a99" />
+      <keyword name="NextWaypoint" id="main.cpp::NextWaypoint" ref="main_8cpp.html#a2cb381c5a5ff3a9c992f18c24b279ccc" />
+      <keyword name="getFrenet" id="main.cpp::getFrenet" ref="main_8cpp.html#ac47b356c008a4d15898e78b6290bfbc5" />
+      <keyword name="getXY" id="main.cpp::getXY" ref="main_8cpp.html#a09e041a3e3972e80c509bbee8bbb30a1" />
+      <keyword name="getXYasXY" id="main.cpp::getXYasXY" ref="main_8cpp.html#adc2c0abfc717112e5d8a062262b4798e" />
+      <keyword name="main" id="main.cpp::main" ref="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" />
+      <keyword name="compare_Vehicle_s" id="sensor.cpp::compare_Vehicle_s" ref="sensor_8cpp.html#a4d17d2ac3b0f72dcab12799a8aface20" />
+      <keyword name="FRONT" id="sensor.h::FRONT" ref="sensor_8h.html#a213c434cb928c4ca22513e2302632435a76bd5ec6ea9d8a1b582d8d5e43102a02" />
+      <keyword name="BACK" id="sensor.h::BACK" ref="sensor_8h.html#a213c434cb928c4ca22513e2302632435ac921ff2cfc571c1d19b0485d7f6926ee" />
+      <keyword name="json" id="vehicle.h::json" ref="vehicle_8h.html#ab701e3ac61a85b337ec5c1abaad6742d" />
+      <keyword name="car_view_scale" id="viz.cpp::car_view_scale" ref="viz_8cpp.html#a9a7c8e73ac3183a922284814b803b6d7" />
+      <keyword name="Config" id="Config" ref="class_config.html" />
+      <keyword name="w" id="Config::w" ref="class_config.html#a0663153e050d180037539424dc101ba6" />
+      <keyword name="h" id="Config::h" ref="class_config.html#ab76b27b02b4e9eca6614fbe0b9981105" />
+      <keyword name="VizTranslateX" id="Config::VizTranslateX" ref="class_config.html#ac79b19cbc3a14212d4a9c21515120431" />
+      <keyword name="VizTranslateY" id="Config::VizTranslateY" ref="class_config.html#af1f7cbbaccd182f1040e606f5638e2ba" />
+      <keyword name="VizScale" id="Config::VizScale" ref="class_config.html#afb4d9796c7654713778b1e5ae3f0d310" />
+      <keyword name="laneWidth" id="Config::laneWidth" ref="class_config.html#a17156712ac9e52d5664acb8b90d7aec7" />
+      <keyword name="numLanes" id="Config::numLanes" ref="class_config.html#a7724d0f110b881e21029d5d09da8f531" />
+      <keyword name="sensorRangeFront" id="Config::sensorRangeFront" ref="class_config.html#ae78da71fcf1fba38d59826f81de4a194" />
+      <keyword name="sensorRangeBack" id="Config::sensorRangeBack" ref="class_config.html#ab66e7591bef9d709ba35bcea6a7dd4ac" />
+      <keyword name="targetSpeed" id="Config::targetSpeed" ref="class_config.html#a6d92db0d2e7dfacac47d15d3dd14fe30" />
+      <keyword name="planAhead" id="Config::planAhead" ref="class_config.html#aca440c21763e03c5b76910e685ba0269" />
+      <keyword name="getInstance" id="Config::getInstance" ref="class_config.html#ad1361c5ac2b61afedd57f5b3688343d7" />
+      <keyword name="Config::impl" id="Config::impl" ref="class_config_1_1impl.html" />
+      <keyword name="j" id="Config::impl::j" ref="class_config_1_1impl.html#aac16cb7932ded75b52a49ba20c252dff" />
+      <keyword name="DataLogger" id="DataLogger" ref="class_data_logger.html" />
+      <keyword name="DataLogger" id="DataLogger::DataLogger" ref="class_data_logger.html#a7abebacd4747644d22982f9676466bad" />
+      <keyword name="append" id="DataLogger::append" ref="class_data_logger.html#aa80c79ce65c225f19e51b69b2f25b441" />
+      <keyword name="dump" id="DataLogger::dump" ref="class_data_logger.html#af8cee8de42136ffd61c5e79be0582f53" />
+      <keyword name="MapSerivce" id="MapSerivce" ref="class_map_serivce.html" />
+      <keyword name="MapSerivce" id="MapSerivce::MapSerivce" ref="class_map_serivce.html#a2a1550b323455e9c193ae7be279851e1" />
+      <keyword name="MapService" id="MapService" ref="class_map_service.html" />
+      <keyword name="MapService" id="MapService::MapService" ref="class_map_service.html#a506c963829cc42b388bb5afe2fd3266d" />
+      <keyword name="MapService::impl" id="MapService::impl" ref="class_map_service_1_1impl.html" />
+      <keyword name="impl" id="MapService::impl::impl" ref="class_map_service_1_1impl.html#a670ec6738870df631a010b42328450c3" />
+      <keyword name="wp_x" id="MapService::impl::wp_x" ref="class_map_service_1_1impl.html#a7b73c2548826093591eef5234ef60384" />
+      <keyword name="wp_y" id="MapService::impl::wp_y" ref="class_map_service_1_1impl.html#aa90761790e149bbfe955d5bb26a571de" />
+      <keyword name="no_wp" id="MapService::impl::no_wp" ref="class_map_service_1_1impl.html#a2f141154de8894f3ec16502428223eb4" />
+      <keyword name="PathPlanner" id="PathPlanner" ref="class_path_planner.html" />
+      <keyword name="PathPlanner" id="PathPlanner::PathPlanner" ref="class_path_planner.html#a376f30d795cfe0a40f8923f49336f7da" />
+      <keyword name="Sensor" id="Sensor" ref="class_sensor.html" />
+      <keyword name="Sensor" id="Sensor::Sensor" ref="class_sensor.html#ad0adbba0437199845c17a59a2acdea01" />
+      <keyword name="closestVehicle" id="Sensor::closestVehicle" ref="class_sensor.html#a36581ed59b0337fe9f2125568ee0e63b" />
+      <keyword name="laneSpeed" id="Sensor::laneSpeed" ref="class_sensor.html#a3c37a2635c7b89e673ca078bf9f4d94a" />
+      <keyword name="laneSpeeds" id="Sensor::laneSpeeds" ref="class_sensor.html#acef8cbc395431c2131b201c08db5cb6f" />
+      <keyword name="type" id="Sensor::type" ref="class_sensor.html#a59be498582043f581a78851506f8e322" />
+      <keyword name="map_service" id="Sensor::map_service" ref="class_sensor.html#ab01e027bb40c824c479cab3edba965e6" />
+      <keyword name="StateMachine" id="StateMachine" ref="class_state_machine.html" />
+      <keyword name="StateMachine" id="StateMachine::StateMachine" ref="class_state_machine.html#a2fb07002510ea9141019559750acfab8" />
+      <keyword name="process" id="StateMachine::process" ref="class_state_machine.html#a4425ae05ef3f78aed86f41d9db7e7cb8" />
+      <keyword name="StateMachine::impl" id="StateMachine::impl" ref="class_state_machine_1_1impl.html" />
+      <keyword name="impl" id="StateMachine::impl::impl" ref="class_state_machine_1_1impl.html#a734692d44103759f1164e0c9947c513a" />
+      <keyword name="init" id="StateMachine::impl::init" ref="class_state_machine_1_1impl.html#ad327fe7dca79b6899d4f116e673f2017" />
+      <keyword name="forward" id="StateMachine::impl::forward" ref="class_state_machine_1_1impl.html#a2df021ea853c7d0f3a57d0dbbdcae8d8" />
+      <keyword name="current_state" id="StateMachine::impl::current_state" ref="class_state_machine_1_1impl.html#ae4c4ef97abae6568bcc0ef7ef8b3e7de" />
+      <keyword name="StateMachine::impl::ForwardState" id="StateMachine::impl::ForwardState" ref="class_state_machine_1_1impl_1_1_forward_state.html" />
+      <keyword name="on_enter" id="StateMachine::impl::State::on_enter" ref="class_state_machine_1_1impl_1_1_state.html#abf465c39087c4acf4ee1068c8a675bfc" />
+      <keyword name="on_exit" id="StateMachine::impl::State::on_exit" ref="class_state_machine_1_1impl_1_1_state.html#a5ab560949b4fe0bc8e25865fb8785bdc" />
+      <keyword name="StateMachine::impl::InitState" id="StateMachine::impl::InitState" ref="class_state_machine_1_1impl_1_1_init_state.html" />
+      <keyword name="on_enter" id="StateMachine::impl::State::on_enter" ref="class_state_machine_1_1impl_1_1_state.html#abf465c39087c4acf4ee1068c8a675bfc" />
+      <keyword name="on_exit" id="StateMachine::impl::State::on_exit" ref="class_state_machine_1_1impl_1_1_state.html#a5ab560949b4fe0bc8e25865fb8785bdc" />
+      <keyword name="StateMachine::impl::State" id="StateMachine::impl::State" ref="class_state_machine_1_1impl_1_1_state.html" />
+      <keyword name="on_enter" id="StateMachine::impl::State::on_enter" ref="class_state_machine_1_1impl_1_1_state.html#abf465c39087c4acf4ee1068c8a675bfc" />
+      <keyword name="on_exit" id="StateMachine::impl::State::on_exit" ref="class_state_machine_1_1impl_1_1_state.html#a5ab560949b4fe0bc8e25865fb8785bdc" />
+      <keyword name="process" id="StateMachine::impl::State::process" ref="class_state_machine_1_1impl_1_1_state.html#a5a428f1f2ccc5d851febd482407dc9eb" />
+      <keyword name="Trajectory" id="Trajectory" ref="class_trajectory.html" />
+      <keyword name="Trajectory" id="Trajectory::Trajectory" ref="class_trajectory.html#a90c27796b5355dabf947a7f7846225c9" />
+      <keyword name="Trajectory" id="Trajectory::Trajectory" ref="class_trajectory.html#aee0c63d920b9902beae68f337b0fbd6c" />
+      <keyword name="operator()" id="Trajectory::operator()" ref="class_trajectory.html#a86a05ca051086220acf2f9011e1163a5" />
+      <keyword name="fillLists" id="Trajectory::fillLists" ref="class_trajectory.html#abec88522689a23ea456782080fe8cad7" />
+      <keyword name="Trajectory::impl" id="Trajectory::impl" ref="class_trajectory_1_1impl.html" />
+      <keyword name="impl" id="Trajectory::impl::impl" ref="class_trajectory_1_1impl.html#adf06225ae858b399ed519c6a109cdbce" />
+      <keyword name="impl" id="Trajectory::impl::impl" ref="class_trajectory_1_1impl.html#a63d60f6ecaf345e055ed297c89fc4f44" />
+      <keyword name="fillLists" id="Trajectory::impl::fillLists" ref="class_trajectory_1_1impl.html#a284974501b504ef9effdc9946c6b26cc" />
+      <keyword name="points" id="Trajectory::impl::points" ref="class_trajectory_1_1impl.html#a0958dd6967bbbbb9539506bb3835d0c2" />
+      <keyword name="resolution" id="Trajectory::impl::resolution" ref="class_trajectory_1_1impl.html#a3f88458622898adadad7842cb240f19d" />
+      <keyword name="s" id="Trajectory::impl::s" ref="class_trajectory_1_1impl.html#afd449551508bf1e2f1a18e51cc404ea1" />
+      <keyword name="max_x" id="Trajectory::impl::max_x" ref="class_trajectory_1_1impl.html#a3ce2025f5702a11190dd1bee4c177f43" />
+      <keyword name="min_x" id="Trajectory::impl::min_x" ref="class_trajectory_1_1impl.html#a60edf5ff77f26db90a1fb05a16b8255d" />
+      <keyword name="Vehicle" id="Vehicle" ref="class_vehicle.html" />
+      <keyword name="Vehicle" id="Vehicle::Vehicle" ref="class_vehicle.html#abaad8187d9f2ede4fb8ea18de0a6764c" />
+      <keyword name="Vehicle" id="Vehicle::Vehicle" ref="class_vehicle.html#a1a51cf5b1bb1b2eea7d539b79df315e5" />
+      <keyword name="s" id="Vehicle::s" ref="class_vehicle.html#a7d4e07f74690c6ee0108d990734e250b" />
+      <keyword name="d" id="Vehicle::d" ref="class_vehicle.html#a4e466d7e422ee8ec6da1232a3d245d25" />
+      <keyword name="vx" id="Vehicle::vx" ref="class_vehicle.html#a1935b1856f8e89f69cbdc1b37367623a" />
+      <keyword name="vy" id="Vehicle::vy" ref="class_vehicle.html#a1b372ea8db7a510d65d9182179e8869c" />
+      <keyword name="x" id="Vehicle::x" ref="class_vehicle.html#a8c606cec64b3880c25474c77eceb01f3" />
+      <keyword name="y" id="Vehicle::y" ref="class_vehicle.html#a23bb5f539dc3b86342482681e93f5fbf" />
+      <keyword name="id" id="Vehicle::id" ref="class_vehicle.html#a7421a7a2d98b4ec6dfabd1041261aa03" />
+      <keyword name="lane" id="Vehicle::lane" ref="class_vehicle.html#a838acb6c559579924c5738e921886214" />
+      <keyword name="speed" id="Vehicle::speed" ref="class_vehicle.html#ab12071229b4dbe929dc7023356f3fc5e" />
+      <keyword name="Viz" id="Viz" ref="class_viz.html" />
+      <keyword name="Viz" id="Viz::Viz" ref="class_viz.html#a1d0a168e876651a5137f6f6e06d85fd0" />
+      <keyword name="visualize" id="Viz::visualize" ref="class_viz.html#a08f57670a88b4b3334382f297d1594f1" />
+      <keyword name="setWaypoints" id="Viz::setWaypoints" ref="class_viz.html#a116eaf962fd63db930703fd3603ff80f" />
+      <keyword name="setCarPos" id="Viz::setCarPos" ref="class_viz.html#a329f0428ebc0678d8df6c9634974a374" />
+      <keyword name="setWaypoint" id="Viz::setWaypoint" ref="class_viz.html#a22f169780ae46f2486e721302233e05c" />
+      <keyword name="setVehicles" id="Viz::setVehicles" ref="class_viz.html#abfc88c9ce478cfc0cd8a587a08fbf533" />
+      <keyword name="setLaneSpeeds" id="Viz::setLaneSpeeds" ref="class_viz.html#a4662503ede6543d927b9fe5ecf82818f" />
+      <keyword name="Viz::impl" id="Viz::impl" ref="class_viz_1_1impl.html" />
+      <keyword name="impl" id="Viz::impl::impl" ref="class_viz_1_1impl.html#abd8df10140f106a2be08d373b49c8978" />
+      <keyword name="drawCircle" id="Viz::impl::drawCircle" ref="class_viz_1_1impl.html#a5af92b703d2573b8ff00f10f826df1f2" />
+      <keyword name="drawCircle" id="Viz::impl::drawCircle" ref="class_viz_1_1impl.html#a2efb526f4cb4d541ca3c1810bd3a8cf1" />
+      <keyword name="mapCoord2CarCenter" id="Viz::impl::mapCoord2CarCenter" ref="class_viz_1_1impl.html#a4341e972eb2936fe4ac493bf8fe358da" />
+      <keyword name="drawCarCenterCircle" id="Viz::impl::drawCarCenterCircle" ref="class_viz_1_1impl.html#a3635c7c914e466f8250416061ee60c8f" />
+      <keyword name="window" id="Viz::impl::window" ref="class_viz_1_1impl.html#a03c87f199f79d6c27e7784f42b208eed" />
+      <keyword name="_x" id="Viz::impl::_x" ref="class_viz_1_1impl.html#a6a502df7f5b752aacf12e4ba15901d2c" />
+      <keyword name="_y" id="Viz::impl::_y" ref="class_viz_1_1impl.html#a1142d2b4db2d61bcd16e332305fad878" />
+      <keyword name="vs" id="Viz::impl::vs" ref="class_viz_1_1impl.html#a893d0bb893d69d037fd91785ee9c9728" />
+      <keyword name="lane_speed" id="Viz::impl::lane_speed" ref="class_viz_1_1impl.html#a1f2b1ba9b538e7cefcfe99c746b61055" />
+      <keyword name="car_x" id="Viz::impl::car_x" ref="class_viz_1_1impl.html#a661a7083c78c26890abef352ab9ae58a" />
+      <keyword name="car_y" id="Viz::impl::car_y" ref="class_viz_1_1impl.html#a7758ac7539c47497f74f9143382dbd8b" />
+      <keyword name="wp_x" id="Viz::impl::wp_x" ref="class_viz_1_1impl.html#acf4f8ba411622d6001593888b9b58797" />
+      <keyword name="wp_y" id="Viz::impl::wp_y" ref="class_viz_1_1impl.html#a939ea9051e211812f7919209bab6d6e6" />
+      <keyword name="yaw" id="Viz::impl::yaw" ref="class_viz_1_1impl.html#a4dfd25f0103c0f0692a4ba3711776815" />
+      <keyword name="speed" id="Viz::impl::speed" ref="class_viz_1_1impl.html#ae5815aa9e67dbdba4555eb08e946a518" />
+      <keyword name="font" id="Viz::impl::font" ref="class_viz_1_1impl.html#a350cea0144462737c643beb935eb6f58" />
+      <keyword name="tk" id="tk" ref="namespacetk.html" />
+    </keywords>
+    <files>
+      <file>tabs.css</file>
+      <file>tab_a.png</file>
+      <file>tab_b.png</file>
+      <file>tab_h.png</file>
+      <file>tab_s.png</file>
+      <file>nav_h.png</file>
+      <file>nav_f.png</file>
+      <file>bc_s.png</file>
+      <file>doxygen.png</file>
+      <file>closed.png</file>
+      <file>open.png</file>
+      <file>bdwn.png</file>
+      <file>sync_on.png</file>
+      <file>sync_off.png</file>
+      <file>doxygen.css</file>
+      <file>search/search_l.png</file>
+      <file>search/search_m.png</file>
+      <file>search/search_r.png</file>
+      <file>search/close.png</file>
+      <file>search/mag_sel.png</file>
+      <file>search/search.css</file>
+      <file>search/search.js</file>
+      <file>common_8h_source.html</file>
+      <file>config_8cpp_source.html</file>
+      <file>config_8h_source.html</file>
+      <file>config_8hpp_source.html</file>
+      <file>coordinates_8cpp_source.html</file>
+      <file>coordinates_8h_source.html</file>
+      <file>datalogger_8cpp_source.html</file>
+      <file>datalogger_8h_source.html</file>
+      <file>main_8cpp_source.html</file>
+      <file>mapserivce_8cpp_source.html</file>
+      <file>mapserivce_8h_source.html</file>
+      <file>mapservice_8cpp_source.html</file>
+      <file>mapservice_8h_source.html</file>
+      <file>pathplanner_8cpp_source.html</file>
+      <file>pathplanner_8h_source.html</file>
+      <file>sensor_8cpp_source.html</file>
+      <file>sensor_8h_source.html</file>
+      <file>spline_8h_source.html</file>
+      <file>statemachine_8cpp_source.html</file>
+      <file>statemachine_8h_source.html</file>
+      <file>trajectory_8cpp_source.html</file>
+      <file>trajectory_8h_source.html</file>
+      <file>vehicle_8cpp_source.html</file>
+      <file>vehicle_8h_source.html</file>
+      <file>viz_8cpp_source.html</file>
+      <file>viz_8h_source.html</file>
+      <file>common_8h.html</file>
+      <file>common_8h__incl.png</file>
+      <file>common_8h__dep__incl.png</file>
+      <file>config_8cpp.html</file>
+      <file>config_8cpp__incl.png</file>
+      <file>config_8h.html</file>
+      <file>config_8h__incl.png</file>
+      <file>config_8h__dep__incl.png</file>
+      <file>config_8hpp.html</file>
+      <file>coordinates_8cpp.html</file>
+      <file>coordinates_8cpp__incl.png</file>
+      <file>coordinates_8h.html</file>
+      <file>coordinates_8h__incl.png</file>
+      <file>coordinates_8h__dep__incl.png</file>
+      <file>datalogger_8cpp.html</file>
+      <file>datalogger_8cpp__incl.png</file>
+      <file>datalogger_8h.html</file>
+      <file>datalogger_8h__incl.png</file>
+      <file>datalogger_8h__dep__incl.png</file>
+      <file>main_8cpp.html</file>
+      <file>mapserivce_8cpp.html</file>
+      <file>mapserivce_8cpp__incl.png</file>
+      <file>mapserivce_8h.html</file>
+      <file>mapserivce_8h__dep__incl.png</file>
+      <file>mapservice_8cpp.html</file>
+      <file>mapservice_8cpp__incl.png</file>
+      <file>mapservice_8h.html</file>
+      <file>mapservice_8h__incl.png</file>
+      <file>mapservice_8h__dep__incl.png</file>
+      <file>pathplanner_8cpp.html</file>
+      <file>pathplanner_8cpp__incl.png</file>
+      <file>pathplanner_8h.html</file>
+      <file>pathplanner_8h__dep__incl.png</file>
+      <file>sensor_8cpp.html</file>
+      <file>sensor_8cpp__incl.png</file>
+      <file>sensor_8h.html</file>
+      <file>sensor_8h__incl.png</file>
+      <file>sensor_8h__dep__incl.png</file>
+      <file>spline_8h.html</file>
+      <file>spline_8h__incl.png</file>
+      <file>spline_8h__dep__incl.png</file>
+      <file>statemachine_8cpp.html</file>
+      <file>statemachine_8cpp__incl.png</file>
+      <file>statemachine_8h.html</file>
+      <file>statemachine_8h__incl.png</file>
+      <file>statemachine_8h__dep__incl.png</file>
+      <file>trajectory_8cpp.html</file>
+      <file>trajectory_8cpp__incl.png</file>
+      <file>trajectory_8h.html</file>
+      <file>trajectory_8h__incl.png</file>
+      <file>trajectory_8h__dep__incl.png</file>
+      <file>vehicle_8cpp.html</file>
+      <file>vehicle_8cpp__incl.png</file>
+      <file>vehicle_8h.html</file>
+      <file>vehicle_8h__incl.png</file>
+      <file>vehicle_8h__dep__incl.png</file>
+      <file>viz_8cpp.html</file>
+      <file>viz_8cpp__incl.png</file>
+      <file>viz_8h.html</file>
+      <file>viz_8h__incl.png</file>
+      <file>viz_8h__dep__incl.png</file>
+      <file>class_config.html</file>
+      <file>class_config-members.html</file>
+      <file>class_config_1_1impl.html</file>
+      <file>class_config_1_1impl-members.html</file>
+      <file>class_data_logger.html</file>
+      <file>class_data_logger-members.html</file>
+      <file>class_map_serivce.html</file>
+      <file>class_map_serivce-members.html</file>
+      <file>class_map_service.html</file>
+      <file>class_map_service-members.html</file>
+      <file>class_map_service_1_1impl.html</file>
+      <file>class_map_service_1_1impl-members.html</file>
+      <file>class_path_planner.html</file>
+      <file>class_path_planner-members.html</file>
+      <file>class_sensor.html</file>
+      <file>class_sensor__coll__graph.png</file>
+      <file>class_sensor-members.html</file>
+      <file>class_state_machine.html</file>
+      <file>class_state_machine-members.html</file>
+      <file>class_state_machine_1_1impl.html</file>
+      <file>class_state_machine_1_1impl__coll__graph.png</file>
+      <file>class_state_machine_1_1impl-members.html</file>
+      <file>class_state_machine_1_1impl_1_1_forward_state.html</file>
+      <file>class_state_machine_1_1impl_1_1_forward_state__inherit__graph.png</file>
+      <file>class_state_machine_1_1impl_1_1_forward_state__coll__graph.png</file>
+      <file>class_state_machine_1_1impl_1_1_forward_state-members.html</file>
+      <file>class_state_machine_1_1impl_1_1_init_state.html</file>
+      <file>class_state_machine_1_1impl_1_1_init_state__inherit__graph.png</file>
+      <file>class_state_machine_1_1impl_1_1_init_state__coll__graph.png</file>
+      <file>class_state_machine_1_1impl_1_1_init_state-members.html</file>
+      <file>class_state_machine_1_1impl_1_1_state.html</file>
+      <file>class_state_machine_1_1impl_1_1_state__inherit__graph.png</file>
+      <file>class_state_machine_1_1impl_1_1_state-members.html</file>
+      <file>class_trajectory.html</file>
+      <file>class_trajectory-members.html</file>
+      <file>class_trajectory_1_1impl.html</file>
+      <file>class_trajectory_1_1impl__coll__graph.png</file>
+      <file>class_trajectory_1_1impl-members.html</file>
+      <file>class_vehicle.html</file>
+      <file>class_vehicle-members.html</file>
+      <file>class_viz.html</file>
+      <file>class_viz-members.html</file>
+      <file>class_viz_1_1impl.html</file>
+      <file>class_viz_1_1impl-members.html</file>
+      <file>namespacetk.html</file>
+      <file>graph_legend.png</file>
+      <file>graph_legend.html</file>
+      <file>dir_68267d1309a1af8e8297ef4c3efbcdba.html</file>
+      <file>index.html</file>
+      <file>namespaces.html</file>
+      <file>annotated.html</file>
+      <file>classes.html</file>
+      <file>hierarchy.html</file>
+      <file>inherits.html</file>
+      <file>inherit_graph_0.png</file>
+      <file>inherit_graph_1.png</file>
+      <file>inherit_graph_2.png</file>
+      <file>inherit_graph_3.png</file>
+      <file>inherit_graph_4.png</file>
+      <file>inherit_graph_5.png</file>
+      <file>inherit_graph_6.png</file>
+      <file>inherit_graph_7.png</file>
+      <file>inherit_graph_8.png</file>
+      <file>inherit_graph_9.png</file>
+      <file>inherit_graph_10.png</file>
+      <file>inherit_graph_11.png</file>
+      <file>inherit_graph_12.png</file>
+      <file>inherit_graph_13.png</file>
+      <file>inherit_graph_14.png</file>
+      <file>inherit_graph_15.png</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>files.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals_func.html</file>
+      <file>globals_func.html</file>
+      <file>globals_func.html</file>
+      <file>globals_func.html</file>
+      <file>globals_func.html</file>
+      <file>globals_func.html</file>
+      <file>globals_func.html</file>
+      <file>globals_func.html</file>
+      <file>globals_func.html</file>
+      <file>globals_vars.html</file>
+      <file>globals_type.html</file>
+      <file>globals_type.html</file>
+      <file>globals_type.html</file>
+      <file>globals_enum.html</file>
+      <file>globals_eval.html</file>
+      <file>globals_eval.html</file>
+      <file>globals_defs.html</file>
+    </files>
+  </filterSection>
+</QtHelpProject>
