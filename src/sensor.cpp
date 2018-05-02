@@ -23,12 +23,14 @@ std::experimental::optional<Vehicle> Sensor::closestVehicle(vector<Vehicle> vehi
     std::copy_if(vehicles.begin(), vehicles.end(), std::back_inserter(same_lane),
                  [lane,s,range,this](const Vehicle &it) {
 
+
                     if(it.lane != lane)
                         return false;
 
-                    return true;
+
 
                     auto dist = it.s - s;
+
                     if(type == FRONT && (dist >=0 && dist<= range) )
                         return true;
 
@@ -51,9 +53,22 @@ std::experimental::optional<Vehicle> Sensor::closestVehicle(vector<Vehicle> vehi
 
 double Sensor::laneSpeed(vector<Vehicle> vehicles, int lane, int s) {
     auto vehic = closestVehicle(vehicles,lane,s);
+    if(vehic) {
+        cout << "--> " <<lane << " " << (*vehic).id << " " << s << " " << (*vehic).s  <<" " << (*vehic).speed << endl;
+    } else {
+        cout << "--> "<<lane<< "/" << endl;
+    }
     if(vehic)
         return (*vehic).speed;
     else
-        return 50.0;
+        return Config::getInstance()->targetSpeed();
 }
 
+vector<double> Sensor::laneSpeeds(vector<Vehicle> vehicles, int s) {
+    vector<double> r;
+    for(int i =  0; i <Config::getInstance()->numLanes();i++)
+        r.push_back(laneSpeed(vehicles,i,s));
+
+    cout << "S: " << r.at(0) << " " << r.at(1) <<" " << r.at(2) << endl;
+    return r;
+}

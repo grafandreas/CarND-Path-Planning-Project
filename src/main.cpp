@@ -13,6 +13,8 @@
 #include "mapservice.h"
 #include "vehicle.h"
 #include "sensor.h"
+#include "common.h"
+#include "trajectory.h"
 
 #define USE_VIZ 1
 #ifdef USE_VIZ
@@ -23,6 +25,9 @@ using namespace std;
 
 // for convenience
 using json = nlohmann::json;
+
+bool check_for_initial_s = true;
+
 
 // For converting back and forth between radians and degrees.
 constexpr double pi() { return M_PI; }
@@ -173,6 +178,11 @@ vector<double> getXY(double s, double d, const vector<double> &maps_s, const vec
 
 }
 
+XY getXYasXY(double s, double d, const vector<double> &maps_s, const vector<double> &maps_x, const vector<double> &maps_y) {
+    auto r = getXY(s,d,maps_s,maps_x,maps_y);
+    return XY(r.at(0),r.at(1));
+}
+
 int main() {
   uWS::Hub h;
 
@@ -240,16 +250,34 @@ int main() {
           // j[1] is the data JSON object
           
         	// Main car's localization Data
-          	double car_x = j[1]["x"];
-          	double car_y = j[1]["y"];
-          	double car_s = j[1]["s"];
-          	double car_d = j[1]["d"];
-          	double car_yaw = j[1]["yaw"];
-          	double car_speed = j[1]["speed"];
+
+
+
+            Vehicle ego;
+            ego.x = j[1]["x"];
+            ego.y = j[1]["y"];
+            ego.s = j[1]["s"];
+            ego.d = j[1]["d"];
+            ego.yaw = j[1]["yaw"];
+            ego.speed = j[1]["speed"];
+
+            if(check_for_initial_s) {
+                check_for_initial_s = false;
+
+                if(Config::getInstance()->initialS()) {
+                    cout << "Setting initial S for debugging";
+                    auto initial = getXYasXY(*Config::getInstance()->initialS(),6.0,map_waypoints_s,map_waypoints_x,map_waypoints_y);
+                    ego.s = *Config::getInstance()->initialS();
+
+                 }
+            }
+
 
           	// Previous path data given to the Planner
           	auto previous_path_x = j[1]["previous_path_x"];
           	auto previous_path_y = j[1]["previous_path_y"];
+
+            cout << "PSize;" << previous_path_x.size() << endl;
           	// Previous path's end s and d values 
           	double end_path_s = j[1]["end_path_s"];
           	double end_path_d = j[1]["end_path_d"];
@@ -258,11 +286,12 @@ int main() {
           	auto sensor_fusion = j[1]["sensor_fusion"];
 
             vector<Vehicle> * vehicles = new vector<Vehicle>;
-            cout << "! " << endl;
-            cout << sensor_fusion <<endl;
+//            cout << "! " << endl;
+//            cout << sensor_fusion <<endl;
+
             for( auto& vehic : sensor_fusion) {
-                cout << "!!" << endl;
-                cout << vehic <<endl;
+//                cout << "!!" << endl;
+//                cout << vehic <<endl;
                 vehicles->push_back(Vehicle(vehic));
             }
 
@@ -273,13 +302,50 @@ int main() {
 
             Sensor front_sensor(SensorType::FRONT, *mapS);
 
-            cout << "!! " << car_s << " " << car_d << endl;
+            cout << "!! " << ego.s << " " << ego.d << " " << ego.yaw << endl;
+            auto lane_speeds = front_sensor.laneSpeeds(*vehicles,ego.s);
 #ifdef USE_VIZ
-            viz->setCarPos(car_x,car_y,car_yaw,car_speed);
+            viz->setCarPos(ego.x,ego.y,ego.yaw,ego.speed);
             viz->setVehicles(*vehicles);
+            viz->setPrevPath(previous_path_x,previous_path_y);
+
             viz->visualize();
 #endif
           	// TODO: define a path made up of (x,y) points that the car will visit sequentially every .02 seconds
+            const double plan_ahead_dist = Config::getInstance()->planAhead();
+            auto g_speed = lane_speeds.at(1);
+            const double resolution = 0.02;
+            auto secs_to_be_there =  plan_ahead_dist / g_speed;
+            int segments = (int)(secs_to_be_there/resolution+0.5);
+
+            double inc = plan_ahead_dist / segments;
+            cout << "P: " << g_speed << " " << secs_to_be_there << " " << segments << " " << inc << endl;
+            vector<Sd> sd_list;
+//            for(int i = 1; i<segments;i++) {
+//                sd_list.push_back(Sd(car_s+inc*i,6.0));
+//            }
+
+            for(int i = 0; i<4;i++) {
+                sd_list.push_back(Sd((ego.s+1.0)+30.0*i,6.0));
+            }
+
+            vector<XY> traj_points;
+//            if(previous_path_x.size() > 3 ) {
+//                traj_points.push_back(XY(previous_path_x.at(0),previous_path_y.at(0)));
+//                traj_points.push_back(XY(previous_path_x.at(1),previous_path_y.at(1)));
+//                traj_points.push_back(XY(previous_path_x.at(2),previous_path_y.at(2)));
+//            }
+
+
+            for(auto const& it : sd_list) {
+                auto t = getXYasXY(it.first,it.second,map_waypoints_s,map_waypoints_x,map_waypoints_y);
+                traj_points.push_back(t);
+            }
+
+            cout << "T: " << sd_list.size() << " " << traj_points.size() <<endl;
+            Trajectory traj(traj_points,300);
+            traj.fillLists(next_x_vals,next_y_vals);
+
           	msgJson["next_x"] = next_x_vals;
           	msgJson["next_y"] = next_y_vals;
 

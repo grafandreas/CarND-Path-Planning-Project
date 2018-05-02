@@ -55,6 +55,20 @@ int Config::numLanes() {
     return pImpl->j["numLanes"];
 }
 
+double Config::targetSpeed() {
+    return pImpl->j["targetSpeed"];
+}
+
+double Config::planAhead() {
+    return pImpl->j["planAhead"];
+}
+
+std::experimental::optional<double> Config::initialS() {
+    if(pImpl->j["debug"]["initial-s"].is_null())
+        return {};
+    else
+        return ((double)(pImpl->j["debug"]["initial-s"]));
+}
 
 
 Config* Config::_instance = 0;

@@ -2,6 +2,7 @@
 #define CONFIG_H
 
 #include <memory>
+#include <experimental/optional>
 
 class Config
 {
@@ -25,6 +26,12 @@ public:
     int numLanes();
     double sensorRangeFront();
     double sensorRangeBack();
+    double targetSpeed();
+    double planAhead();
+
+    std::experimental::optional<double> initialS();
+
+
 
 private:
     static Config *_instance;

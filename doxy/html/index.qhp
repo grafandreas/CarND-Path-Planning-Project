@@ -110,6 +110,8 @@
                 <section title="drawCircle" ref="class_viz_1_1impl.html#a5af92b703d2573b8ff00f10f826df1f2" />
                 <section title="drawCircle" ref="class_viz_1_1impl.html#a2efb526f4cb4d541ca3c1810bd3a8cf1" />
                 <section title="mapCoord2CarCenter" ref="class_viz_1_1impl.html#a4341e972eb2936fe4ac493bf8fe358da" />
+                <section title="_px" ref="class_viz_1_1impl.html#a2aa84fd4fc5edc0167a27fd454d84694" />
+                <section title="_py" ref="class_viz_1_1impl.html#a29e5747a79c249bb781a91c80f088bae" />
                 <section title="_x" ref="class_viz_1_1impl.html#a6a502df7f5b752aacf12e4ba15901d2c" />
                 <section title="_y" ref="class_viz_1_1impl.html#a1142d2b4db2d61bcd16e332305fad878" />
                 <section title="car_x" ref="class_viz_1_1impl.html#a661a7083c78c26890abef352ab9ae58a" />
@@ -126,6 +128,7 @@
               <section title="Viz" ref="class_viz.html#a1d0a168e876651a5137f6f6e06d85fd0" />
               <section title="setCarPos" ref="class_viz.html#a329f0428ebc0678d8df6c9634974a374" />
               <section title="setLaneSpeeds" ref="class_viz.html#a4662503ede6543d927b9fe5ecf82818f" />
+              <section title="setPrevPath" ref="class_viz.html#a1905ae1a3d510bd43c461594b7c2c890" />
               <section title="setVehicles" ref="class_viz.html#abfc88c9ce478cfc0cd8a587a08fbf533" />
               <section title="setWaypoint" ref="class_viz.html#a22f169780ae46f2486e721302233e05c" />
               <section title="setWaypoints" ref="class_viz.html#a116eaf962fd63db930703fd3603ff80f" />
@@ -166,6 +169,7 @@
               <section title="common.h" ref="common_8h.html">
                 <section title="Sd" ref="common_8h.html#ad3b99963b51ea4b34ac6ed257b8c05ae" />
                 <section title="XY" ref="common_8h.html#ab7ae19be8273aae2b7b8d74c59bc636d" />
+                <section title="XYy" ref="common_8h.html#ab0b99dd7d5aa58abdf9d64e42da784bf" />
               </section>
               <section title="config.cpp" ref="config_8cpp.html">
                 <section title="impl" ref="class_config_1_1impl.html">
@@ -390,6 +394,8 @@
                   <section title="drawCircle" ref="class_viz_1_1impl.html#a5af92b703d2573b8ff00f10f826df1f2" />
                   <section title="drawCircle" ref="class_viz_1_1impl.html#a2efb526f4cb4d541ca3c1810bd3a8cf1" />
                   <section title="mapCoord2CarCenter" ref="class_viz_1_1impl.html#a4341e972eb2936fe4ac493bf8fe358da" />
+                  <section title="_px" ref="class_viz_1_1impl.html#a2aa84fd4fc5edc0167a27fd454d84694" />
+                  <section title="_py" ref="class_viz_1_1impl.html#a29e5747a79c249bb781a91c80f088bae" />
                   <section title="_x" ref="class_viz_1_1impl.html#a6a502df7f5b752aacf12e4ba15901d2c" />
                   <section title="_y" ref="class_viz_1_1impl.html#a1142d2b4db2d61bcd16e332305fad878" />
                   <section title="car_x" ref="class_viz_1_1impl.html#a661a7083c78c26890abef352ab9ae58a" />
@@ -413,6 +419,8 @@
                     <section title="drawCircle" ref="class_viz_1_1impl.html#a5af92b703d2573b8ff00f10f826df1f2" />
                     <section title="drawCircle" ref="class_viz_1_1impl.html#a2efb526f4cb4d541ca3c1810bd3a8cf1" />
                     <section title="mapCoord2CarCenter" ref="class_viz_1_1impl.html#a4341e972eb2936fe4ac493bf8fe358da" />
+                    <section title="_px" ref="class_viz_1_1impl.html#a2aa84fd4fc5edc0167a27fd454d84694" />
+                    <section title="_py" ref="class_viz_1_1impl.html#a29e5747a79c249bb781a91c80f088bae" />
                     <section title="_x" ref="class_viz_1_1impl.html#a6a502df7f5b752aacf12e4ba15901d2c" />
                     <section title="_y" ref="class_viz_1_1impl.html#a1142d2b4db2d61bcd16e332305fad878" />
                     <section title="car_x" ref="class_viz_1_1impl.html#a661a7083c78c26890abef352ab9ae58a" />
@@ -429,6 +437,7 @@
                   <section title="Viz" ref="class_viz.html#a1d0a168e876651a5137f6f6e06d85fd0" />
                   <section title="setCarPos" ref="class_viz.html#a329f0428ebc0678d8df6c9634974a374" />
                   <section title="setLaneSpeeds" ref="class_viz.html#a4662503ede6543d927b9fe5ecf82818f" />
+                  <section title="setPrevPath" ref="class_viz.html#a1905ae1a3d510bd43c461594b7c2c890" />
                   <section title="setVehicles" ref="class_viz.html#abfc88c9ce478cfc0cd8a587a08fbf533" />
                   <section title="setWaypoint" ref="class_viz.html#a22f169780ae46f2486e721302233e05c" />
                   <section title="setWaypoints" ref="class_viz.html#a116eaf962fd63db930703fd3603ff80f" />
@@ -452,6 +461,7 @@
     <keywords>
       <keyword name="XY" id="common.h::XY" ref="common_8h.html#ab7ae19be8273aae2b7b8d74c59bc636d" />
       <keyword name="Sd" id="common.h::Sd" ref="common_8h.html#ad3b99963b51ea4b34ac6ed257b8c05ae" />
+      <keyword name="XYy" id="common.h::XYy" ref="common_8h.html#ab0b99dd7d5aa58abdf9d64e42da784bf" />
       <keyword name="json" id="config.cpp::json" ref="config_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d" />
       <keyword name="rotate" id="coordinates.cpp::rotate" ref="coordinates_8cpp.html#a09cc879e65a9395f3cb7bb5c36bdac38" />
       <keyword name="world2car" id="coordinates.cpp::world2car" ref="coordinates_8cpp.html#a7b58e87738ed7940be46cdf5d10a3ead" />
@@ -570,6 +580,7 @@
       <keyword name="setWaypoint" id="Viz::setWaypoint" ref="class_viz.html#a22f169780ae46f2486e721302233e05c" />
       <keyword name="setVehicles" id="Viz::setVehicles" ref="class_viz.html#abfc88c9ce478cfc0cd8a587a08fbf533" />
       <keyword name="setLaneSpeeds" id="Viz::setLaneSpeeds" ref="class_viz.html#a4662503ede6543d927b9fe5ecf82818f" />
+      <keyword name="setPrevPath" id="Viz::setPrevPath" ref="class_viz.html#a1905ae1a3d510bd43c461594b7c2c890" />
       <keyword name="Viz::impl" id="Viz::impl" ref="class_viz_1_1impl.html" />
       <keyword name="impl" id="Viz::impl::impl" ref="class_viz_1_1impl.html#abd8df10140f106a2be08d373b49c8978" />
       <keyword name="drawCircle" id="Viz::impl::drawCircle" ref="class_viz_1_1impl.html#a5af92b703d2573b8ff00f10f826df1f2" />
@@ -579,6 +590,8 @@
       <keyword name="window" id="Viz::impl::window" ref="class_viz_1_1impl.html#a03c87f199f79d6c27e7784f42b208eed" />
       <keyword name="_x" id="Viz::impl::_x" ref="class_viz_1_1impl.html#a6a502df7f5b752aacf12e4ba15901d2c" />
       <keyword name="_y" id="Viz::impl::_y" ref="class_viz_1_1impl.html#a1142d2b4db2d61bcd16e332305fad878" />
+      <keyword name="_px" id="Viz::impl::_px" ref="class_viz_1_1impl.html#a2aa84fd4fc5edc0167a27fd454d84694" />
+      <keyword name="_py" id="Viz::impl::_py" ref="class_viz_1_1impl.html#a29e5747a79c249bb781a91c80f088bae" />
       <keyword name="vs" id="Viz::impl::vs" ref="class_viz_1_1impl.html#a893d0bb893d69d037fd91785ee9c9728" />
       <keyword name="lane_speed" id="Viz::impl::lane_speed" ref="class_viz_1_1impl.html#a1f2b1ba9b538e7cefcfe99c746b61055" />
       <keyword name="car_x" id="Viz::impl::car_x" ref="class_viz_1_1impl.html#a661a7083c78c26890abef352ab9ae58a" />

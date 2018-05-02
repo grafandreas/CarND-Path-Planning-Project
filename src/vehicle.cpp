@@ -8,6 +8,7 @@ Vehicle::Vehicle()
 
 }
 
+
 Vehicle::Vehicle(json j)
 {
 //    id = j["id"];
@@ -27,6 +28,9 @@ Vehicle::Vehicle(json j)
     d = j[6];
 
     lane = (int)(d/Config::getInstance()->laneWidth());
+    // TODO: Calculate yaw for non-ego cars (not necessarily required).
+
+    yaw = 0.0;
 
     // TODO: deal with cases where vehicles does not follow s, but follows d
     //

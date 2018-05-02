@@ -5,6 +5,14 @@
 
 using json = nlohmann::json;
 
+/**
+ * @brief A class that holds the information about a given vehicle.
+ *
+ * Assumptions:
+ * - All lanes are same width
+ * - speed calculation can be derived from vx and vy (simply implemented)
+ *
+ */
 class Vehicle
 {
 
@@ -18,10 +26,11 @@ public:
     double vy;
     double x;
     double y;
+    double yaw;
     int id;
 
-    int lane;
-    double speed;
+    int lane; //!< Is calculated by dividing d through lane width
+    double speed;  //!< Calculated from vx and vy
 
 
 

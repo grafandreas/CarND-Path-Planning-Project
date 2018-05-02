@@ -15,6 +15,8 @@ public:
     sf::RenderWindow window;
     vector<double> * _x;
     vector<double> * _y;
+    vector<double> _px;
+    vector<double> _py;
     vector<Vehicle> * vs;
     // TODO: Make Numlanes flexible
     vector<double> lane_speed;
@@ -40,6 +42,8 @@ public:
     void drawCarCenterCircle(int radius, sf::Color  col, double x, double y );
 
 };
+
+void Viz::pimpl_deleter::operator()(Viz::impl*ptr) const { delete ptr; }
 
 
 void Viz::impl::drawCircle(int radius, sf::Color col, double x, double y ) {
@@ -76,7 +80,7 @@ void Viz::impl::mapCoord2CarCenter(double x, double y, XY & o) {
 void Viz::impl::drawCarCenterCircle(int radius, sf::Color  col, double x, double y ) {
     XY o_c;
     mapCoord2CarCenter(x,y,o_c);
-    cout << "x " << o_c.first << " " << o_c.second << endl;
+//    cout << "x " << o_c.first << " " << o_c.second << endl;
     sf::CircleShape circle(radius);
     circle.setPointCount(8);
     circle.setFillColor(col);
@@ -132,26 +136,35 @@ void Viz::visualize() {
 //    cout << "--- " << pImpl->vs->size() << endl;
 
     for( auto const &  v : *pImpl->vs) {
-        cout << "---" << endl;
+//        cout << "---" << endl;
         pImpl->drawCircle(3,sf::Color::Blue,v.x,v.y);
         pImpl->drawCarCenterCircle(6,sf::Color::Blue,v.x,v.y);
     }
+
+    for( int i = 0 ; i < pImpl->_px.size();i++) {
+//        cout << "---" << endl;
+        auto c = sf::Color(min(255,i),0,0);
+
+        pImpl->drawCarCenterCircle(3,c,pImpl->_px.at(i),pImpl->_py.at(i));
+    }
+
     pImpl->drawCircle(6,sf::Color::Black, pImpl->car_x,pImpl->car_y);
 
 
 
     XY o_c;
+    auto transBlack = sf::Color(0,0,0,100);
     pImpl->mapCoord2CarCenter(pImpl->car_x,pImpl->car_y, o_c);
      sf::CircleShape circle(8);
      circle.setPointCount(8);
-     circle.setFillColor(sf::Color::Black);
+     circle.setFillColor(transBlack);
      circle.setPosition(o_c.first,o_c.second);
      pImpl->window.draw(circle);
 
 
 
      sf::RectangleShape line(sf::Vector2f(pImpl->speed*10, 5));
-     line.setFillColor(sf::Color::Black);
+     line.setFillColor(transBlack);
      line.setPosition(o_c.first,o_c.second);
 
      line.setRotation(-pImpl->yaw);
@@ -184,6 +197,11 @@ void Viz::setWaypoints(vector<double> &x, vector<double> &y) {
     pImpl->_y = &y;
 }
 
+void Viz::setPrevPath(const std::vector<double> &x, const std::vector<double> &y) {
+    pImpl->_px = x;
+    pImpl->_py = y;
+}
+
 void Viz::setCarPos(double x, double y, double yaw, double speed) {
     pImpl->car_x = x;
     pImpl->car_y = y;
@@ -198,5 +216,9 @@ void Viz::setWaypoint(double x, double y) {
 
 void Viz::setVehicles(vector<Vehicle> &vehicles) {
     pImpl->vs = &vehicles;
+}
+
+void Viz::setLaneSpeeds(std::vector<double> & speeds) {
+    pImpl->lane_speed = speeds;
 }
 
