@@ -15,6 +15,7 @@
 #include "sensor.h"
 #include "common.h"
 #include "trajectory.h"
+#include "coordinates.h"
 
 #define USE_VIZ 1
 #ifdef USE_VIZ
@@ -259,6 +260,8 @@ int main() {
             ego.s = j[1]["s"];
             ego.d = j[1]["d"];
             ego.yaw = j[1]["yaw"];
+            ego.yaw_rad = deg2rad(ego.yaw);
+
             ego.speed = j[1]["speed"];
 
             if(check_for_initial_s) {
@@ -342,9 +345,49 @@ int main() {
                 traj_points.push_back(t);
             }
 
-            cout << "T: " << sd_list.size() << " " << traj_points.size() <<endl;
-            Trajectory traj(traj_points,300);
-            traj.fillLists(next_x_vals,next_y_vals);
+            const bool localTransform = true;
+
+            if(localTransform) {
+                cout << "T: " << sd_list.size() << " " << traj_points.size() <<endl;
+                std::vector<XY> car_sd_list;
+
+                world2car(XY(ego.x,ego.y), traj_points,car_sd_list, ego.yaw_rad);
+
+                {
+                    XY bla(10,0);
+                    XY t = world2car(XY(10.0,10.0),bla, deg2rad(45.0));
+                    XY c = car2world(XY(10.0,10.0),t, deg2rad(45.0));
+
+                    XY rot = rotate(bla,1.5708);
+
+                    cout << "& " << t.first << "," <<t.second << " " << c.first <<  "," << c.second << rot.first << " " << rot.second << endl;
+
+                }
+
+
+                Trajectory traj(car_sd_list,300);
+                std::vector<XY> sd_list_next;
+                traj.fillLists(sd_list_next);
+
+                std::vector<XY> sd_list_next_world;
+                car2world(XY(ego.x,ego.y),sd_list_next, sd_list_next_world,ego.yaw_rad);
+
+                split(sd_list_next_world, next_x_vals,next_y_vals);
+
+                cout << "+ " << ego.x << " " << ego.y << " " << next_x_vals.at(0) << " " << next_y_vals.at(0) << endl;
+                if(previous_path_x.size() > 0) {
+                    cout << "- " << previous_path_x.at(0) << " " << previous_path_y.at(0) << endl;
+                }
+
+
+            } else {
+                 Trajectory traj(traj_points,300);
+                 traj.fillLists(next_x_vals,next_y_vals);
+                 cout << "+ " << ego.x << " " << ego.y << " " << next_x_vals.at(0) << " " << next_y_vals.at(0) << endl;
+            }
+
+
+
 
           	msgJson["next_x"] = next_x_vals;
           	msgJson["next_y"] = next_y_vals;

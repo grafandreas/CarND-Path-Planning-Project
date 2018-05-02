@@ -24,6 +24,8 @@ public:
     // for sending to the simulator.
     void fillLists(std::vector<double> & xl, std::vector<double> & yl);
 
+    void fillLists(std::vector<XY> &out);
+
 private:
 
     class impl;

@@ -84,6 +84,13 @@ void Trajectory::fillLists(std::vector<double> &xl, std::vector<double> &yl) {
     }
 }
 
+void Trajectory::fillLists(std::vector<XY> &out) {
+    for(int i = 0; i<pImpl->resolution;i++) {
+        auto xy = (*this)(i);
+        out.push_back(xy);
+    }
+}
+
 
 XY Trajectory::operator()(int pos) {
     auto delta = pImpl->max_x-pImpl->min_x;

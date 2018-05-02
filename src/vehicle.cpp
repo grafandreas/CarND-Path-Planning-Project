@@ -31,6 +31,7 @@ Vehicle::Vehicle(json j)
     // TODO: Calculate yaw for non-ego cars (not necessarily required).
 
     yaw = 0.0;
+    yaw_rad = 0.0;
 
     // TODO: deal with cases where vehicles does not follow s, but follows d
     //

@@ -26,7 +26,8 @@ public:
     double vy;
     double x;
     double y;
-    double yaw;
+    double yaw; //!< yaw in degrees
+    double yaw_rad; //!< yaw in radians
     int id;
 
     int lane; //!< Is calculated by dividing d through lane width
