@@ -2,7 +2,7 @@
 #define VEHICLE_H
 
 #include "json.hpp"
-
+#include "coordinates.h"
 using json = nlohmann::json;
 
 /**
@@ -33,7 +33,7 @@ public:
     int lane; //!< Is calculated by dividing d through lane width
     double speed;  //!< Calculated from vx and vy
 
-
+    XY predictPosByM(double meter);
 
 };
 

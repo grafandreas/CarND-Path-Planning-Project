@@ -2,6 +2,8 @@
 #include "config.h"
 
 #include "coordinates.h"
+#include "math.h"
+
 
 Vehicle::Vehicle()
 {
@@ -51,3 +53,10 @@ Vehicle::Vehicle(json & j, bool isEgo)
 
     lane = (int)(d/Config::getInstance()->laneWidth());
 }
+
+XY Vehicle::predictPosByM(double meter) {
+    auto xoffs = cos(yaw_rad) *meter;
+    auto yoffs = sin(yaw_rad) * meter;
+    return XY(x+xoffs,y+yoffs);
+}
+

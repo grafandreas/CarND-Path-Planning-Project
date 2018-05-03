@@ -267,7 +267,6 @@ int main() {
           	auto previous_path_x = j[1]["previous_path_x"];
           	auto previous_path_y = j[1]["previous_path_y"];
 
-            cout << "PSize;" << previous_path_x.size() << endl;
           	// Previous path's end s and d values 
           	double end_path_s = j[1]["end_path_s"];
           	double end_path_d = j[1]["end_path_d"];
@@ -317,6 +316,8 @@ int main() {
 
             bool lane_change_flag = false;
 
+
+
             if(!lane_change_flag)
             {
                 for(int i = 0; i<4;i++) {
@@ -351,7 +352,7 @@ int main() {
 //                traj_points.push_back(XY(previous_path_x.at(2),previous_path_y.at(2)));
 //            }
 
-
+//            traj_points.push_back(ego.predictPosByM(0.5));
             for(auto const& it : sd_list) {
                 auto t = getXYasXY(it.first,it.second,map_waypoints_s,map_waypoints_x,map_waypoints_y);
                 traj_points.push_back(t);
@@ -365,16 +366,16 @@ int main() {
 
                 world2car(XY(ego.x,ego.y), traj_points,car_sd_list, ego.yaw_rad);
 
-                {
-                    XY bla(10,0);
-                    XY t = world2car(XY(10.0,10.0),bla, deg2rad(45.0));
-                    XY c = car2world(XY(10.0,10.0),t, deg2rad(45.0));
+//                {
+//                    XY bla(10,0);
+//                    XY t = world2car(XY(10.0,10.0),bla, deg2rad(45.0));
+//                    XY c = car2world(XY(10.0,10.0),t, deg2rad(45.0));
 
-                    XY rot = rotate(bla,1.5708);
+//                    XY rot = rotate(bla,1.5708);
 
-                    cout << "& " << t.first << "," <<t.second << " " << c.first <<  "," << c.second << rot.first << " " << rot.second << endl;
+//                    cout << "& " << t.first << "," <<t.second << " " << c.first <<  "," << c.second << rot.first << " " << rot.second << endl;
 
-                }
+//                }
 
 
                 Trajectory traj(car_sd_list,300);
