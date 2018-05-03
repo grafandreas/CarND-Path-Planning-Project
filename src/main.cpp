@@ -30,10 +30,7 @@ using json = nlohmann::json;
 bool check_for_initial_s = true;
 
 
-// For converting back and forth between radians and degrees.
-constexpr double pi() { return M_PI; }
-double deg2rad(double x) { return x * pi() / 180; }
-double rad2deg(double x) { return x * 180 / pi(); }
+
 
 // Checks if the SocketIO event has JSON data.
 // If there is data the JSON object in string format will be returned,
@@ -248,22 +245,12 @@ int main() {
         string event = j[0].get<string>();
         
         if (event == "telemetry") {
-          // j[1] is the data JSON object
-          
-        	// Main car's localization Data
 
+            // Initialize ego vehicle from json;
+            Vehicle ego(j,true);
 
-
-            Vehicle ego;
-            ego.x = j[1]["x"];
-            ego.y = j[1]["y"];
-            ego.s = j[1]["s"];
-            ego.d = j[1]["d"];
-            ego.yaw = j[1]["yaw"];
-            ego.yaw_rad = deg2rad(ego.yaw);
-
-            ego.speed = j[1]["speed"];
-
+            // This is for debugging, we can set an initial s position on purpose,
+            // useful for the left turn or the overflow at end of track
             if(check_for_initial_s) {
                 check_for_initial_s = false;
 
@@ -295,7 +282,7 @@ int main() {
             for( auto& vehic : sensor_fusion) {
 //                cout << "!!" << endl;
 //                cout << vehic <<endl;
-                vehicles->push_back(Vehicle(vehic));
+                vehicles->push_back(Vehicle(vehic,false));
             }
 
           	json msgJson;
@@ -328,10 +315,35 @@ int main() {
 //                sd_list.push_back(Sd(car_s+inc*i,6.0));
 //            }
 
-            for(int i = 0; i<4;i++) {
-                sd_list.push_back(Sd((ego.s+1.0)+30.0*i,6.0));
-            }
+            bool lane_change_flag = false;
 
+            if(!lane_change_flag)
+            {
+                for(int i = 0; i<4;i++) {
+                    sd_list.push_back(Sd((ego.s+1.0)+30.0*i,6.0));
+                }
+            } else
+            {
+                double cur_d = 0.0;
+                double dest_d = 0.0;
+
+                if(ego.lane == 1) {
+
+                        cur_d = lane2d(1);
+                        dest_d = lane2d(2);
+
+
+                } else {
+                    cur_d = lane2d(2);
+                    dest_d = lane2d(1);
+                }
+
+                sd_list.push_back(Sd((ego.s+1.0)+0,cur_d));
+                sd_list.push_back(Sd((ego.s+1.0)+30.0,cur_d));
+                sd_list.push_back(Sd((ego.s+1.0)+45,(cur_d+dest_d)/2 ));
+                sd_list.push_back(Sd((ego.s+1.0)+60,dest_d ));
+                sd_list.push_back(Sd((ego.s+1.0)+90,dest_d ));
+            }
             vector<XY> traj_points;
 //            if(previous_path_x.size() > 3 ) {
 //                traj_points.push_back(XY(previous_path_x.at(0),previous_path_y.at(0)));

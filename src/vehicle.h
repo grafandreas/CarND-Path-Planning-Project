@@ -18,7 +18,7 @@ class Vehicle
 
 public:
     Vehicle();
-    Vehicle(json);
+    Vehicle(json &j, bool isEgo);
 
     double s;
     double d;
