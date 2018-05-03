@@ -61,7 +61,7 @@ double Sensor::laneSpeed(vector<Vehicle> vehicles, int lane, int s) {
     if(vehic)
         return (*vehic).speed;
     else
-        return Config::getInstance()->targetSpeed();
+        return 100.0;
 }
 
 vector<double> Sensor::laneSpeeds(vector<Vehicle> vehicles, int s) {
@@ -71,4 +71,13 @@ vector<double> Sensor::laneSpeeds(vector<Vehicle> vehicles, int s) {
 
     cout << "S: " << r.at(0) << " " << r.at(1) <<" " << r.at(2) << endl;
     return r;
+}
+
+lane_type Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane) {
+    auto speeds = laneSpeeds(vehicle,s);
+    auto fastest = std::max_element(speeds.begin(),speeds.end());
+    if(*fastest == speeds.at(currentLane))
+        return currentLane;
+
+    return fastest-speeds.begin();
 }

@@ -336,10 +336,18 @@ int main() {
                 return;
             }
 
-            if(!lane_change_flag)
+            auto fastestLane = front_sensor.fastestLaneFrom(*vehicles,ego.s,ego.lane);
+
+            if(front_sensor.laneSpeed(*vehicles,ego.lane,ego.s) >= ego.speed)
             {
-                for(int i = 0; i<4;i++) {
-                    sd_list.push_back(Sd((ego.s+1.0)+Config::getInstance()->trajectoryWaypointDist()*i,6.0));
+                // The number of points that we caclulate depends on
+                // the distance we want to look ahead and the
+                // distance of the waypoints. It does not make sense
+                // to use more waypoints, since the getXY function is limited
+                //
+                auto count = Config::getInstance()->trajectoryTrajectoryLength()/Config::getInstance()->trajectoryWaypointDist();
+                for(int i = 0; i<count;i++) {
+                    sd_list.push_back(Sd((ego.s+1.0)+Config::getInstance()->trajectoryWaypointDist()*i,lane2d(ego.lane)));
                 }
             } else
             {
@@ -397,7 +405,7 @@ int main() {
 //                }
 
 
-                Trajectory traj(car_sd_list,300);
+                Trajectory traj(car_sd_list,200);
                 std::vector<XY> sd_list_next;
                 traj.fillLists(sd_list_next);
 
