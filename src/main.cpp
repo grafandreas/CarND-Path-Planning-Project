@@ -316,12 +316,30 @@ int main() {
 
             bool lane_change_flag = false;
 
+            if(previous_path_x.size() > 4 && fabs(ego.s - end_path_s) > Config::getInstance()->trajectoryTrajectoryMin() ) {
+                cout << "Not replanning" << endl;
 
+                for(auto v : previous_path_x)
+                    next_x_vals.push_back((v));
+                for(auto v : previous_path_y)
+                    next_y_vals.push_back((v));
+
+
+                msgJson["next_x"] = next_x_vals;
+                msgJson["next_y"] = next_y_vals;
+
+                auto msg = "42[\"control\","+ msgJson.dump()+"]";
+
+                //this_thread::sleep_for(chrono::milliseconds(1000));
+                ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
+
+                return;
+            }
 
             if(!lane_change_flag)
             {
                 for(int i = 0; i<4;i++) {
-                    sd_list.push_back(Sd((ego.s+1.0)+30.0*i,6.0));
+                    sd_list.push_back(Sd((ego.s+1.0)+Config::getInstance()->trajectoryWaypointDist()*i,6.0));
                 }
             } else
             {
@@ -353,6 +371,7 @@ int main() {
 //            }
 
 //            traj_points.push_back(ego.predictPosByM(0.5));
+//            traj_points.push_back(ego.predictPosByM(0.7));
             for(auto const& it : sd_list) {
                 auto t = getXYasXY(it.first,it.second,map_waypoints_s,map_waypoints_x,map_waypoints_y);
                 traj_points.push_back(t);

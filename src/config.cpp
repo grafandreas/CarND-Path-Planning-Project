@@ -63,6 +63,19 @@ double Config::planAhead() {
     return pImpl->j["planAhead"];
 }
 
+double Config::trajectoryWaypointDist() {
+    return pImpl->j["trajectory"]["waypoint-dist"];
+}
+
+double Config::trajectoryTrajectoryLength(){
+    return pImpl->j["trajectory"]["trajectory-length"];
+}
+
+double Config::trajectoryTrajectoryMin(){
+    return pImpl->j["trajectory"]["trajectory-min"];
+}
+
+
 std::experimental::optional<double> Config::initialS() {
     if(pImpl->j["debug"]["initial-s"].is_null())
         return {};

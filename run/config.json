@@ -20,5 +20,10 @@
     "sensor" : {
         "range-front" : 30.0,
         "range-back" : 30.0
+    },
+    "trajectory" : {
+        "waypoint-dist" : 30.0,
+        "trajectory-length" : 90.0,
+        "trajectory-min" : 30.0
     }
 }

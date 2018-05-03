@@ -29,6 +29,9 @@ public:
     double targetSpeed();
     double planAhead();
 
+    double trajectoryWaypointDist();
+    double trajectoryTrajectoryLength();
+    double trajectoryTrajectoryMin();
     std::experimental::optional<double> initialS();
 
 
