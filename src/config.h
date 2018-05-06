@@ -32,6 +32,7 @@ public:
     double trajectoryWaypointDist();
     double trajectoryTrajectoryLength();
     double trajectoryTrajectoryMin();
+    double trajectoryReuseNPoints();
     std::experimental::optional<double> initialS();
 
 

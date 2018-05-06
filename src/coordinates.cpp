@@ -44,3 +44,11 @@ void split  (std::vector<XY> & in, std::vector<double> & xl, std::vector<double>
         yl.push_back(xy.second);
     }
 }
+
+double calc_length(const std::vector<double> &x, const std::vector<double> &y, const int idx) {
+    double r = 0.0;
+    for(int i = 1; i <= idx; i++) {
+        r = r + distance(x.at(i-1),y.at(i-1),x.at(i),y.at(i));
+    }
+    return r;
+}

@@ -60,3 +60,6 @@ XY Vehicle::predictPosByM(double meter) {
     return XY(x+xoffs,y+yoffs);
 }
 
+double Vehicle::collision_time (const Vehicle &other) const {
+    return coll_time(s,speed,other.s,other.speed);
+}

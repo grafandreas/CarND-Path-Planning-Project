@@ -75,6 +75,9 @@ double Config::trajectoryTrajectoryMin(){
     return pImpl->j["trajectory"]["trajectory-min"];
 }
 
+double Config::trajectoryReuseNPoints(){
+    return pImpl->j["trajectory"]["reuse-n-points"];
+}
 
 std::experimental::optional<double> Config::initialS() {
     if(pImpl->j["debug"]["initial-s"].is_null())

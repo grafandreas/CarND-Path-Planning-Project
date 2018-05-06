@@ -24,6 +24,7 @@
     "trajectory" : {
         "waypoint-dist" : 30.0,
         "trajectory-length" : 120.0,
-        "trajectory-min" : 30.0
+        "trajectory-min" : 30.0,
+        "reuse-n-points" : 3
     }
 }

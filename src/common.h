@@ -27,5 +27,9 @@ inline double lane2d(lane_type lane) {
     return lw*lane+(lw/2);
 }
 
+inline bool intervalIntersect(double s1, double e1, double s2, double e2) {
+    return ((s2 >= s1 && s2 <=e1) || (e2 >=s1 && e2 <= e1));
+}
+
 #endif // COMMON_H
 

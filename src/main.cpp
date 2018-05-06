@@ -47,10 +47,7 @@ string hasData(string s) {
   return "";
 }
 
-double distance(double x1, double y1, double x2, double y2)
-{
-	return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-}
+
 int ClosestWaypoint(double x, double y, const vector<double> &maps_x, const vector<double> &maps_y)
 {
 
@@ -316,6 +313,9 @@ int main() {
 
             bool lane_change_flag = false;
 
+            // If we still have enough distance to the end path, we are not replanning.
+            // TODO: Adjust to make sure that we replan in critical situations.
+            //
             if(previous_path_x.size() > 4 && fabs(ego.s - end_path_s) > Config::getInstance()->trajectoryTrajectoryMin() ) {
                 cout << "Not replanning" << endl;
 
@@ -336,9 +336,30 @@ int main() {
                 return;
             }
 
+            double replanFrom = ego.s+1.0; //!< replanFrom specifies the point that our new trajector starts at.
+            if(previous_path_x.size() >= Config::getInstance()->trajectoryReuseNPoints()  ) {
+                // When replanning, we start the trajectory from the 3 point in the
+                // previous path. We need to know how long that is.
+                replanFrom = ego.s+calc_length(previous_path_x,previous_path_y,Config::getInstance()->trajectoryReuseNPoints()  -1);
+            }
+            cout << "Replanning from " << ego.s << " " << replanFrom << "(" << (replanFrom-ego.s) << ")" << endl;
             auto fastestLane = front_sensor.fastestLaneFrom(*vehicles,ego.s,ego.lane);
 
-            if(front_sensor.laneSpeed(*vehicles,ego.lane,ego.s) >= ego.speed)
+            if(fastestLane != ego.lane) {
+                std::vector<Vehicle> dest_lane_vehic ;
+                std::copy_if(vehicles->begin(),vehicles->end(),back_inserter(dest_lane_vehic),
+                             [fastestLane](const Vehicle &it) {return it.lane == fastestLane;});
+
+                std::vector<double> coll_times;
+                std::transform(dest_lane_vehic.begin(),dest_lane_vehic.end(),back_inserter(coll_times),
+                               [ego](const Vehicle &it) {return it.collision_time(ego);});
+
+                for(auto t : coll_times) {
+                    cout << "Coll " << t << endl;
+                }
+            }
+
+            if(fastestLane == ego.lane)
             {
                 // The number of points that we caclulate depends on
                 // the distance we want to look ahead and the
@@ -346,37 +367,33 @@ int main() {
                 // to use more waypoints, since the getXY function is limited
                 //
                 auto count = Config::getInstance()->trajectoryTrajectoryLength()/Config::getInstance()->trajectoryWaypointDist();
-                for(int i = 0; i<count;i++) {
-                    sd_list.push_back(Sd((ego.s+1.0)+Config::getInstance()->trajectoryWaypointDist()*i,lane2d(ego.lane)));
+                for(int i = 1; i<count;i++) {
+                    sd_list.push_back(Sd(replanFrom+Config::getInstance()->trajectoryWaypointDist()*i,lane2d(ego.lane)));
                 }
             } else
             {
                 double cur_d = 0.0;
                 double dest_d = 0.0;
 
-                if(ego.lane == 1) {
+                cur_d = lane2d(ego.lane);
+                dest_d = lane2d(fastestLane);
 
-                        cur_d = lane2d(1);
-                        dest_d = lane2d(2);
-
-
-                } else {
-                    cur_d = lane2d(2);
-                    dest_d = lane2d(1);
-                }
-
-                sd_list.push_back(Sd((ego.s+1.0)+0,cur_d));
-                sd_list.push_back(Sd((ego.s+1.0)+30.0,cur_d));
-                sd_list.push_back(Sd((ego.s+1.0)+45,(cur_d+dest_d)/2 ));
-                sd_list.push_back(Sd((ego.s+1.0)+60,dest_d ));
-                sd_list.push_back(Sd((ego.s+1.0)+90,dest_d ));
+//                sd_list.push_back(Sd(replanFrom+0,cur_d));
+                sd_list.push_back(Sd(replanFrom+30.0,cur_d));
+                sd_list.push_back(Sd(replanFrom+45,(cur_d+dest_d)/2 ));
+                sd_list.push_back(Sd(replanFrom+60,dest_d ));
+                sd_list.push_back(Sd(replanFrom+90,dest_d ));
             }
             vector<XY> traj_points;
-//            if(previous_path_x.size() > 3 ) {
-//                traj_points.push_back(XY(previous_path_x.at(0),previous_path_y.at(0)));
-//                traj_points.push_back(XY(previous_path_x.at(1),previous_path_y.at(1)));
-//                traj_points.push_back(XY(previous_path_x.at(2),previous_path_y.at(2)));
-//            }
+
+            // If we have a previous path when replanning, we are reusing a number of
+            // path points to get a smooth transition.
+            //
+            if(previous_path_x.size() >= Config::getInstance()->trajectoryReuseNPoints()   ) {
+                cout << "Pushing previous Paths" << endl;
+                for(int i = 0; i<Config::getInstance()->trajectoryReuseNPoints();i++)
+                traj_points.push_back(XY(previous_path_x.at(i),previous_path_y.at(i)));
+            }
 
 //            traj_points.push_back(ego.predictPosByM(0.5));
 //            traj_points.push_back(ego.predictPosByM(0.7));
@@ -393,19 +410,28 @@ int main() {
 
                 world2car(XY(ego.x,ego.y), traj_points,car_sd_list, ego.yaw_rad);
 
-//                {
-//                    XY bla(10,0);
-//                    XY t = world2car(XY(10.0,10.0),bla, deg2rad(45.0));
-//                    XY c = car2world(XY(10.0,10.0),t, deg2rad(45.0));
+                cout << ego.x << ego.y << endl;
 
-//                    XY rot = rotate(bla,1.5708);
-
-//                    cout << "& " << t.first << "," <<t.second << " " << c.first <<  "," << c.second << rot.first << " " << rot.second << endl;
-
-//                }
+                cout << "sd- ";
+                for(int i = 0; i < (sd_list.size()<8?sd_list.size():8);i++) {
+                    cout << sd_list.at(i).first <<"," << sd_list.at(i).second <<"  ";
+                }
+                cout << endl;
 
 
-                Trajectory traj(car_sd_list,200);
+                cout << "t- ";
+                for(int i = 0; i < (traj_points.size()<8?traj_points.size():8);i++) {
+                    cout << traj_points.at(i).first <<"," << traj_points.at(i).second <<"  ";
+                }
+                cout << endl;
+
+                cout << "sd- ";
+                for(int i = 0; i < (car_sd_list.size()<8?car_sd_list.size():8);i++) {
+                    cout << car_sd_list.at(i).first <<"," << car_sd_list.at(i).second <<"  ";
+                }
+                cout << endl;
+
+                Trajectory traj(car_sd_list,210);
                 std::vector<XY> sd_list_next;
                 traj.fillLists(sd_list_next);
 
@@ -416,8 +442,20 @@ int main() {
 
                 cout << "+ " << ego.x << " " << ego.y << " " << next_x_vals.at(0) << " " << next_y_vals.at(0) << endl;
                 if(previous_path_x.size() > 0) {
-                    cout << "- " << previous_path_x.at(0) << " " << previous_path_y.at(0) << endl;
+                    cout << "- " << previous_path_x.at(0) << " " << previous_path_y.at(0) << endl<<"  ";
                 }
+
+                cout << "p- ";
+                for(int i = 0; i < (previous_path_x.size()<8?previous_path_x.size():8);i++) {
+                    cout << previous_path_x.at(i) <<"," << previous_path_y.at(i) <<"  ";
+                }
+                cout << endl;
+
+                cout << "n- ";
+                for(int i = 0; i < (next_x_vals.size()<8?next_x_vals.size():8);i++) {
+                    cout << next_x_vals.at(i) <<"," << next_y_vals.at(i) <<"  ";
+                }
+                cout << endl;
 
 
             } else {

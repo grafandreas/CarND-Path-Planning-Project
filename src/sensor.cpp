@@ -54,9 +54,9 @@ std::experimental::optional<Vehicle> Sensor::closestVehicle(vector<Vehicle> vehi
 double Sensor::laneSpeed(vector<Vehicle> vehicles, int lane, int s) {
     auto vehic = closestVehicle(vehicles,lane,s);
     if(vehic) {
-        cout << "--> " <<lane << " " << (*vehic).id << " " << s << " " << (*vehic).s  <<" " << (*vehic).speed << endl;
+//        cout << "--> " <<lane << " " << (*vehic).id << " " << s << " " << (*vehic).s  <<" " << (*vehic).speed << endl;
     } else {
-        cout << "--> "<<lane<< "/" << endl;
+//        cout << "--> "<<lane<< "/" << endl;
     }
     if(vehic)
         return (*vehic).speed;
@@ -74,7 +74,7 @@ vector<double> Sensor::laneSpeeds(vector<Vehicle> vehicles, int s) {
 }
 
 lane_type Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane) {
-    auto speeds = laneSpeeds(vehicle,s);
+    auto speeds = laneSpeeds(vehicles,s);
     auto fastest = std::max_element(speeds.begin(),speeds.end());
     if(*fastest == speeds.at(currentLane))
         return currentLane;

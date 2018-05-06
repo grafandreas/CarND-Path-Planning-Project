@@ -34,7 +34,14 @@ public:
     double speed;  //!< Calculated from vx and vy
 
     XY predictPosByM(double meter);
+    double collision_time (const Vehicle &other) const  ;
 
 };
+
+inline double coll_time(double s0, double v0, double s1, double v1) {
+    auto t = (s0-s1)/(v1-v0);
+    return t;
+}
+
 
 #endif // VEHICLE_H
