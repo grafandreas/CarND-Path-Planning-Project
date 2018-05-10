@@ -1,9 +1,12 @@
 #include "trajectory.h"
+#include "coordinates.h"
 
 #include "spline.h"
 #include <algorithm>
 #include <limits>
 #include <iostream>
+#include <cmath>
+
 
 // TODO: Make sure that waypoints are in car coordinates;
 
@@ -25,11 +28,11 @@ public:
         max_x = *std::max_element(x.begin(),x.end());
         min_x = *std::min_element(x.begin(),x.end());
 
-        std::cout<<p.size()<<std::endl;
-        std::cout<<x.size()<<std::endl;
-        for(auto xp: x) {
-            std::cout << xp << std::endl;
-        }
+//        std::cout<<p.size()<<std::endl;
+//        std::cout<<x.size()<<std::endl;
+//        for(auto xp: x) {
+//            std::cout << xp << std::endl;
+//        }
 
         s.set_points(x,y);
     }
@@ -44,11 +47,11 @@ public:
         max_x = *std::max_element(x.begin(),x.end());
         min_x = *std::min_element(x.begin(),x.end());
 
-        std::cout<<p.size()<<std::endl;
-        std::cout<<x.size()<<std::endl;
-        for(auto xp: x) {
-            std::cout << xp << std::endl;
-        }
+//        std::cout<<p.size()<<std::endl;
+//        std::cout<<x.size()<<std::endl;
+//        for(auto xp: x) {
+//            std::cout << xp << std::endl;
+//        }
 
 
         s.set_points(x,y);
@@ -89,6 +92,21 @@ void Trajectory::fillLists(std::vector<XY> &out) {
         auto xy = (*this)(i);
         out.push_back(xy);
     }
+}
+
+void Trajectory::fillLists(std::vector<double> & xl, std::vector<double> & yl, double initialSpeed, double targetSpeed, double startX) {
+    auto curSpeed = initialSpeed;
+    auto xPos = startX;
+    while(xPos < pImpl->max_x) { // repeat until we have reached the last of the points that we actually passed
+        auto diffSpeed = targetSpeed - curSpeed;
+        if(fabs(diffSpeed) > Config::getInstance()->speedIncrease()) {
+            curSpeed += copysign(Config::getInstance()->speedIncrease() , diffSpeed);
+        }
+        xPos += dist_per_tick(curSpeed);
+        xl.push_back(xPos);
+        yl.push_back(pImpl->s(xPos));
+    }
+
 }
 
 

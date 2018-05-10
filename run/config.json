@@ -16,6 +16,7 @@
     "numLanes" : 3,
     "targetSpeed" : 21.01,
     "speedLimit" : 22.352,
+    "speedIncrease" : 0.22,
     "planAhead" : 50.0,
     "sensor" : {
         "range-front" : 100.0,

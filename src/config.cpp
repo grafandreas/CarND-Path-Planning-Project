@@ -79,6 +79,10 @@ double Config::trajectoryReuseNPoints(){
     return pImpl->j["trajectory"]["reuse-n-points"];
 }
 
+double Config::speedIncrease()  {
+    return pImpl->j["speedIncrease"];
+}
+
 std::experimental::optional<double> Config::initialS() {
     if(pImpl->j["debug"]["initial-s"].is_null())
         return {};

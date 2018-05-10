@@ -32,4 +32,29 @@ inline double distance(double x1, double y1, double x2, double y2)
  */
 double calc_length(const std::vector<double> &x, const std::vector<double> &y, const int idx) ;
 
+/**
+ * @brief calc_speed calculate the speed between to points, assuming that the distance is covered by a Tick
+ * @param x0
+ * @param y0
+ * @param x1
+ * @param y1
+ * @return speed in m/s
+ */
+
+
+inline double calc_speed(const double x0, const double y0, const double x1, const double y1) {
+    auto dist = distance(x0,y0,x1,y1);
+    auto res = dist * (1/TICK);
+    return res;
+}
+
+/**
+ * @brief dist_per_tick distance for a given speed, per tick
+ * @param speed in m/s
+ * @return
+ */
+inline double dist_per_tick(const double speed) {
+    return speed/TICK;
+}
+
 #endif // COORDINATES_H

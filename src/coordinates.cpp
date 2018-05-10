@@ -1,4 +1,5 @@
 #include "coordinates.h"
+#include "config.h"
 
 #include <algorithm>
 

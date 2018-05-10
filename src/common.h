@@ -10,6 +10,12 @@ typedef int lane_type;
 
 typedef std::tuple<double,double,double> XYy; //!< coordinates and yaw
 
+/*
+ * The duration of a tick in caclulation in the simulator
+ *
+ */
+
+#define TICK 0.02
 inline std::vector<lane_type> neighbour_lanes(lane_type lane) {
     std::vector<lane_type> r;
     if(lane == 0)

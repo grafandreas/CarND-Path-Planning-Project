@@ -33,6 +33,8 @@ public:
     double trajectoryTrajectoryLength();
     double trajectoryTrajectoryMin();
     double trajectoryReuseNPoints();
+
+    double speedIncrease();
     std::experimental::optional<double> initialS();
 
 
