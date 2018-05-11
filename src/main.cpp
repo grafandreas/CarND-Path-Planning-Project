@@ -316,6 +316,8 @@ int main() {
             // If we still have enough distance to the end path, we are not replanning.
             // TODO: Adjust to make sure that we replan in critical situations.
             //
+            // NOTE: This will stop execution
+            //
             if(previous_path_x.size() > 4 && fabs(ego.s - end_path_s) > Config::getInstance()->trajectoryTrajectoryMin() ) {
                 cout << "Not replanning" << endl;
 
@@ -333,7 +335,7 @@ int main() {
                 //this_thread::sleep_for(chrono::milliseconds(1000));
                 ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
 
-                return;
+                return; //<----------------------------- IMPORTANT TO NOTE THIS STOPS EXECUTION;
             }
 
             double replanFrom = ego.s+1.0; //!< replanFrom specifies the point that our new trajector starts at.
@@ -345,6 +347,9 @@ int main() {
             cout << "Replanning from " << ego.s << " " << replanFrom << "(" << (replanFrom-ego.s) << ")" << endl;
             auto fastestLane = front_sensor.fastestLaneFrom(*vehicles,ego.s,ego.lane);
 
+            // If we have a lange change, calculate if we would have a
+            // collision with one of the other cars.
+            //
             if(fastestLane != ego.lane) {
                 std::vector<Vehicle> dest_lane_vehic ;
                 std::copy_if(vehicles->begin(),vehicles->end(),back_inserter(dest_lane_vehic),
@@ -364,7 +369,7 @@ int main() {
                 // The number of points that we caclulate depends on
                 // the distance we want to look ahead and the
                 // distance of the waypoints. It does not make sense
-                // to use more waypoints, since the getXY function is limited
+                // to use more fine grained waypoints, since the getXY function is limited
                 //
                 auto count = Config::getInstance()->trajectoryTrajectoryLength()/Config::getInstance()->trajectoryWaypointDist();
                 for(int i = 1; i<count;i++) {

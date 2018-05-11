@@ -60,6 +60,16 @@ XY Vehicle::predictPosByM(double meter) {
     return XY(x+xoffs,y+yoffs);
 }
 
+void Vehicle::fillNextTickPositions( std::vector<double> & x, std::vector<double> & y, const int count) {
+    auto mspeed = (speed >0.0) ? speed :  Config::getInstance()->speedIncrease();
+    for(int i = 0; i < count; i++) {
+        auto inc = dist_per_tick(mspeed);
+        auto p = predictPosByM(inc);
+        x.push_back(p.first);
+        y.push_back(p.second);
+    }
+}
+
 double Vehicle::collision_time (const Vehicle &other) const {
     return coll_time(s,speed,other.s,other.speed);
 }

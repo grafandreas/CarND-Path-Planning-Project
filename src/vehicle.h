@@ -3,6 +3,8 @@
 
 #include "json.hpp"
 #include "coordinates.h"
+#include <vector>
+
 using json = nlohmann::json;
 
 /**
@@ -35,6 +37,7 @@ public:
 
     XY predictPosByM(double meter);
     double collision_time (const Vehicle &other) const  ;
+    void fillNextTickPositions( std::vector<double> & x,  std::vector<double> & y, const int count);
 
 };
 
