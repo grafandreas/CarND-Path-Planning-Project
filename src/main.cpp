@@ -419,9 +419,15 @@ int main() {
             dump("t- ", traj_points, 8);
             dump("tl- ", traj_points_car_coord_list, 8);
 
+            double startX = 0.0; // We are in car coordinates!
+
+            if(previous_path_x.size() > 0) {
+                   startX = traj_points_car_coord_list.at(Config::getInstance()->trajectoryReuseNPoints()-1).first;
+            }
+
             Trajectory traj(traj_points_car_coord_list,210);
             std::vector<XY> sd_list_next;
-            traj.fillLists(sd_list_next);
+            traj.fillLists(sd_list_next,ego.speed,front_sensor.laneSpeed(*vehicles,ego.lane,ego.s), 0.0);
 
             std::vector<XY> sd_list_next_world;
             car2world(XY(ego.x,ego.y),sd_list_next, sd_list_next_world,ego.yaw_rad);

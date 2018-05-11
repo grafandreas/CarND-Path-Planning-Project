@@ -54,7 +54,7 @@ inline double calc_speed(const double x0, const double y0, const double x1, cons
  * @return
  */
 inline double dist_per_tick(const double speed) {
-    return speed/TICK;
+    return speed * TICK;
 }
 
 #endif // COORDINATES_H

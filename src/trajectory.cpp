@@ -114,9 +114,11 @@ void Trajectory::fillLists(std::vector<XY> &out, double initialSpeed, double tar
     auto xPos = startX;
     while(xPos < pImpl->max_x) { // repeat until we have reached the last of the points that we actually passed
         auto diffSpeed = targetSpeed - curSpeed;
+        std::cout << "xPos cur /diff " << xPos << " " << curSpeed << " " << diffSpeed << std::endl;
         if(fabs(diffSpeed) > Config::getInstance()->speedIncrease()) {
             curSpeed += copysign(Config::getInstance()->speedIncrease() , diffSpeed);
         }
+        std::cout << "distperditck " << curSpeed << " " << dist_per_tick(curSpeed) << std::endl;
         xPos += dist_per_tick(curSpeed);
         out.push_back(XY(xPos,pImpl->s(xPos)));
     }
