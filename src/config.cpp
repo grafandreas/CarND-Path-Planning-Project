@@ -59,6 +59,11 @@ double Config::targetSpeed() {
     return pImpl->j["targetSpeed"];
 }
 
+double Config::speedLimit() {
+    return pImpl->j["speedLimit"];
+}
+
+
 double Config::planAhead() {
     return pImpl->j["planAhead"];
 }

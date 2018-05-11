@@ -335,7 +335,7 @@ int main() {
                 //this_thread::sleep_for(chrono::milliseconds(1000));
                 ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
 
-                return; //<----------------------------- IMPORTANT TO NOTE THIS STOPS EXECUTION;
+                return; //<----------------------------- IMPORTANT TO NOTE TH;
             }
 
             double replanFrom = ego.s+1.0; //!< replanFrom specifies the point that our new trajector starts at.
@@ -407,67 +407,31 @@ int main() {
                 traj_points.push_back(t);
             }
 
-            const bool localTransform = true;
 
-            if(localTransform) {
-                cout << "T: " << sd_list.size() << " " << traj_points.size() <<endl;
-                std::vector<XY> car_sd_list;
+            cout << "T: " << sd_list.size() << " " << traj_points.size() <<endl;
+            std::vector<XY> traj_points_car_coord_list;
 
-                world2car(XY(ego.x,ego.y), traj_points,car_sd_list, ego.yaw_rad);
+            world2car(XY(ego.x,ego.y), traj_points,traj_points_car_coord_list, ego.yaw_rad);
 
-                cout << ego.x << ego.y << endl;
+            cout << ego.x << ego.y << endl;
 
-                cout << "sd- ";
-                for(int i = 0; i < (sd_list.size()<8?sd_list.size():8);i++) {
-                    cout << sd_list.at(i).first <<"," << sd_list.at(i).second <<"  ";
-                }
-                cout << endl;
+            dump("sd- ",sd_list, 8);
+            dump("t- ", traj_points, 8);
+            dump("tl- ", traj_points_car_coord_list, 8);
 
+            Trajectory traj(traj_points_car_coord_list,210);
+            std::vector<XY> sd_list_next;
+            traj.fillLists(sd_list_next);
 
-                cout << "t- ";
-                for(int i = 0; i < (traj_points.size()<8?traj_points.size():8);i++) {
-                    cout << traj_points.at(i).first <<"," << traj_points.at(i).second <<"  ";
-                }
-                cout << endl;
+            std::vector<XY> sd_list_next_world;
+            car2world(XY(ego.x,ego.y),sd_list_next, sd_list_next_world,ego.yaw_rad);
 
-                cout << "sd- ";
-                for(int i = 0; i < (car_sd_list.size()<8?car_sd_list.size():8);i++) {
-                    cout << car_sd_list.at(i).first <<"," << car_sd_list.at(i).second <<"  ";
-                }
-                cout << endl;
+            split(sd_list_next_world, next_x_vals,next_y_vals);
 
-                Trajectory traj(car_sd_list,210);
-                std::vector<XY> sd_list_next;
-                traj.fillLists(sd_list_next);
+            cout << "+ " << ego.x << " " << ego.y << " " << next_x_vals.at(0) << " " << next_y_vals.at(0) << endl;
 
-                std::vector<XY> sd_list_next_world;
-                car2world(XY(ego.x,ego.y),sd_list_next, sd_list_next_world,ego.yaw_rad);
-
-                split(sd_list_next_world, next_x_vals,next_y_vals);
-
-                cout << "+ " << ego.x << " " << ego.y << " " << next_x_vals.at(0) << " " << next_y_vals.at(0) << endl;
-                if(previous_path_x.size() > 0) {
-                    cout << "- " << previous_path_x.at(0) << " " << previous_path_y.at(0) << endl<<"  ";
-                }
-
-                cout << "p- ";
-                for(int i = 0; i < (previous_path_x.size()<8?previous_path_x.size():8);i++) {
-                    cout << previous_path_x.at(i) <<"," << previous_path_y.at(i) <<"  ";
-                }
-                cout << endl;
-
-                cout << "n- ";
-                for(int i = 0; i < (next_x_vals.size()<8?next_x_vals.size():8);i++) {
-                    cout << next_x_vals.at(i) <<"," << next_y_vals.at(i) <<"  ";
-                }
-                cout << endl;
-
-
-            } else {
-                 Trajectory traj(traj_points,300);
-                 traj.fillLists(next_x_vals,next_y_vals);
-                 cout << "+ " << ego.x << " " << ego.y << " " << next_x_vals.at(0) << " " << next_y_vals.at(0) << endl;
-            }
+            dump("p- ", previous_path_x,previous_path_y,8);
+            dump("n- ",next_x_vals, next_y_vals, 8);
 
 
 

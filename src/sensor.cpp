@@ -61,7 +61,7 @@ double Sensor::laneSpeed(vector<Vehicle> vehicles, int lane, int s) {
     if(vehic)
         return (*vehic).speed;
     else
-        return 100.0;
+        return Config::getInstance()->targetSpeed();
 }
 
 vector<double> Sensor::laneSpeeds(vector<Vehicle> vehicles, int s) {

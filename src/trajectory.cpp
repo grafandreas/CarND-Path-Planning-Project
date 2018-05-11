@@ -109,6 +109,20 @@ void Trajectory::fillLists(std::vector<double> & xl, std::vector<double> & yl, d
 
 }
 
+void Trajectory::fillLists(std::vector<XY> &out, double initialSpeed, double targetSpeed, double startX) {
+    auto curSpeed = initialSpeed;
+    auto xPos = startX;
+    while(xPos < pImpl->max_x) { // repeat until we have reached the last of the points that we actually passed
+        auto diffSpeed = targetSpeed - curSpeed;
+        if(fabs(diffSpeed) > Config::getInstance()->speedIncrease()) {
+            curSpeed += copysign(Config::getInstance()->speedIncrease() , diffSpeed);
+        }
+        xPos += dist_per_tick(curSpeed);
+        out.push_back(XY(xPos,pImpl->s(xPos)));
+    }
+
+}
+
 
 XY Trajectory::operator()(int pos) {
     auto delta = pImpl->max_x-pImpl->min_x;

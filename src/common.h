@@ -3,6 +3,7 @@
 
 #include <utility>
 #include <vector>
+#include <iostream>
 #include "config.h"
 typedef std::pair<double,double> XY;
 typedef std::pair<double,double> Sd;
@@ -36,6 +37,23 @@ inline double lane2d(lane_type lane) {
 inline bool intervalIntersect(double s1, double e1, double s2, double e2) {
     return ((s2 >= s1 && s2 <=e1) || (e2 >=s1 && e2 <= e1));
 }
+
+inline void dump(std::string prefix, const std::vector<XY> & in, int max_els) {
+    std::cout << prefix ;
+    for(int i = 0; i < (in.size()<max_els?in.size():max_els);i++) {
+        std::cout << in.at(i).first <<"," << in.at(i).second <<"  ";
+    }
+    std::cout << std::endl;
+}
+
+inline void dump(std::string prefix, const std::vector<double> & x,  const std::vector<double> &y,int max_els) {
+    std::cout << prefix ;
+    for(int i = 0; i < (x.size()<max_els?x.size():max_els);i++) {
+        std::cout << x.at(i) <<"," << y.at(i) <<"  ";
+    }
+    std::cout << std::endl;
+}
+
 
 #endif // COMMON_H
 

@@ -28,6 +28,8 @@ public:
 
     void fillLists(std::vector<double> & xl, std::vector<double> & yl, double initialSpeed, double targetSpeed, double startX);
 
+    void fillLists(std::vector<XY> & out, double initialSpeed, double targetSpeed, double startX);
+
 private:
 
     class impl;

@@ -27,6 +27,7 @@ public:
     double sensorRangeFront();
     double sensorRangeBack();
     double targetSpeed();
+    double speedLimit();
     double planAhead();
 
     double trajectoryWaypointDist();
