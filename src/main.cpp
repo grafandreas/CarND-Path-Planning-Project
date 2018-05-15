@@ -22,6 +22,8 @@
 #include "viz.h"
 #endif
 
+#define DEBUG 1
+
 using namespace std;
 
 // for convenience
@@ -259,6 +261,16 @@ int main() {
                  }
             }
 
+#if DEBUG
+            auto errfile = "/mnt/d/udacity/self-driving-car-sim-build/simulation-error.txt";
+            std::ifstream fin(errfile);
+
+            if(fin) {
+                std::cout << "Errorfile exists" << std::endl;
+                exit(-1);
+            }
+
+#endif
 
           	// Previous path data given to the Planner
           	auto previous_path_x = j[1]["previous_path_x"];
@@ -385,9 +397,9 @@ int main() {
 
 //                sd_list.push_back(Sd(replanFrom+0,cur_d));
                 sd_list.push_back(Sd(replanFrom+30.0,cur_d));
-                sd_list.push_back(Sd(replanFrom+45,(cur_d+dest_d)/2 ));
-                sd_list.push_back(Sd(replanFrom+60,dest_d ));
+                sd_list.push_back(Sd(replanFrom+60,(cur_d+dest_d)/2 ));
                 sd_list.push_back(Sd(replanFrom+90,dest_d ));
+                sd_list.push_back(Sd(replanFrom+120,dest_d ));
             }
             vector<XY> traj_points;
 
