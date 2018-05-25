@@ -350,14 +350,14 @@ int main() {
                 return; //<----------------------------- IMPORTANT TO NOTE TH;
             }
 
-            double replanFrom = ego.s+1.0; //!< replanFrom specifies the point that our new trajector starts at.
+            double replanFrom = ego.s; //!< replanFrom specifies the point that our new trajector starts at.
             if(previous_path_x.size() >= Config::getInstance()->trajectoryReuseNPoints()  ) {
                 // When replanning, we start the trajectory from the 3 point in the
                 // previous path. We need to know how long that is.
                 replanFrom = ego.s+calc_length(previous_path_x,previous_path_y,Config::getInstance()->trajectoryReuseNPoints()  -1);
             }
             cout << "Replanning from " << ego.s << " " << replanFrom << "(" << (replanFrom-ego.s) << ")" << endl;
-            auto fastestLane = front_sensor.fastestLaneFrom(*vehicles,ego.s,ego.lane);
+            auto fastestLane = front_sensor.bestLaneFrom(*vehicles,ego.s,ego.lane);
 
             // If we have a lange change, calculate if we would have a
             // collision with one of the other cars.
@@ -385,6 +385,7 @@ int main() {
                 //
                 auto count = Config::getInstance()->trajectoryTrajectoryLength()/Config::getInstance()->trajectoryWaypointDist();
                 for(int i = 1; i<count;i++) {
+                    // We are pushing the points on the track that we want to hit!
                     sd_list.push_back(Sd(replanFrom+Config::getInstance()->trajectoryWaypointDist()*i,lane2d(ego.lane)));
                 }
             } else
@@ -410,10 +411,10 @@ int main() {
                 cout << "Pushing previous Paths" << endl;
                 for(int i = 0; i<Config::getInstance()->trajectoryReuseNPoints();i++)
                 traj_points.push_back(XY(previous_path_x.at(i),previous_path_y.at(i)));
+            } else {
+                traj_points.push_back(ego.predictPosByM(0.22));
+                traj_points.push_back(ego.predictPosByM(0.44));
             }
-
-//            traj_points.push_back(ego.predictPosByM(0.5));
-//            traj_points.push_back(ego.predictPosByM(0.7));
             for(auto const& it : sd_list) {
                 auto t = getXYasXY(it.first,it.second,map_waypoints_s,map_waypoints_x,map_waypoints_y);
                 traj_points.push_back(t);

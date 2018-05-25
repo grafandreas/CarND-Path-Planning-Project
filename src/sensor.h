@@ -33,6 +33,7 @@ public:
      * @return
      */
     lane_type fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type current_lane);
+    lane_type bestLaneFrom(vector<Vehicle> vehicles, int s, lane_type current_lane);
 
 protected:
     SensorType type;

@@ -76,8 +76,19 @@ vector<double> Sensor::laneSpeeds(vector<Vehicle> vehicles, int s) {
 lane_type Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane) {
     auto speeds = laneSpeeds(vehicles,s);
     auto fastest = std::max_element(speeds.begin(),speeds.end());
-    if(*fastest == speeds.at(currentLane))
+    if(AreEqual(*fastest,speeds.at(currentLane)))
         return currentLane;
 
     return fastest-speeds.begin();
+}
+
+lane_type Sensor::bestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane) {
+    auto fastestL = fastestLaneFrom(vehicles,s,currentLane);
+
+    if(std::abs(currentLane-fastestL) < 2)
+        return fastestL;
+
+    return currentLane;
+
+
 }

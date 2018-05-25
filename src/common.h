@@ -4,6 +4,9 @@
 #include <utility>
 #include <vector>
 #include <iostream>
+#include <cmath>
+#include <limits>
+
 #include "config.h"
 typedef std::pair<double,double> XY;
 typedef std::pair<double,double> Sd;
@@ -52,6 +55,11 @@ inline void dump(std::string prefix, const std::vector<double> & x,  const std::
         std::cout << x.at(i) <<"," << y.at(i) <<"  ";
     }
     std::cout << std::endl;
+}
+
+template<typename T>
+static bool AreEqual(T f1, T f2) {
+  return (std::fabs(f1 - f2) <= std::numeric_limits<T>::epsilon() * std::fmax(fabs(f1), fabs(f2)));
 }
 
 
