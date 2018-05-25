@@ -261,16 +261,7 @@ int main() {
                  }
             }
 
-#if DEBUG
-            auto errfile = "/mnt/d/udacity/self-driving-car-sim-build/simulation-error.txt";
-            std::ifstream fin(errfile);
 
-            if(fin) {
-                std::cout << "Errorfile exists" << std::endl;
-                exit(-1);
-            }
-
-#endif
 
           	// Previous path data given to the Planner
           	auto previous_path_x = j[1]["previous_path_x"];
@@ -279,6 +270,24 @@ int main() {
           	// Previous path's end s and d values 
           	double end_path_s = j[1]["end_path_s"];
           	double end_path_d = j[1]["end_path_d"];
+
+#if 0
+            auto errfile = "/mnt/d/udacity/self-driving-car-sim-build/simulation-error.txt";
+            std::ifstream fin(errfile);
+
+            if(fin) {
+                std::cout << "Errorfile exists" << std::endl;
+
+                cout << "+ " << ego.x << " " << ego.y << " " << ego.speed << endl;
+                cout << distance(ego.x,ego.y,previous_path_x.at(0),previous_path_y.at(0)) << endl;
+                cout << distance(ego.x,ego.y,previous_path_x.at(0),previous_path_y.at(0)) / TICK << endl;
+
+                dumpDetail("p- ", previous_path_x, previous_path_y, 20);
+
+                exit(-1);
+            }
+
+#endif
 
           	// Sensor Fusion Data, a list of all other cars on the same side of the road.
           	auto sensor_fusion = j[1]["sensor_fusion"];
@@ -427,11 +436,11 @@ int main() {
             world2car(XY(ego.x,ego.y), traj_points,traj_points_car_coord_list, ego.yaw_rad);
 
             cout << ego.x << ego.y << endl;
-
+#if 0
             dump("sd- ",sd_list, 8);
             dump("t- ", traj_points, 8);
             dump("tl- ", traj_points_car_coord_list, 8);
-
+#endif
             double startX = 0.0; // We are in car coordinates!
 
             if(previous_path_x.size() > 0) {
@@ -446,12 +455,15 @@ int main() {
             car2world(XY(ego.x,ego.y),sd_list_next, sd_list_next_world,ego.yaw_rad);
 
             split(sd_list_next_world, next_x_vals,next_y_vals);
-
+#if 0
             cout << "+ " << ego.x << " " << ego.y << " " << next_x_vals.at(0) << " " << next_y_vals.at(0) << endl;
+            cout << distance(ego.x,ego.y,next_x_vals.at(0),next_y_vals.at(0)) << endl;
+            cout << distance(ego.x,ego.y,next_x_vals.at(0),next_y_vals.at(0)) / TICK << endl;
 
             dump("p- ", previous_path_x,previous_path_y,8);
-            dump("n- ",next_x_vals, next_y_vals, 8);
-
+            cout << "speed: " << ego.speed << endl;
+            dumpDetail("n- ",next_x_vals, next_y_vals, 50);
+#endif
 
 
 

@@ -102,7 +102,7 @@ void Trajectory::fillLists(std::vector<double> & xl, std::vector<double> & yl, d
         if(fabs(diffSpeed) > Config::getInstance()->speedIncrease()) {
             curSpeed += copysign(Config::getInstance()->speedIncrease() , diffSpeed);
         }
-        xPos += dist_per_tick(curSpeed);
+        xPos = nextPointWithDistance(xPos, dist_per_tick(curSpeed));
         xl.push_back(xPos);
         yl.push_back(pImpl->s(xPos));
     }
@@ -114,12 +114,12 @@ void Trajectory::fillLists(std::vector<XY> &out, double initialSpeed, double tar
     auto xPos = startX;
     while(xPos < pImpl->max_x) { // repeat until we have reached the last of the points that we actually passed
         auto diffSpeed = targetSpeed - curSpeed;
-        std::cout << "xPos cur /diff " << xPos << " " << curSpeed << " " << diffSpeed << std::endl;
-        if(fabs(diffSpeed) > Config::getInstance()->speedIncrease()) {
+//        std::cout << "xPos cur /diff " << xPos << " " << curSpeed << " " << diffSpeed << std::endl;
+        if(fabs(diffSpeed) > Config::getInstance()->speedTolerance()) {
             curSpeed += copysign(Config::getInstance()->speedIncrease() , diffSpeed);
         }
-        std::cout << "distperditck " << curSpeed << " " << dist_per_tick(curSpeed) << std::endl;
-        xPos += dist_per_tick(curSpeed);
+//        std::cout << "distperditck " << curSpeed << " " << dist_per_tick(curSpeed) << std::endl;
+        xPos = nextPointWithDistance(xPos, dist_per_tick(curSpeed));
         out.push_back(XY(xPos,pImpl->s(xPos)));
     }
 
@@ -127,7 +127,7 @@ void Trajectory::fillLists(std::vector<XY> &out, double initialSpeed, double tar
 
 double Trajectory::nextPointWithDistance(const double xPos, double dist ) {
     auto x1 = xPos;
-    auto deltaX = 0.1; // In resolution of cm along x axis
+    auto deltaX = 0.001; // In resolution of cm along x axis
     auto x2 = x1+deltaX;
     auto actDist = distance(x1,pImpl->s(x1),x2,pImpl->s(x2));
 
@@ -136,7 +136,7 @@ double Trajectory::nextPointWithDistance(const double xPos, double dist ) {
         x2 = x1+deltaX;
         actDist += distance(x1,pImpl->s(x1),x2,pImpl->s(x2));
     }
-
+//    std::cout << "npwD: " << xPos << "," << dist  <<" " << x2 << "  " << actDist << std::endl;
     return x2;
 
 }

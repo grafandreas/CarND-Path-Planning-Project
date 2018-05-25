@@ -17,6 +17,7 @@
     "targetSpeed" : 20.01,
     "speedLimit" : 22.352,
     "speedIncrease" : 0.08,
+    "speedTolerance" : 0.2,
     "planAhead" : 50.0,
     "sensor" : {
         "range-front" : 100.0,
@@ -26,6 +27,6 @@
         "waypoint-dist" : 30.0,
         "trajectory-length" : 120.0,
         "trajectory-min" : 30.0,
-        "reuse-n-points" : 3
+        "reuse-n-points" : 13
     }
 }

@@ -36,6 +36,8 @@ public:
     double trajectoryReuseNPoints();
 
     double speedIncrease();
+    double speedTolerance();
+
     std::experimental::optional<double> initialS();
 
 

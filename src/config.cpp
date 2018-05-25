@@ -88,6 +88,11 @@ double Config::speedIncrease()  {
     return pImpl->j["speedIncrease"];
 }
 
+double Config::speedTolerance()  {
+    return pImpl->j["speedTolerance"];
+}
+
+
 std::experimental::optional<double> Config::initialS() {
     if(pImpl->j["debug"]["initial-s"].is_null())
         return {};

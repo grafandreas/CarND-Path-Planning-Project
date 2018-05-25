@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
+#include "common.h"
 
 #include "config.h"
 typedef std::pair<double,double> XY;
@@ -56,6 +57,34 @@ inline void dump(std::string prefix, const std::vector<double> & x,  const std::
     }
     std::cout << std::endl;
 }
+
+inline double distanceD(double x1, double y1, double x2, double y2)
+{
+    return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+}
+
+
+inline void dumpDetail(std::string prefix, const std::vector<double> & x,  const std::vector<double> &y,int max_els) {
+    std::cout << prefix << "(l:" << x.size() << ")" ;
+    for(int i = 0; i < (x.size()<max_els?x.size():max_els);i++) {
+        std::cout << "[" <<i <<"]" << x.at(i) <<"," << y.at(i) ;
+
+        if(i > 0 ) {
+            std::cout << "d:" << distanceD(x.at(i),y.at(i),x.at(i-1),y.at(i-1)) ;
+            std::cout << ",v:" << distanceD(x.at(i),y.at(i),x.at(i-1),y.at(i-1)) / TICK;
+        }
+        if( i > 1) {
+            auto v1 = distanceD(x.at(i),y.at(i),x.at(i-1),y.at(i-1)) / TICK;
+            auto v2 = distanceD(x.at(i-1),y.at(i-1),x.at(i-2),y.at(i-2)) / TICK;
+            auto a = (v1-v2) / TICK;
+            std::cout << ",a:" << a;
+        }
+
+        std::cout <<"  ";
+    }
+    std::cout << std::endl;
+}
+
 
 template<typename T>
 static bool AreEqual(T f1, T f2) {

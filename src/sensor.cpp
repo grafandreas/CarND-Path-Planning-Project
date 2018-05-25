@@ -59,7 +59,7 @@ double Sensor::laneSpeed(vector<Vehicle> vehicles, int lane, int s) {
 //        cout << "--> "<<lane<< "/" << endl;
     }
     if(vehic)
-        return (*vehic).speed;
+        return std::min((*vehic).speed,Config::getInstance()->targetSpeed());
     else
         return Config::getInstance()->targetSpeed();
 }
