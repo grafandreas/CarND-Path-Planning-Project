@@ -125,6 +125,21 @@ void Trajectory::fillLists(std::vector<XY> &out, double initialSpeed, double tar
 
 }
 
+double Trajectory::nextPointWithDistance(const double xPos, double dist ) {
+    auto x1 = xPos;
+    auto deltaX = 0.1; // In resolution of cm along x axis
+    auto x2 = x1+deltaX;
+    auto actDist = distance(x1,pImpl->s(x1),x2,pImpl->s(x2));
+
+    while(actDist < dist) {
+        x1 = x2;
+        x2 = x1+deltaX;
+        actDist += distance(x1,pImpl->s(x1),x2,pImpl->s(x2));
+    }
+
+    return x2;
+
+}
 
 XY Trajectory::operator()(int pos) {
     auto delta = pImpl->max_x-pImpl->min_x;

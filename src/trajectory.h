@@ -30,6 +30,8 @@ public:
 
     void fillLists(std::vector<XY> & out, double initialSpeed, double targetSpeed, double startX);
 
+    double nextPointWithDistance(const double xPos, const double dist );
+
 private:
 
     class impl;
