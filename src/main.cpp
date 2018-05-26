@@ -309,7 +309,7 @@ int main() {
 
             Sensor front_sensor(SensorType::FRONT, *mapS);
 
-            cout << "!! " << ego.s << " " << ego.d << " " << ego.yaw << endl;
+//            cout << "!! " << ego.s << " " << ego.d << " " << ego.yaw << endl;
             auto lane_speeds = front_sensor.laneSpeeds(*vehicles,ego.s);
 #ifdef USE_VIZ
             viz->setCarPos(ego.x,ego.y,ego.yaw,ego.speed);
@@ -326,7 +326,7 @@ int main() {
             int segments = (int)(secs_to_be_there/resolution+0.5);
 
             double inc = plan_ahead_dist / segments;
-            cout << "P: " << g_speed << " " << secs_to_be_there << " " << segments << " " << inc << endl;
+//            cout << "P: " << g_speed << " " << secs_to_be_there << " " << segments << " " << inc << endl;
             vector<Sd> sd_list;
 //            for(int i = 1; i<segments;i++) {
 //                sd_list.push_back(Sd(car_s+inc*i,6.0));
@@ -340,7 +340,7 @@ int main() {
             // NOTE: This will stop execution
             //
             if(previous_path_x.size() > 4 && fabs(ego.s - end_path_s) > Config::getInstance()->trajectoryTrajectoryMin() ) {
-                cout << "Not replanning" << endl;
+//                cout << "Not replanning" << endl;
 
                 for(auto v : previous_path_x)
                     next_x_vals.push_back((v));
@@ -382,6 +382,10 @@ int main() {
 
                 for(auto t : coll_times) {
                     cout << "Coll " << t << endl;
+                    if( t >= 0.0 && t <= 10.0) {
+                        cout << "Not overtaking" << endl;
+                        fastestLane = ego.lane;
+                    }
                 }
             }
 

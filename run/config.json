@@ -14,7 +14,7 @@
 
     "laneWidth" : 4.0,
     "numLanes" : 3,
-    "targetSpeed" : 20.01,
+    "targetSpeed" : 21.01,
     "speedLimit" : 22.352,
     "speedIncrease" : 0.08,
     "speedTolerance" : 0.2,

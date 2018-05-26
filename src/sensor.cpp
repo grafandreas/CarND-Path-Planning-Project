@@ -58,8 +58,13 @@ double Sensor::laneSpeed(vector<Vehicle> vehicles, int lane, int s) {
     } else {
 //        cout << "--> "<<lane<< "/" << endl;
     }
-    if(vehic)
-        return std::min((*vehic).speed,Config::getInstance()->targetSpeed());
+    if(vehic) {
+        // Calculate where we need to break
+        auto break_dist = std::pow((*vehic).speed*3.6,2)/200;
+        break_dist = break_dist = (*vehic).s - s ;
+        auto v = std::sqrt(break_dist*100)/3.6;
+        return std::min(v,Config::getInstance()->targetSpeed());
+    }
     else
         return Config::getInstance()->targetSpeed();
 }
@@ -69,17 +74,25 @@ vector<double> Sensor::laneSpeeds(vector<Vehicle> vehicles, int s) {
     for(int i =  0; i <Config::getInstance()->numLanes();i++)
         r.push_back(laneSpeed(vehicles,i,s));
 
-    cout << "S: " << r.at(0) << " " << r.at(1) <<" " << r.at(2) << endl;
+//    cout << "S: " << r.at(0) << " " << r.at(1) <<" " << r.at(2) << endl;
     return r;
 }
 
 lane_type Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane) {
-    auto speeds = laneSpeeds(vehicles,s);
-    auto fastest = std::max_element(speeds.begin(),speeds.end());
-    if(AreEqual(*fastest,speeds.at(currentLane)))
-        return currentLane;
 
-    return fastest-speeds.begin();
+
+    auto speeds = laneSpeeds(vehicles,s);
+    auto bestLane = currentLane;
+    // Should we go left
+    if(currentLane > 0 && speeds[currentLane-1] > speeds[bestLane] )
+        bestLane = currentLane -1;
+    if(currentLane < Config::getInstance()->numLanes()-1 &&
+            (speeds[currentLane+1] > speeds[bestLane] || AreEqual(speeds[currentLane+1],speeds[bestLane])))
+        bestLane = currentLane +1;
+
+    cout << "best:" << bestLane  << endl;
+
+    return bestLane;
 }
 
 lane_type Sensor::bestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane) {
