@@ -77,4 +77,34 @@ The path planning is executed in the following steps:
 
 ### Lane driving / speed determination
 
-To determine the best lane, ```Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane)``` is invoked.
+To determine the best lane, ```Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane)``` is invoked. The lines adjacent to the current lane are checked to see if faster driving is possible. The speed of a lane is either
+1. our maximum speed (from json file), if there are no cars ahead within sensor range
+2. the speed that is possible based on the closest car ahead.
+
+In the case of 2), the speed is not simply the speed of the closest car ahead, because, if the car is far away, we can drive faster for some time until we are within a safe breaking distance.
+
+### Safe Breaking distance
+
+The safe breaking distance determines the speed possible on a line behing the closest car ahead, it is being used both in determining the fastest lane as well as the current speed. The calculation of a safe speed is being done on rough rules, to be found on Wikipedia. A detailed calculation would involve too many unknown parameters. 
+
+The general rule is, that our car should drive in a way, that even if the car ahead does an emergency break, the ego car could still do a regular breaking manouver.  That is, our car should be able to conveniently break in 
+```distance to car head + emergency breaking distance of car ahead ```
+
+This distance can be used to calculate the ego speed / speed of a lane with cars ahead in```Sensor::laneSpeed(vector<Vehicle> vehicles, int lane, int s)```
+
+```
+        auto break_dist = std::pow((*vehic).speed*3.6,2)/200;
+        break_dist = break_dist = (*vehic).s - s ;
+        auto v = std::sqrt(break_dist*100)/3.6;
+        return std::min(v,Config::getInstance()->targetSpeed());
+```
+
+### Determination of optimum lane
+
+In ```Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane) ``` we check, in order
+1. If we can drive with the same speed on the lane right to ego (this is for fun, and to simulate the "Rechtsfahrgebot" in Germany)
+2. If we can drive faster on the lane left from ego
+3. If we can drive even faster on the lane right from ego
+
+This will result in a behaviour that will prefer overtaking on the left, but will overtake on the right if faster.
+
