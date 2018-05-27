@@ -67,6 +67,8 @@ A number of classes has been introduced to make the code more modular:
 - sensor.cpp : Information about the vehicles that can be seen from the car
 - trajectory.cpp : Caclulation of the trajectory
 
+- XY : Coordinates, so that we can pass / return one object.
+
 ## Path plannning
 
 The path planning is executed in the following steps:
@@ -150,3 +152,69 @@ The segment in ```main.cpp``` that combines this logic is
                 }
             }
 ``` 
+### Trajectory Planning
+
+If we keep the same lane, we proceed with a trajectory based on increasing s (according to a target speed). Otherwise, a lane change trajectory is planned (changing lane within 120m):
+
+```cpp
+            if(fastestLane == ego.lane)
+            {
+                // The number of points that we caclulate depends on
+                // the distance we want to look ahead and the
+                // distance of the waypoints. It does not make sense
+                // to use more fine grained waypoints, since the getXY function is limited
+                //
+                auto count = Config::getInstance()->trajectoryTrajectoryLength()/Config::getInstance()->trajectoryWaypointDist();
+                for(int i = 1; i<count;i++) {
+                    // We are pushing the points on the track that we want to hit!
+                    sd_list.push_back(Sd(replanFrom+Config::getInstance()->trajectoryWaypointDist()*i,lane2d(ego.lane)));
+                }
+            } else
+            {
+                double cur_d = 0.0;
+                double dest_d = 0.0;
+
+                cur_d = lane2d(ego.lane);
+                dest_d = lane2d(fastestLane);
+
+//                sd_list.push_back(Sd(replanFrom+0,cur_d));
+                sd_list.push_back(Sd(replanFrom+30.0,cur_d));
+                sd_list.push_back(Sd(replanFrom+60,(cur_d+dest_d)/2 ));
+                sd_list.push_back(Sd(replanFrom+90,dest_d ));
+                sd_list.push_back(Sd(replanFrom+120,dest_d ));
+            }
+```
+
+### Trajectory Caclulation
+
+As in the walk-through, splines are being used for calculation of the trajectory. The trajectory points are being filled from the spline defined in the previous step in ```Trajectory::fillLists(std::vector<XY> &out, double initialSpeed, double targetSpeed, double startX)```
+
+Note that, in contrast on the walkthrough, this code uses distance calculation a long the actual curve of the spline (the walkthrough uses the x-axis, which is imprecise).
+
+The code is as follows
+```cpp
+    while(xPos < pImpl->max_x) { // repeat until we have reached the last of the points that we actually passed
+        auto diffSpeed = targetSpeed - curSpeed;
+//        std::cout << "xPos cur /diff " << xPos << " " << curSpeed << " " << diffSpeed << std::endl;
+        if(fabs(diffSpeed) > Config::getInstance()->speedTolerance()) {
+            curSpeed += copysign(Config::getInstance()->speedIncrease() , diffSpeed);
+        }
+//        std::cout << "distperditck " << curSpeed << " " << dist_per_tick(curSpeed) << std::endl;
+        xPos = nextPointWithDistance(xPos, dist_per_tick(curSpeed));
+        out.push_back(XY(xPos,pImpl->s(xPos)));
+    }
+```
+1. See if we already reached the target speed
+2. If not, then change the speed according to the increase in the config file (0.08)
+3. See the distance that we could cover with that speed within one tick (```dist_per_tick(curSpeed)```)
+4. Determine the correct point along the spline and push that.
+
+## Tying it altogether
+
+The code steers the car without collision at a speed of 46-47 mph. The following design decisions have been made:
+
+1. The control strategy and logic is based on if statements etc. No cost functions have been used (similar to walkthrough). This is for several reasons:
+- code is more predictable, good for safety
+- simulator cannot be set to defined situations, makes it very difficult to reproduce / test complex algorithms
+
+2. The state machine is implicit, in the steps of the code.
