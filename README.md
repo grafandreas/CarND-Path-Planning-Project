@@ -21,7 +21,8 @@ The structure of the code has been considerably changed to be more modular
 
 ## Configuration file
 
-Configuration of many parameters is not done through compiled variables, but through a jason configuration file. 
+Configuration of many parameters is not done through compiled variables, but through a jason configuration file. The configuration file is stored in run/ directory. That's why the simulator has to be run from that directory, since the current working directory
+is being used to look for that file.
 
 ```json
 {
@@ -57,3 +58,23 @@ Configuration of many parameters is not done through compiled variables, but thr
     }
 }
 ```
+
+## Code structure
+
+A number of classes has been introduced to make the code more modular:
+
+- vehicle.cpp : Information about vehicles, no matter if ego or other vehicles
+- sensor.cpp : Information about the vehicles that can be seen from the car
+- trajectory.cpp : Caclulation of the trajectory
+
+## Path plannning
+
+The path planning is executed in the following steps:
+
+1. Find the fastest / best lane to drive in
+2. If best lane is not the current lane, see if lane can be changed safely (no collisions)
+3. If (2) results in a lane change, plan new trajectory, otherwise continue on current lane.
+
+### Lane driving / speed determination
+
+To determine the best lane, ```Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane)``` is invoked.
