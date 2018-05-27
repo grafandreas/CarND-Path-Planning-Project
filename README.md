@@ -92,7 +92,7 @@ The general rule is, that our car should drive in a way, that even if the car ah
 
 This distance can be used to calculate the ego speed / speed of a lane with cars ahead in```Sensor::laneSpeed(vector<Vehicle> vehicles, int lane, int s)```
 
-```
+```cpp
         auto break_dist = std::pow((*vehic).speed*3.6,2)/200;
         break_dist = break_dist = (*vehic).s - s ;
         auto v = std::sqrt(break_dist*100)/3.6;
@@ -108,3 +108,45 @@ In ```Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type current
 
 This will result in a behaviour that will prefer overtaking on the left, but will overtake on the right if faster.
 
+### Collision checking
+
+To check, if lanes can be changed safely, we see if that would cause a collision within a certain time frame. Collision time based on speeds and position is in
+```cpp
+double Vehicle::collision_time (const Vehicle &other) const {
+    return coll_time(s,speed,other.s,other.speed);
+}
+
+inline double coll_time(double s0, double v0, double s1, double v1) {
+    auto t = (s0-s1)/(v1-v0);
+    return t;
+}
+
+
+```
+
+The segment in ```main.cpp``` that combines this logic is
+
+```cpp
+            auto fastestLane = front_sensor.bestLaneFrom(*vehicles,ego.s,ego.lane);
+
+            // If we have a lange change, calculate if we would have a
+            // collision with one of the other cars.
+            //
+            if(fastestLane != ego.lane) {
+                std::vector<Vehicle> dest_lane_vehic ;
+                std::copy_if(vehicles->begin(),vehicles->end(),back_inserter(dest_lane_vehic),
+                             [fastestLane](const Vehicle &it) {return it.lane == fastestLane;});
+
+                std::vector<double> coll_times;
+                std::transform(dest_lane_vehic.begin(),dest_lane_vehic.end(),back_inserter(coll_times),
+                               [ego](const Vehicle &it) {return it.collision_time(ego);});
+
+                for(auto t : coll_times) {
+                    cout << "Coll " << t << endl;
+                    if( t >= 0.0 && t <= 10.0) {
+                        cout << "Not overtaking" << endl;
+                        fastestLane = ego.lane;
+                    }
+                }
+            }
+``` 
