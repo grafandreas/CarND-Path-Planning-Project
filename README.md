@@ -1,140 +1,220 @@
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
-   
-### Simulator.
-You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).
+
 
 ### Goals
 In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
 
-#### The map of the highway is in data/highway_map.txt
-Each waypoint in the list contains  [x,y,s,dx,dy] values. x and y are the waypoint's map coordinate position, the s value is the distance along the road to get to that waypoint in meters, the dx and dy values define the unit normal vector pointing outward of the highway loop.
-
-The highway's waypoints loop around so the frenet s value, distance along the road, goes from 0 to 6945.554.
 
 ## Basic Build Instructions
 
 1. Clone this repo.
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./path_planning`.
-
-Here is the data provided from the Simulator to the C++ Program
-
-#### Main car's localization Data (No Noise)
-
-["x"] The car's x position in map coordinates
-
-["y"] The car's y position in map coordinates
-
-["s"] The car's s position in frenet coordinates
-
-["d"] The car's d position in frenet coordinates
-
-["yaw"] The car's yaw angle in the map
-
-["speed"] The car's speed in MPH
-
-#### Previous path data given to the Planner
-
-//Note: Return the previous list but with processed points removed, can be a nice tool to show how far along
-the path has processed since last time. 
-
-["previous_path_x"] The previous list of x points previously given to the simulator
-
-["previous_path_y"] The previous list of y points previously given to the simulator
-
-#### Previous path's end s and d values 
-
-["end_path_s"] The previous list's last point's frenet s value
-
-["end_path_d"] The previous list's last point's frenet d value
-
-#### Sensor Fusion Data, a list of all other car's attributes on the same side of the road. (No Noise)
-
-["sensor_fusion"] A 2d vector of cars and then that car's [car's unique ID, car's x position in map coordinates, car's y position in map coordinates, car's x velocity in m/s, car's y velocity in m/s, car's s position in frenet coordinates, car's d position in frenet coordinates. 
-
-## Details
-
-1. The car uses a perfect controller and will visit every (x,y) point it recieves in the list every .02 seconds. The units for the (x,y) points are in meters and the spacing of the points determines the speed of the car. The vector going from a point to the next point in the list dictates the angle of the car. Acceleration both in the tangential and normal directions is measured along with the jerk, the rate of change of total Acceleration. The (x,y) point paths that the planner recieves should not have a total acceleration that goes over 10 m/s^2, also the jerk should not go over 50 m/s^3. (NOTE: As this is BETA, these requirements might change. Also currently jerk is over a .02 second interval, it would probably be better to average total acceleration over 1 second and measure jerk from that.
-
-2. There will be some latency between the simulator running and the path planner returning a path, with optimized code usually its not very long maybe just 1-3 time steps. During this delay the simulator will continue using points that it was last given, because of this its a good idea to store the last points you have used so you can have a smooth transition. previous_path_x, and previous_path_y can be helpful for this transition since they show the last points given to the simulator controller with the processed points already removed. You would either return a path that extends this previous path or make sure to create a new path that has a smooth transition with this last path.
-
-## Tips
-
-A really helpful resource for doing this project and creating smooth trajectories was using http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
-
----
-
-## Dependencies
-
-* cmake >= 3.5
-  * All OSes: [click here for installation instructions](https://cmake.org/install/)
-* make >= 4.1
-  * Linux: make is installed by default on most Linux distros
-  * Mac: [install Xcode command line tools to get make](https://developer.apple.com/xcode/features/)
-  * Windows: [Click here for installation instructions](http://gnuwin32.sourceforge.net/packages/make.htm)
-* gcc/g++ >= 5.4
-  * Linux: gcc / g++ is installed by default on most Linux distros
-  * Mac: same deal as make - [install Xcode command line tools]((https://developer.apple.com/xcode/features/)
-  * Windows: recommend using [MinGW](http://www.mingw.org/)
-* [uWebSockets](https://github.com/uWebSockets/uWebSockets)
-  * Run either `install-mac.sh` or `install-ubuntu.sh`.
-  * If you install from source, checkout to commit `e94b6e1`, i.e.
-    ```
-    git clone https://github.com/uWebSockets/uWebSockets 
-    cd uWebSockets
-    git checkout e94b6e1
-    ```
-
-## Editor Settings
-
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
-
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
-
-## Code Style
-
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
-
-## Project Instructions and Rubric
-
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
+4. Cd to ../run
+4. Run it: `../build/path_planning`.
 
 
-## Call for IDE Profiles Pull Requests
+# Code structure
 
-Help your fellow students!
+The structure of the code has been considerably changed to be more modular
 
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to ensure
-that students don't feel pressured to use one IDE or another.
+## Configuration file
 
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
+Configuration of many parameters is not done through compiled variables, but through a jason configuration file. The configuration file is stored in run/ directory. That's why the simulator has to be run from that directory, since the current working directory
+is being used to look for that file.
 
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
+```json
+{
+    "viz" : {
+        "w" : 1300,
+        "h" : 1000,
+        "translate" : {
+            "x" : 0.0,
+            "y" : -1000.0
+        },
+        "scale" : 0.45
+    },
+    "x_debug" : {
+        "initial-s" : 2400.0
+    },
 
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
+    "laneWidth" : 4.0,
+    "numLanes" : 3,
+    "targetSpeed" : 21.01,
+    "speedLimit" : 22.352,
+    "speedIncrease" : 0.08,
+    "speedTolerance" : 0.2,
+    "planAhead" : 50.0,
+    "sensor" : {
+        "range-front" : 100.0,
+        "range-back" : 30.0
+    },
+    "trajectory" : {
+        "waypoint-dist" : 30.0,
+        "trajectory-length" : 120.0,
+        "trajectory-min" : 30.0,
+        "reuse-n-points" : 13
+    }
+}
+```
 
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
+## Code structure
 
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
+A number of classes has been introduced to make the code more modular:
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+- vehicle.cpp : Information about vehicles, no matter if ego or other vehicles
+- sensor.cpp : Information about the vehicles that can be seen from the car
+- trajectory.cpp : Caclulation of the trajectory
 
+- XY : Coordinates, so that we can pass / return one object.
+
+## Path plannning
+
+The path planning is executed in the following steps:
+
+1. Find the fastest / best lane to drive in
+2. If best lane is not the current lane, see if lane can be changed safely (no collisions)
+3. If (2) results in a lane change, plan new trajectory, otherwise continue on current lane.
+
+### Lane driving / speed determination
+
+To determine the best lane, ```Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane)``` is invoked. The lines adjacent to the current lane are checked to see if faster driving is possible. The speed of a lane is either
+1. our maximum speed (from json file), if there are no cars ahead within sensor range
+2. the speed that is possible based on the closest car ahead.
+
+In the case of 2), the speed is not simply the speed of the closest car ahead, because, if the car is far away, we can drive faster for some time until we are within a safe breaking distance.
+
+### Safe Breaking distance
+
+The safe breaking distance determines the speed possible on a line behing the closest car ahead, it is being used both in determining the fastest lane as well as the current speed. The calculation of a safe speed is being done on rough rules, to be found on Wikipedia. A detailed calculation would involve too many unknown parameters. 
+
+The general rule is, that our car should drive in a way, that even if the car ahead does an emergency break, the ego car could still do a regular breaking manouver.  That is, our car should be able to conveniently break in 
+```distance to car head + emergency breaking distance of car ahead ```
+
+This distance can be used to calculate the ego speed / speed of a lane with cars ahead in```Sensor::laneSpeed(vector<Vehicle> vehicles, int lane, int s)```
+
+```cpp
+        auto break_dist = std::pow((*vehic).speed*3.6,2)/200;
+        break_dist = break_dist = (*vehic).s - s ;
+        auto v = std::sqrt(break_dist*100)/3.6;
+        return std::min(v,Config::getInstance()->targetSpeed());
+```
+
+### Determination of optimum lane
+
+In ```Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type currentLane) ``` we check, in order
+1. If we can drive with the same speed on the lane right to ego (this is for fun, and to simulate the "Rechtsfahrgebot" in Germany)
+2. If we can drive faster on the lane left from ego
+3. If we can drive even faster on the lane right from ego
+
+This will result in a behaviour that will prefer overtaking on the left, but will overtake on the right if faster.
+
+### Collision checking
+
+To check, if lanes can be changed safely, we see if that would cause a collision within a certain time frame. Collision time based on speeds and position is in
+```cpp
+double Vehicle::collision_time (const Vehicle &other) const {
+    return coll_time(s,speed,other.s,other.speed);
+}
+
+inline double coll_time(double s0, double v0, double s1, double v1) {
+    auto t = (s0-s1)/(v1-v0);
+    return t;
+}
+
+
+```
+
+The segment in ```main.cpp``` that combines this logic is
+
+```cpp
+            auto fastestLane = front_sensor.bestLaneFrom(*vehicles,ego.s,ego.lane);
+
+            // If we have a lange change, calculate if we would have a
+            // collision with one of the other cars.
+            //
+            if(fastestLane != ego.lane) {
+                std::vector<Vehicle> dest_lane_vehic ;
+                std::copy_if(vehicles->begin(),vehicles->end(),back_inserter(dest_lane_vehic),
+                             [fastestLane](const Vehicle &it) {return it.lane == fastestLane;});
+
+                std::vector<double> coll_times;
+                std::transform(dest_lane_vehic.begin(),dest_lane_vehic.end(),back_inserter(coll_times),
+                               [ego](const Vehicle &it) {return it.collision_time(ego);});
+
+                for(auto t : coll_times) {
+                    cout << "Coll " << t << endl;
+                    if( t >= 0.0 && t <= 10.0) {
+                        cout << "Not overtaking" << endl;
+                        fastestLane = ego.lane;
+                    }
+                }
+            }
+``` 
+### Trajectory Planning
+
+If we keep the same lane, we proceed with a trajectory based on increasing s (according to a target speed). Otherwise, a lane change trajectory is planned (changing lane within 120m):
+
+```cpp
+            if(fastestLane == ego.lane)
+            {
+                // The number of points that we caclulate depends on
+                // the distance we want to look ahead and the
+                // distance of the waypoints. It does not make sense
+                // to use more fine grained waypoints, since the getXY function is limited
+                //
+                auto count = Config::getInstance()->trajectoryTrajectoryLength()/Config::getInstance()->trajectoryWaypointDist();
+                for(int i = 1; i<count;i++) {
+                    // We are pushing the points on the track that we want to hit!
+                    sd_list.push_back(Sd(replanFrom+Config::getInstance()->trajectoryWaypointDist()*i,lane2d(ego.lane)));
+                }
+            } else
+            {
+                double cur_d = 0.0;
+                double dest_d = 0.0;
+
+                cur_d = lane2d(ego.lane);
+                dest_d = lane2d(fastestLane);
+
+//                sd_list.push_back(Sd(replanFrom+0,cur_d));
+                sd_list.push_back(Sd(replanFrom+30.0,cur_d));
+                sd_list.push_back(Sd(replanFrom+60,(cur_d+dest_d)/2 ));
+                sd_list.push_back(Sd(replanFrom+90,dest_d ));
+                sd_list.push_back(Sd(replanFrom+120,dest_d ));
+            }
+```
+
+### Trajectory Caclulation
+
+As in the walk-through, splines are being used for calculation of the trajectory. The trajectory points are being filled from the spline defined in the previous step in ```Trajectory::fillLists(std::vector<XY> &out, double initialSpeed, double targetSpeed, double startX)```
+
+Note that, in contrast on the walkthrough, this code uses distance calculation a long the actual curve of the spline (the walkthrough uses the x-axis, which is imprecise).
+
+The code is as follows
+```cpp
+    while(xPos < pImpl->max_x) { // repeat until we have reached the last of the points that we actually passed
+        auto diffSpeed = targetSpeed - curSpeed;
+//        std::cout << "xPos cur /diff " << xPos << " " << curSpeed << " " << diffSpeed << std::endl;
+        if(fabs(diffSpeed) > Config::getInstance()->speedTolerance()) {
+            curSpeed += copysign(Config::getInstance()->speedIncrease() , diffSpeed);
+        }
+//        std::cout << "distperditck " << curSpeed << " " << dist_per_tick(curSpeed) << std::endl;
+        xPos = nextPointWithDistance(xPos, dist_per_tick(curSpeed));
+        out.push_back(XY(xPos,pImpl->s(xPos)));
+    }
+```
+1. See if we already reached the target speed
+2. If not, then change the speed according to the increase in the config file (0.08)
+3. See the distance that we could cover with that speed within one tick (```dist_per_tick(curSpeed)```)
+4. Determine the correct point along the spline and push that.
+
+## Tying it altogether
+
+The code steers the car without collision at a speed of 46-47 mph. The following design decisions have been made:
+
+1. The control strategy and logic is based on if statements etc. No cost functions have been used (similar to walkthrough). This is for several reasons:
+- code is more predictable, good for safety
+- simulator cannot be set to defined situations, makes it very difficult to reproduce / test complex algorithms
+
+2. The state machine is implicit, in the steps of the code.
