@@ -83,11 +83,15 @@ lane_type Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type cur
 
     auto speeds = laneSpeeds(vehicles,s);
     auto bestLane = currentLane;
+    if(currentLane < Config::getInstance()->numLanes()-1 &&
+            AreEqual(speeds[currentLane+1],speeds[bestLane]))
+        bestLane = currentLane +1;
+
     // Should we go left
     if(currentLane > 0 && speeds[currentLane-1] > speeds[bestLane] )
         bestLane = currentLane -1;
     if(currentLane < Config::getInstance()->numLanes()-1 &&
-            (speeds[currentLane+1] > speeds[bestLane] || AreEqual(speeds[currentLane+1],speeds[bestLane])))
+            speeds[currentLane+1] > speeds[bestLane] )
         bestLane = currentLane +1;
 
     cout << "best:" << bestLane  << endl;

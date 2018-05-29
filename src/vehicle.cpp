@@ -73,3 +73,7 @@ void Vehicle::fillNextTickPositions( std::vector<double> & x, std::vector<double
 double Vehicle::collision_time (const Vehicle &other) const {
     return coll_time(s,speed,other.s,other.speed);
 }
+
+std::pair<double,double> Vehicle::collision_range (const Vehicle &other) const  {
+    return coll_range(s,speed,other.s,other.speed,Config::getInstance()->collisionBuffer());
+}

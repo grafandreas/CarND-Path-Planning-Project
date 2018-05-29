@@ -37,6 +37,7 @@ public:
 
     double speedIncrease();
     double speedTolerance();
+    double collisionBuffer();
 
     std::experimental::optional<double> initialS();
 

@@ -68,6 +68,10 @@ double Config::planAhead() {
     return pImpl->j["planAhead"];
 }
 
+double Config::collisionBuffer() {
+    return pImpl->j["collisionBuffer"];
+}
+
 double Config::trajectoryWaypointDist() {
     return pImpl->j["trajectory"]["waypoint-dist"];
 }

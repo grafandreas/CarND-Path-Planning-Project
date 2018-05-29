@@ -5,6 +5,8 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <algorithm>
+
 #include "Eigen-3.3/Eigen/Core"
 #include "Eigen-3.3/Eigen/QR"
 #include "json.hpp"
@@ -340,7 +342,7 @@ int main() {
             // NOTE: This will stop execution
             //
             if(previous_path_x.size() > 4 && fabs(ego.s - end_path_s) > Config::getInstance()->trajectoryTrajectoryMin() ) {
-//                cout << "Not replanning" << endl;
+                cout << "Not replanning " << fabs(ego.s - end_path_s) << " §" << Config::getInstance()->trajectoryTrajectoryMin() << endl;
 
                 for(auto v : previous_path_x)
                     next_x_vals.push_back((v));
@@ -380,9 +382,22 @@ int main() {
                 std::transform(dest_lane_vehic.begin(),dest_lane_vehic.end(),back_inserter(coll_times),
                                [ego](const Vehicle &it) {return it.collision_time(ego);});
 
+                std::vector<std::pair<double,double>> coll_r;
+                std::transform(dest_lane_vehic.begin(),dest_lane_vehic.end(),back_inserter(coll_r),
+                               [ego](const Vehicle &it) {return it.collision_range(ego);});
+
+
                 for(auto t : coll_times) {
                     cout << "Coll " << t << endl;
                     if( t >= 0.0 && t <= 10.0) {
+                        cout << "Not overtaking" << endl;
+                        fastestLane = ego.lane;
+                    }
+                }
+                std::pair<double,double> tr(0.0,10.0);
+                for(auto t : coll_r) {
+                    cout << "Coll " << t.first << "," << t.second << endl;
+                    if(overlaps(tr,t)) {
                         cout << "Not overtaking" << endl;
                         fastestLane = ego.lane;
                     }
@@ -446,25 +461,41 @@ int main() {
             dump("tl- ", traj_points_car_coord_list, 8);
 #endif
             double startX = 0.0; // We are in car coordinates!
-
+            double initialSpeed = ego.speed;
             if(previous_path_x.size() > 0) {
                    startX = traj_points_car_coord_list.at(Config::getInstance()->trajectoryReuseNPoints()-1).first;
+                   initialSpeed = calc_speed(
+                              previous_path_x.at(Config::getInstance()->trajectoryReuseNPoints()-2),
+                              previous_path_y.at(Config::getInstance()->trajectoryReuseNPoints()-2),
+                              previous_path_x.at(Config::getInstance()->trajectoryReuseNPoints()-1),
+                              previous_path_y.at(Config::getInstance()->trajectoryReuseNPoints()-1)
+                               );
+
+
             }
 
             Trajectory traj(traj_points_car_coord_list,210);
             std::vector<XY> sd_list_next;
-            traj.fillLists(sd_list_next,ego.speed,front_sensor.laneSpeed(*vehicles,ego.lane,ego.s), 0.0);
+
+            traj.fillLists(sd_list_next,initialSpeed,front_sensor.laneSpeed(*vehicles,ego.lane,ego.s), startX);
 
             std::vector<XY> sd_list_next_world;
             car2world(XY(ego.x,ego.y),sd_list_next, sd_list_next_world,ego.yaw_rad);
 
+            int actualReuse = previous_path_x.size() < Config::getInstance()->trajectoryReuseNPoints() ? previous_path_x.size() : Config::getInstance()->trajectoryReuseNPoints();
+            for(int i = 0; i < actualReuse; i++) {
+                next_x_vals.push_back(previous_path_x.at(i));
+                next_y_vals.push_back(previous_path_y.at(i));
+            }
+
             split(sd_list_next_world, next_x_vals,next_y_vals);
-#if 0
+
+#if 1
             cout << "+ " << ego.x << " " << ego.y << " " << next_x_vals.at(0) << " " << next_y_vals.at(0) << endl;
             cout << distance(ego.x,ego.y,next_x_vals.at(0),next_y_vals.at(0)) << endl;
             cout << distance(ego.x,ego.y,next_x_vals.at(0),next_y_vals.at(0)) / TICK << endl;
 
-            dump("p- ", previous_path_x,previous_path_y,8);
+            dumpDetail("p- ", previous_path_x,previous_path_y,Config::getInstance()->trajectoryReuseNPoints()+5);
             cout << "speed: " << ego.speed << endl;
             dumpDetail("n- ",next_x_vals, next_y_vals, 50);
 #endif

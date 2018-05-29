@@ -112,7 +112,7 @@ void Trajectory::fillLists(std::vector<double> & xl, std::vector<double> & yl, d
 void Trajectory::fillLists(std::vector<XY> &out, double initialSpeed, double targetSpeed, double startX) {
     auto curSpeed = initialSpeed;
     auto xPos = startX;
-    while(xPos < pImpl->max_x) { // repeat until we have reached the last of the points that we actually passed
+    while(xPos < pImpl->max_x) { // repeat until we have reached the last of the points that we actually passed to spline calc
         auto diffSpeed = targetSpeed - curSpeed;
 //        std::cout << "xPos cur /diff " << xPos << " " << curSpeed << " " << diffSpeed << std::endl;
         if(fabs(diffSpeed) > Config::getInstance()->speedTolerance()) {

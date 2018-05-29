@@ -85,6 +85,14 @@ inline void dumpDetail(std::string prefix, const std::vector<double> & x,  const
     std::cout << std::endl;
 }
 
+inline bool between(double v, std::pair<double,double>p) {
+    return v >= p.first && v<=p.second;
+}
+
+inline bool overlaps(std::pair<double,double>p1, std::pair<double,double>p2) {
+    return between(p1.first,p2) || between(p1.second ,p2) ||
+            between(p2.first,p1) || between(p2.second ,p1);
+}
 
 template<typename T>
 static bool AreEqual(T f1, T f2) {
