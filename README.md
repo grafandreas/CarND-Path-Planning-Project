@@ -114,16 +114,24 @@ This will result in a behaviour that will prefer overtaking on the left, but wil
 
 To check, if lanes can be changed safely, we see if that would cause a collision within a certain time frame. Collision time based on speeds and position is in
 ```cpp
-double Vehicle::collision_time (const Vehicle &other) const {
-    return coll_time(s,speed,other.s,other.speed);
+std::pair<double,double> Vehicle::collision_range (const Vehicle &other) const  {
+    return coll_range(s,speed,other.s,other.speed,Config::getInstance()->collisionBuffer());
 }
 
-inline double coll_time(double s0, double v0, double s1, double v1) {
-    auto t = (s0-s1)/(v1-v0);
-    return t;
+// |s0+v0t-s1-v1t| <= car_len
+// -car_len <= s0+v0-s1-v1 <= car_len
+// d = s0-s1
+// -car_len <= d+(v0-v1)t <= car_len
+// -car_len-d >= (v0-v1)t >= car_len -d
+//
+inline std::pair<double,double> coll_range(double s0, double v0, double s1, double v1, double car_len) {
+    auto d = s0-s1;
+
+    auto l = (-car_len-d)/(v0-v1);
+    auto r = (car_len-d)/(v0-v1);
+    return std::pair<double,double> (std::min(l,r),std::max(l,r));
+
 }
-
-
 ```
 
 The segment in ```main.cpp``` that combines this logic is
@@ -218,3 +226,10 @@ The code steers the car without collision at a speed of 46-47 mph. The following
 - simulator cannot be set to defined situations, makes it very difficult to reproduce / test complex algorithms
 
 2. The state machine is implicit, in the steps of the code.
+
+## Additional Visualization
+
+For analysis and visualization, if the code is compiled with DEBUG options and a customized CMakefile, it will create additional output both on the console, as well as a animated analysis:
+![Viz](path-plan-viz.png)
+
+
