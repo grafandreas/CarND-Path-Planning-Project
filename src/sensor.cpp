@@ -94,7 +94,9 @@ lane_type Sensor::fastestLaneFrom(vector<Vehicle> vehicles, int s, lane_type cur
             speeds[currentLane+1] > speeds[bestLane] )
         bestLane = currentLane +1;
 
+#if 0
     cout << "best:" << bestLane  << endl;
+#endif
 
     return bestLane;
 }

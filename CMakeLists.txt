@@ -7,7 +7,7 @@ add_definitions(-std=c++1y -DUSE_VIZ)
 set(CXX_FLAGS "-Wall -std=c++11")
 set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
 
-set(sources src/main.cpp src/config.cpp src/viz.cpp src/mapservice.cpp src/datalogger.cpp src/statemachine.cpp src/vehicle.cpp src/sensor.cpp src/coordinates.cpp src/trajectory.cpp)
+set(sources src/main.cpp src/config.cpp  src/mapservice.cpp src/datalogger.cpp src/statemachine.cpp src/vehicle.cpp src/sensor.cpp src/coordinates.cpp src/trajectory.cpp)
 
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 

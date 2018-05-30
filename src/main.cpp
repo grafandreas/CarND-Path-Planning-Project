@@ -19,12 +19,11 @@
 #include "trajectory.h"
 #include "coordinates.h"
 
-#define USE_VIZ 1
-#ifdef USE_VIZ
+#if 0
 #include "viz.h"
 #endif
 
-#define DEBUG 1
+
 
 using namespace std;
 
@@ -222,14 +221,18 @@ int main() {
   Config * cfg = Config::getInstance();
   MapService * mapS = new MapService(map_waypoints_x, map_waypoints_y);
 
-#ifdef USE_VIZ
+#if 0
   Viz *viz = new Viz;
   viz->setWaypoints(map_waypoints_x,map_waypoints_y);
   viz->visualize();
 #endif
 
 
-  h.onMessage([&map_waypoints_x,&map_waypoints_y,&map_waypoints_s,&map_waypoints_dx,&map_waypoints_dy, viz,mapS](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
+  h.onMessage([&map_waypoints_x,&map_waypoints_y,&map_waypoints_s,&map_waypoints_dx,&map_waypoints_dy,
+#if 0
+              viz,
+#endif
+              mapS](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
                      uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
@@ -313,7 +316,7 @@ int main() {
 
 //            cout << "!! " << ego.s << " " << ego.d << " " << ego.yaw << endl;
             auto lane_speeds = front_sensor.laneSpeeds(*vehicles,ego.s);
-#ifdef USE_VIZ
+#if 0
             viz->setCarPos(ego.x,ego.y,ego.yaw,ego.speed);
             viz->setVehicles(*vehicles);
             viz->setPrevPath(previous_path_x,previous_path_y);
@@ -342,7 +345,9 @@ int main() {
             // NOTE: This will stop execution
             //
             if(previous_path_x.size() > 4 && fabs(ego.s - end_path_s) > Config::getInstance()->trajectoryTrajectoryMin() ) {
+#if 0
                 cout << "Not replanning " << fabs(ego.s - end_path_s) << " §" << Config::getInstance()->trajectoryTrajectoryMin() << endl;
+#endif
 
                 for(auto v : previous_path_x)
                     next_x_vals.push_back((v));
@@ -367,7 +372,9 @@ int main() {
                 // previous path. We need to know how long that is.
                 replanFrom = ego.s+calc_length(previous_path_x,previous_path_y,Config::getInstance()->trajectoryReuseNPoints()  -1);
             }
+#if 0
             cout << "Replanning from " << ego.s << " " << replanFrom << "(" << (replanFrom-ego.s) << ")" << endl;
+#endif
             auto fastestLane = front_sensor.bestLaneFrom(*vehicles,ego.s,ego.lane);
 
             // If we have a lange change, calculate if we would have a
@@ -388,17 +395,25 @@ int main() {
 
 
                 for(auto t : coll_times) {
+#if 0
                     cout << "Coll " << t << endl;
+#endif
                     if( t >= 0.0 && t <= 10.0) {
+#if 0
                         cout << "Not overtaking" << endl;
+#endif
                         fastestLane = ego.lane;
                     }
                 }
                 std::pair<double,double> tr(0.0,10.0);
                 for(auto t : coll_r) {
+ #if 0
                     cout << "Coll " << t.first << "," << t.second << endl;
+#endif
                     if(overlaps(tr,t)) {
+#if 0
                         cout << "Not overtaking" << endl;
+#endif
                         fastestLane = ego.lane;
                     }
                 }
@@ -436,7 +451,9 @@ int main() {
             // path points to get a smooth transition.
             //
             if(previous_path_x.size() >= Config::getInstance()->trajectoryReuseNPoints()   ) {
+#if 0
                 cout << "Pushing previous Paths" << endl;
+#endif
                 for(int i = 0; i<Config::getInstance()->trajectoryReuseNPoints();i++)
                 traj_points.push_back(XY(previous_path_x.at(i),previous_path_y.at(i)));
             } else {
@@ -448,14 +465,15 @@ int main() {
                 traj_points.push_back(t);
             }
 
-
+#if 0
             cout << "T: " << sd_list.size() << " " << traj_points.size() <<endl;
+#endif
             std::vector<XY> traj_points_car_coord_list;
 
             world2car(XY(ego.x,ego.y), traj_points,traj_points_car_coord_list, ego.yaw_rad);
-
-            cout << ego.x << ego.y << endl;
 #if 0
+            cout << ego.x << ego.y << endl;
+
             dump("sd- ",sd_list, 8);
             dump("t- ", traj_points, 8);
             dump("tl- ", traj_points_car_coord_list, 8);
@@ -490,7 +508,7 @@ int main() {
 
             split(sd_list_next_world, next_x_vals,next_y_vals);
 
-#if 1
+#if 0
             cout << "+ " << ego.x << " " << ego.y << " " << next_x_vals.at(0) << " " << next_y_vals.at(0) << endl;
             cout << distance(ego.x,ego.y,next_x_vals.at(0),next_y_vals.at(0)) << endl;
             cout << distance(ego.x,ego.y,next_x_vals.at(0),next_y_vals.at(0)) / TICK << endl;

@@ -71,7 +71,13 @@ inline void dumpDetail(std::string prefix, const std::vector<double> & x,  const
 
         if(i > 0 ) {
             std::cout << "d:" << distanceD(x.at(i),y.at(i),x.at(i-1),y.at(i-1)) ;
-            std::cout << ",v:" << distanceD(x.at(i),y.at(i),x.at(i-1),y.at(i-1)) / TICK;
+            auto v = distanceD(x.at(i),y.at(i),x.at(i-1),y.at(i-1)) / TICK;
+            if(v <= 22.0) {
+                std::cout << ",v:" << v;
+            }
+            else {
+                    std::cout << ",v:\033[1;33m"<< v << "\033[0m";
+            }
         }
         if( i > 1) {
             auto v1 = distanceD(x.at(i),y.at(i),x.at(i-1),y.at(i-1)) / TICK;
