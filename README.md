@@ -197,7 +197,34 @@ If we keep the same lane, we proceed with a trajectory based on increasing s (ac
 
 As in the walk-through, splines are being used for calculation of the trajectory. The trajectory points are being filled from the spline defined in the previous step in ```Trajectory::fillLists(std::vector<XY> &out, double initialSpeed, double targetSpeed, double startX)```
 
-Note that, in contrast on the walkthrough, this code uses distance calculation a long the actual curve of the spline (the walkthrough uses the x-axis, which is imprecise).
+The spline is defined for two cases:
+
+1. Stay on the lane (no lane change): Just keep the value of d for the current lane, and plan ahead for a number of meters (all dependent on the configuration):
+
+```cpp
+               auto count = Config::getInstance()->trajectoryTrajectoryLength()/Config::getInstance()->trajectoryWaypointDist();
+                for(int i = 1; i<count;i++) {
+                    // We are pushing the points on the track that we want to hit!
+                    sd_list.push_back(Sd(replanFrom+Config::getInstance()->trajectoryWaypointDist()*i,lane2d(ego.lane)));
+                }
+```
+
+2. Lane change. define a number of points for the lane change. These are
+2.1. a point on the current lane
+2.2. a point between the two lanes
+2.3. and two points on the new lanes. Two points are planned to make sure that the spline smoothly transistions into the new lane. Otherwise we would not be sure about the final direction.
+
+```cpp
+                sd_list.push_back(Sd(replanFrom+30.0,cur_d));
+                sd_list.push_back(Sd(replanFrom+60,(cur_d+dest_d)/2 ));
+                sd_list.push_back(Sd(replanFrom+90,dest_d ));
+                sd_list.push_back(Sd(replanFrom+120,dest_d ));
+```
+
+The s and d values are then converted to local car coordinates, the spline is calculated and the result is filled into lists and converted back to world coordinates.
+
+Note that, in contrast on the walkthrough, this code uses distance calculation a long the actual curve of the spline (the walkthrough uses the x-axis, which is imprecise). Instead, I use ```nextPointWithDistance``` which follows the spline in small increments to
+find the real length along the curve.
 
 The code is as follows
 ```cpp
@@ -232,4 +259,7 @@ The code steers the car without collision at a speed of 46-47 mph. The following
 For analysis and visualization, if the code is compiled with DEBUG options and a customized CMakefile, it will create additional output both on the console, as well as a animated analysis:
 ![Viz](path-plan-viz.png)
 
+## Final result: 
+
+The car runs without problems for at least two laps (stopped simulation after that).
 
